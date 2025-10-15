@@ -1,0 +1,28 @@
+{
+    "favourites": [
+        "ESN Designer Bar",
+        "Milbona Skyr",
+        "Whey Protein",
+        "Müller Milchreis",
+        "Himbeeren",
+        "Blaubeeren",
+        "Erdbeeren"
+    ],
+
+    "favourite_brands": [
+        "ESN",
+        "Ehrmann",
+        "Müller",
+        "Alpro",
+        "Fayn",
+        "Barebells",
+        "Ironmaxx"
+    ],
+
+    "favourite_categories": [
+        "Proteinriegel",
+        "Protein Bar",
+        "Joghurt",
+        "Quark",
+        "Beeren"]
+}
