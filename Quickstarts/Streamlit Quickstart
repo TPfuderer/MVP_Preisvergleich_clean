@@ -1,0 +1,18 @@
+# -------------------------------
+# 🚀 Streamlit Quickstart Script
+# -------------------------------
+
+# 1️⃣ Ins Projektverzeichnis wechseln
+cd "C:XXX"
+
+# 2️⃣ Virtuelle Umgebung aktivieren
+# Falls eine Fehlermeldung zur Ausführungsrichtlinie kommt:
+# Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.\.venv\Scripts\Activate.ps1
+
+# 3️⃣ Streamlit installieren (innerhalb deiner venv!)
+# pip install streamlit pandas altair #### FALLS NÖTIG
+
+# 3️⃣ Streamlit App starten
+# (Der Pfad wurde exakt an deine Datei angepasst)
+streamlit run "C:\Users\pfudi\PycharmProjects\PythonProject\Application\app\streamlit_app.py" --server.address=0.0.0.0 --server.port=8501

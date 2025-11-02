@@ -5,8 +5,9 @@ import re
 import altair as alt
 import unicodedata
 import json
+from datetime import datetime, timedelta
 from PIL import Image
-from pathlib import Path
+from pandas import Timedelta
 
 
 BASE_DIR = Path(__file__).resolve().parents[1]
@@ -80,6 +81,10 @@ def get_image_for_product(product_name: str) -> str:
         "Protein Bar Deluxe": "protein bar deluxe.jpg",
         "beeren": "beeren.jpg",
         "Big Block Protein-Riegel": "Big Block Protein-Riegel.jpg",
+        "whey": "whey.jpg",
+        "buttermilch": "buttermilch.jpg",
+        "High Protein Chocolate Pudding": "proteinpudding.jpg",
+        "protein pudding": "proteinpudding.jpg",
     }
 
     # ✅ Sortiere längere Keys zuerst, damit spezifische Begriffe Vorrang haben
@@ -215,23 +220,100 @@ if "Vorheriger_float" in data.columns and "Preis_float" in data.columns:
 else:
     data["Rabatt_vs_prev"] = None
 
-
 # ----------------------------
-# Datumsspalten & aktuelle Angebote
+# 🌍 GLOBALER DATUMS-SLIDER
+# Start = Heute | Lookback = -14 Tage | Max = max(Gueltig_bis)
 # ----------------------------
-if "Gueltig_von" in data.columns:
-    data["Gueltig_von"] = pd.to_datetime(data["Gueltig_von"], errors="coerce")
-if "Gueltig_bis" in data.columns:
-    data["Gueltig_bis"] = pd.to_datetime(data["Gueltig_bis"], errors="coerce")
+for col in ["Gueltig_von", "Gueltig_bis"]:
+    if col in data.columns:
+        data[col] = pd.to_datetime(data[col], errors="coerce")
 
 today = pd.Timestamp.today().normalize()
+min_limit = today - timedelta(days=14)
+max_limit = pd.to_datetime(data["Gueltig_bis"], errors="coerce").max() or today
 
-data["Ist_aktuell"] = (
-    (data["Gueltig_von"].notna()) &
-    (data["Gueltig_bis"].notna()) &
-    (data["Gueltig_von"] <= today) &
-    (data["Gueltig_bis"] >= today)
+st.sidebar.markdown("### 🗓️ Angebotszeitraum")
+selected_range = st.sidebar.slider(
+    "Zeitraum auswählen:",
+    min_value=min_limit.to_pydatetime(),
+    max_value=max_limit.to_pydatetime(),
+    value=(today.to_pydatetime(), today.to_pydatetime()),  # Standard = Heute
+    format="DD.MM.YYYY",
 )
+
+# 🌍 Hauptdaten (Sliderbereich)
+filtered_data = data[
+    (data["Gueltig_von"] <= selected_range[1])
+    & (data["Gueltig_bis"] >= selected_range[0])
+].copy()
+
+# 🌟 Nur heute gültige Angebote
+filtered_data_current = filtered_data[
+    (filtered_data["Gueltig_von"] <= today)
+    & (filtered_data["Gueltig_bis"] >= today)
+].copy()
+
+# ➕➕➕ DATUMS-FLAGS (NEU) ─────────────
+# Angebot überlappt den gewählten Slider-Zeitraum
+data["Ist_im_Slider"] = (
+    (data["Gueltig_von"] <= selected_range[1])
+    & (data["Gueltig_bis"] >= selected_range[0])
+)
+
+# Angebot ist HEUTE gültig
+data["Ist_heute"] = (
+    (data["Gueltig_von"] <= today)
+    & (data["Gueltig_bis"] >= today)
+)
+
+# Kompatibilität: 'Ist_aktuell' = heute gültig (bestehende Filter/Tabs nutzen das)
+data["Ist_aktuell"] = data["Ist_heute"]
+# ─────────────────────────────────────
+
+st.sidebar.caption(f"📅 Zeitraum: {selected_range[0].date()} – {selected_range[1].date()}")
+st.sidebar.caption(f"🔹 Im Zeitraum gültig: {len(filtered_data)} | Heute gültig: {len(filtered_data_current)}")
+
+# ----------------------------
+# 🧮 Berechnungen & Bereinigung
+# ----------------------------
+data = data.drop_duplicates(
+    subset=["Produkt", "Marke", "Preis", "Gueltig_von", "Gueltig_bis"],
+    keep="first"
+).reset_index(drop=True)
+
+# Preisfelder
+if "Preis" in data.columns:
+    data["Preis_float"] = data["Preis"].apply(money_to_float)
+if "Vorheriger Preis" in data.columns:
+    data["Vorheriger_float"] = data["Vorheriger Preis"].apply(money_to_float)
+if "Preis_kg" in data.columns:
+    data["Preis_kg_float"] = data["Preis_kg"].apply(money_to_float)
+
+# Rabattberechnung
+if "Vorheriger_float" in data.columns and "Preis_float" in data.columns:
+    data["Rabatt_vs_prev"] = (
+        (data["Vorheriger_float"] - data["Preis_float"]) / data["Vorheriger_float"]
+    ).replace([float("inf"), -float("inf")], None)
+else:
+    data["Rabatt_vs_prev"] = None
+
+# ----------------------------
+# ⚙️ Globale Funktion für Tabs: aktuelle/alle Datenbasis wählen
+# ----------------------------
+def get_base_data(tab_key: str, default_current: bool = True) -> pd.DataFrame:
+    """
+    Gibt die Datenbasis für einen Tab zurück:
+    - 'Nur aktuelle Angebote' (heute gültig)
+    - oder den gesamten Slider-Zeitraum
+    """
+    use_current = st.toggle(
+        "Nur aktuelle Angebote anzeigen",
+        value=default_current,
+        key=f"use_current_{tab_key}"
+    )
+
+    return filtered_data_current if use_current else filtered_data
+
 
 # ----------------------------
 # Sidebar Filter
@@ -257,6 +339,7 @@ if only_online and "Nur_online" in data.columns:
     mask &= data["Nur_online"].str.lower() == "ja"
 
 filtered = data[mask].copy()
+
 
 # ----------------------------
 # Tabs
@@ -309,9 +392,9 @@ tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs(tab_labels)
 # Tab 1: Top Deals
 # ----------------------------
 with tab1:
-    if not filtered.empty and "Rabatt_vs_prev" in filtered.columns:
-        top_deals = filtered.sort_values("Rabatt_vs_prev", ascending=False).head(15)
-
+    base = get_base_data("tab1")
+    if not base.empty and "Rabatt_vs_prev" in base.columns:
+        top_deals = base.sort_values("Rabatt_vs_prev", ascending=False).head(15)
         st.subheader("🔥 Top 15 größte Rabatte heute")
 
         # Rabatt-Spalte als Prozent anzeigen
@@ -479,6 +562,7 @@ with tab4:
 with tab5:
     st.header("🧱 Karten-Ansicht (UI-Methode 2)")
 
+    # 🛒 Einkaufswagen initialisieren
     if "cart" not in st.session_state:
         st.session_state.cart = []
 
@@ -488,16 +572,13 @@ with tab5:
         placeholder="Produktname eingeben …"
     ).strip().lower()
 
-    # Sofortige Vorschläge, während getippt wird
+    # Sofortige Vorschläge beim Tippen
     if search_term and len(search_term) >= 2:
         all_names = pd.concat([
             data["Produkt"].dropna().astype(str),
             data.get("Marke", pd.Series(dtype=str)).dropna().astype(str)
         ]).unique()
-
         suggestions = [name for name in all_names if search_term in name.lower()][:5]
-
-
 
     # 🏪 Händler-Filter
     retailers = sorted(data["Retailer"].dropna().unique())
@@ -507,28 +588,22 @@ with tab5:
         default=retailers
     )
 
-    # ↕️ Sortieroption
-    sort_option = st.selectbox(
-        "Sortieren nach:",
-        [
-            "Kein Sortieren",
-            "Preis (aufsteigend)",
-            "Preis (absteigend)",
-            "Preis pro kg/l (aufsteigend)",
-            "Preis pro kg/l (absteigend)",
-            "Rabatt (absteigend)"
-        ]
-    )
+    # 🧭 Filter: nur aktuelle oder alle anzeigen
+    use_current = st.toggle("Nur aktuelle Angebote anzeigen", value=True, key="filter_current_tab5")
 
-    # 📄 Daten auswählen
-    subset = data[data["Retailer"].isin(selected_retailers) & data["Ist_aktuell"]].copy()
+    if use_current:
+        subset = data[data["Ist_aktuell"] & data["Retailer"].isin(selected_retailers)].copy()
+    else:
+        subset = data[data["Retailer"].isin(selected_retailers)].copy()
+
+    # 🔎 Suchfeld anwenden
     if search_term:
         subset = subset[
             subset["Produkt"].str.lower().str.contains(search_term, na=False)
             | subset["Marke"].str.lower().str.contains(search_term, na=False)
         ]
 
-    # Preise numerisch
+    # 💶 Preis-Konvertierung
     if "Preis_float" not in subset.columns:
         subset["Preis_float"] = subset["Preis"].apply(money_to_float)
 
@@ -550,21 +625,25 @@ with tab5:
 
     if "Preis_kg_float" not in subset.columns and "Preis_kg" in subset.columns:
         subset["Preis_kg_float"] = subset["Preis_kg"].apply(unit_price_to_float)
-    # 🕒 Zeitraum-Filter (Datums-Slider)
-    if "Gueltig_von" in data.columns and "Gueltig_bis" in data.columns:
-        min_date = pd.to_datetime(data["Gueltig_von"], errors="coerce").min()
-        max_date = pd.to_datetime(data["Gueltig_bis"], errors="coerce").max()
+
+    # 🕒 Zeitraum-Filter (Datums-Slider, arbeitet AUF subset)
+    if "Gueltig_von" in subset.columns and "Gueltig_bis" in subset.columns:
+        min_date = pd.to_datetime(subset["Gueltig_von"], errors="coerce").min()
+        max_date = pd.to_datetime(subset["Gueltig_bis"], errors="coerce").max()
 
         if pd.notna(min_date) and pd.notna(max_date):
-            # 👉 Umwandlung in native datetime
             min_date = min_date.to_pydatetime()
             max_date = max_date.to_pydatetime()
 
+            # 🔹 Frühestes Datum = heute - 2 Tage
+            today = datetime.today()
+            limit_min = max(min_date, today - timedelta(days=1))
+
             selected_range = st.slider(
                 "Zeitraum auswählen:",
-                min_value=min_date,
+                min_value=limit_min,
                 max_value=max_date,
-                value=(min_date, max_date),
+                value=(limit_min, max_date),
                 format="DD.MM.YYYY"
             )
 
@@ -573,7 +652,20 @@ with tab5:
                 & (pd.to_datetime(subset["Gueltig_bis"], errors="coerce") >= selected_range[0])
                 ]
 
-    # Sortieren
+    # ↕️ Sortieroption
+    sort_option = st.selectbox(
+        "Sortieren nach:",
+        [
+            "Kein Sortieren",
+            "Preis (aufsteigend)",
+            "Preis (absteigend)",
+            "Preis pro kg/l (aufsteigend)",
+            "Preis pro kg/l (absteigend)",
+            "Rabatt (absteigend)"
+        ]
+    )
+
+    # Sortierlogik
     if sort_option == "Preis (aufsteigend)":
         subset = subset.sort_values("Preis_float", ascending=True)
     elif sort_option == "Preis (absteigend)":
@@ -585,6 +677,7 @@ with tab5:
     elif sort_option == "Rabatt (absteigend)" and "Rabatt_vs_prev" in subset.columns:
         subset = subset.sort_values("Rabatt_vs_prev", ascending=False)
 
+    # Begrenzung (kann angepasst werden)
     subset = subset.head(12)
 
     # --- Anzeige ---
@@ -595,10 +688,7 @@ with tab5:
 
         for i, (_, row) in enumerate(subset.iterrows()):
             with cols[i % 3]:
-                # 🖼️ Produktbild
                 st.image(get_image_for_product(row["Produkt"]), use_container_width=True)
-
-                # Produktinfos
                 full_name = str(row.get("Produkt", ""))
                 short_name = short_text(full_name, 60)
 
@@ -611,14 +701,11 @@ with tab5:
                 st.caption(f"{row.get('Marke', '')} – {row['Retailer']}")
                 st.write(f"💶 **{row['Preis']}** ({row.get('Preis_kg', '')})")
 
-                # 🗓️ Angebotszeitraum
-                if "Gueltig_von" in row and "Gueltig_bis" in row:
-                    von = pd.to_datetime(row["Gueltig_von"], errors="coerce")
-                    bis = pd.to_datetime(row["Gueltig_bis"], errors="coerce")
-                    if pd.notna(von) and pd.notna(bis):
-                        st.write(f"🗓️ {von:%d.%m.%Y} – {bis:%d.%m.%Y}")
+                von = pd.to_datetime(row.get("Gueltig_von"), errors="coerce")
+                bis = pd.to_datetime(row.get("Gueltig_bis"), errors="coerce")
+                if pd.notna(von) and pd.notna(bis):
+                    st.write(f"🗓️ {von:%d.%m.%Y} – {bis:%d.%m.%Y}")
 
-                # 💸 Rabatt
                 r = row.get("Rabatt_vs_prev")
                 if pd.notna(r) and r > 0:
                     st.markdown(
@@ -631,14 +718,13 @@ with tab5:
                         unsafe_allow_html=True
                     )
 
-                # ➕ Hinzufügen
                 if st.button("➕ Hinzufügen", key=f"card_add_{i}"):
                     st.session_state.cart.append(row.to_dict())
                     st.success(f"✅ {row['Produkt']} hinzugefügt!")
 
     st.divider()
 
-    # --- 🛒 Vorschau Einkaufswagen ---
+    # --- 🛒 Einkaufswagen-Vorschau ---
     if st.session_state.cart:
         st.markdown("### 🛒 Aktueller Einkaufswagen")
         st.dataframe(
@@ -720,7 +806,7 @@ with tab6:
 with tab7:
     st.header("⭐ Beobachtung & Verlauf (Favoriten)")
 
-    fav_file = FAV_FILE
+    fav_file = Path(r"C:\Users\pfudi\PycharmProjects\PythonProject\Application\favourites.json")
 
     # 🔹 Datei ggf. mit Beispieldaten anlegen
     if not fav_file.exists():
@@ -737,127 +823,6 @@ with tab7:
 
     if "cart" not in st.session_state:
         st.session_state.cart = []
-
-    # ---------------------------------------------------
-    # 📦 PRODUKT-FAVORITEN ALS KARTEN
-    # ---------------------------------------------------
-    st.subheader("💚 Beobachtete Produkte")
-
-    if favourites:
-        # 🔽 Dropdown zur Auswahl, standardmäßig alle aktiv
-        selected_favs = st.multiselect(
-            "Produkte filtern (leer = alle anzeigen)",
-            options=favourites,
-            default=favourites,
-            key="fav_filter_products"
-        )
-
-        # Wenn keine Auswahl → alle anzeigen
-        active_favs = selected_favs if selected_favs else favourites
-
-        subset = pd.concat([
-            data[
-                data["Ist_aktuell"] &
-                (
-                        data["Produkt"].str.lower().str.contains(fav.lower(), na=False) |
-                        data["Marke"].str.lower().str.contains(fav.lower(), na=False)
-                )
-                ]
-            for fav in active_favs
-        ], ignore_index=True).drop_duplicates(subset=["Produkt", "Retailer", "Preis"])
-
-        if subset.empty:
-            st.info("Keine aktuellen Angebote zu den Produkt-Favoriten gefunden.")
-        else:
-            subset = subset.sort_values("Preis_float", ascending=True).head(12)
-            cols = st.columns(3)
-            for i, (_, row) in enumerate(subset.iterrows()):
-                with cols[i % 3]:
-                    st.image(get_image_for_product(row["Produkt"]), use_container_width=True)
-                    full_name = str(row.get("Produkt", ""))
-                    short_name = short_text(full_name, 60)
-
-                    if len(full_name) > 60:
-                        with st.expander(short_name):
-                            st.markdown(f"**{full_name}**")
-                    else:
-                        st.markdown(f"**{full_name}**")
-
-                    st.caption(f"{row.get('Marke', '')} – {row['Retailer']}")
-                    st.write(f"💶 **{row['Preis']}** ({row.get('Preis_kg', '')})")
-
-                    # Zeitraum & Rabatt bleiben gleich …
-
-                    if st.button("➕ Hinzufügen", key=f"fav_add_{i}"):
-                        st.session_state.cart.append(row.to_dict())
-                        st.success(f"✅ {row['Produkt']} hinzugefügt!")
-                        st.rerun()
-    else:
-        st.info("Noch keine Produkt-Favoriten hinterlegt.")
-
-    # ---------------------------------------------------
-    # 🏷️ MARKEN-FAVORITEN ALS KARTEN
-    # ---------------------------------------------------
-    st.divider()
-    st.subheader("🏷️ Beobachtete Marken")
-    selected_brands = st.multiselect(
-        "Marken filtern (leer = alle anzeigen)",
-        options=favourite_brands,
-        default=favourite_brands,
-        key="fav_filter_brands"
-    )
-    active_brands = selected_brands if selected_brands else favourite_brands
-
-    if active_brands:  # ✅ hier auch active_brands statt favourite_brands
-        subset_brands = pd.concat([
-            data[
-                data["Ist_aktuell"]
-                & data["Marke"].str.lower().str.contains(b.lower(), na=False)
-                ]
-            for b in active_brands  # ✅ hier der Fix
-        ], ignore_index=True).drop_duplicates(subset=["Produkt", "Retailer", "Preis"])
-
-        if subset_brands.empty:
-            st.info("Keine aktuellen Angebote zu den beobachteten Marken gefunden.")
-        else:
-            subset_brands = subset_brands.sort_values("Preis_float", ascending=True).head(12)
-            cols_b = st.columns(3)
-            for i, (_, row) in enumerate(subset_brands.iterrows()):
-                with cols_b[i % 3]:
-                    st.image(get_image_for_product(row["Produkt"]), use_container_width=True)
-                    full_name = str(row.get("Produkt", ""))
-                    short_name = short_text(full_name, 60)
-
-                    if len(full_name) > 60:
-                        with st.expander(short_name):
-                            st.markdown(f"**{full_name}**")
-                    else:
-                        st.markdown(f"**{full_name}**")
-
-                    st.caption(f"{row.get('Marke', '')} – {row['Retailer']}")
-                    st.write(f"💶 **{row['Preis']}** ({row.get('Preis_kg', '')})")
-
-                    if "Gueltig_von" in row and "Gueltig_bis" in row:
-                        von = pd.to_datetime(row["Gueltig_von"], errors="coerce")
-                        bis = pd.to_datetime(row["Gueltig_bis"], errors="coerce")
-                        if pd.notna(von) and pd.notna(bis):
-                            st.write(f"🗓️ {von:%d.%m.%Y} – {bis:%d.%m.%Y}")
-
-                    r = row.get("Rabatt_vs_prev")
-                    if pd.notna(r) and r > 0:
-                        st.markdown(
-                            f"<span style='color:green'>💸 Rabatt: {(r * 100):.1f}%</span>",
-                            unsafe_allow_html=True
-                        )
-                    else:
-                        st.markdown("<span style='color:gray'>🏷️ Aktion / Kein Rabatt</span>", unsafe_allow_html=True)
-
-                    if st.button("➕ Hinzufügen", key=f"brand_add_{i}"):
-                        st.session_state.cart.append(row.to_dict())
-                        st.success(f"✅ {row['Produkt']} hinzugefügt!")
-                        st.rerun()
-    else:
-        st.info("Noch keine Marken-Favoriten hinterlegt.")
 
     # ---------------------------------------------------
     # 🍫 PRODUKT-KATEGORIEN ALS KARTEN
@@ -891,23 +856,39 @@ with tab7:
             return s
 
 
-        # ✅ aktive Kategorien durchsuchen (nicht alle)
-        subset_cats = pd.concat([
-            data[
-                data["Ist_aktuell"] &
-                (
-                        data["Produkt"].apply(lambda x: normalize_simple(cat) in normalize_simple(str(x))) |
-                        data["Marke"].apply(lambda x: normalize_simple(cat) in normalize_simple(str(x)))
-                )
-                ]
-            for cat in active_cats  # ✅ <— hier ist der entscheidende Fix
-        ], ignore_index=True).drop_duplicates(subset=["Produkt", "Retailer", "Preis"])
+        # 🔹 Heute und morgen erlauben
+        today = datetime.today().replace(hour=0, minute=0, second=0, microsecond=0)
+        tomorrow = today + timedelta(days=1)
 
+        # ⛔ Korrekte Maskenbildung (statt DataFrame & bool mix)
+        date_mask = (
+                ((pd.to_datetime(data["Gueltig_von"], errors="coerce") <= today) &
+                 (pd.to_datetime(data["Gueltig_bis"], errors="coerce") >= today))
+                |
+                ((pd.to_datetime(data["Gueltig_von"], errors="coerce") <= tomorrow) &
+                 (pd.to_datetime(data["Gueltig_bis"], errors="coerce") >= tomorrow))
+        )
+
+        subset_list = []
+        for cat in active_cats:
+            cat_mask = (
+                    data["Produkt"].apply(lambda x: normalize_simple(cat) in normalize_simple(str(x))) |
+                    data["Marke"].apply(lambda x: normalize_simple(cat) in normalize_simple(str(x)))
+            )
+            subset_list.append(data[date_mask & cat_mask])
+
+        subset_cats = (
+            pd.concat(subset_list, ignore_index=True)
+            .drop_duplicates(subset=["Produkt", "Retailer", "Preis"])
+        )
+
+        # ✅ Anzeige
         if subset_cats.empty:
-            st.info("Keine aktuellen Angebote zu den beobachteten Kategorien gefunden.")
+            st.info("Keine aktuellen oder ab morgen gültigen Angebote zu den beobachteten Kategorien gefunden.")
         else:
-            subset_cats = subset_cats.sort_values("Preis_float", ascending=True).head(12)
+            subset_cats = subset_cats.sort_values("Preis_float", ascending=True).reset_index(drop=True).head(12)
             cols_c = st.columns(3)
+
             for i, (_, row) in enumerate(subset_cats.iterrows()):
                 with cols_c[i % 3]:
                     st.image(get_image_for_product(row["Produkt"]), use_container_width=True)
