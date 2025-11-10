@@ -3,7 +3,7 @@ from PIL import Image
 import os
 
 # 🔹 Pfade definieren
-BASE_DIR = Path(r"C:\Users\pfudi\PycharmProjects\PythonProject\Application\images")
+BASE_DIR = Path(r"C:\Users\pfudi\PycharmProjects\MVP_Preisvergleich\images")
 IMG_DIR = BASE_DIR / "originals"   # hier liegen deine neuen Bilder
 OUT_DIR = BASE_DIR / "resized"     # hier speichert das Skript die verkleinerten Bilder
 OUT_DIR.mkdir(exist_ok=True)
