@@ -13,7 +13,7 @@ from pandas import Timedelta
 BASE_DIR = Path(__file__).resolve().parents[1]
 DATA_DIR = BASE_DIR / "data"
 IMAGE_DIR = BASE_DIR / "images" / "resized"
-CSV_IMG_DIR = DATA_DIR / "images_edeka"
+CSV_IMG_DIR = DATA_DIR / "images" / "images_edeka"
 FAV_FILE = BASE_DIR / "favourites.json"
 
 
