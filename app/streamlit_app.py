@@ -63,19 +63,6 @@ div[data-testid="stImage"] img {
 # ----------------------------
 # Helpers
 # ----------------------------
-def get_csv_image_url(csv_image: str) -> str:
-    """Gibt lokalen oder GitHub-raw-Link zurück."""
-    if not csv_image:
-        return None
-
-    local_path = CSV_IMG_DIR / Path(csv_image).name
-    if local_path.exists():
-        # ✅ funktioniert lokal
-        return local_path.as_posix()
-
-    # 🌐 funktioniert auf Streamlit Cloud
-    github_raw_base = "https://raw.githubusercontent.com/tristanpfuderer/mvp_preisvergleich/main/data/images/images_edeka"
-    return f"{github_raw_base}/{Path(csv_image).name}"
 
 def short_text(text: str, max_len: int = 60) -> str:
     """Shorten long text and add ellipsis."""
@@ -525,8 +512,11 @@ with tab1:
                 # === Bildwahl ===
                 csv_image = row.get("Bildpfad")
                 if isinstance(csv_image, str) and csv_image.strip():
-                    image_url = get_csv_image_url(csv_image)
-                    st.image(image_url, use_container_width=True)
+                    local_path = CSV_IMG_DIR / csv_image
+                    if local_path.exists():
+                        st.image(local_path.as_posix(), use_container_width=True)
+                    else:
+                        st.image(get_image_for_product(row["Produkt"]), use_container_width=True)
                 else:
                     st.image(get_image_for_product(row["Produkt"]), use_container_width=True)
 
