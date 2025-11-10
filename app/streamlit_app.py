@@ -13,25 +13,52 @@ from pandas import Timedelta
 BASE_DIR = Path(__file__).resolve().parents[1]
 DATA_DIR = BASE_DIR / "data"
 IMAGE_DIR = BASE_DIR / "images" / "resized"
+CSV_IMG_DIR = DATA_DIR / "images"
 FAV_FILE = BASE_DIR / "favourites.json"
 
 
 st.title("🛒 MVP Preisvergleich")
 
-# --- Einheitliche Bildgröße für alle st.image() Aufrufe ---
 st.markdown("""
-    <style>
-        img[data-testid="stImage"] {
-            height: 200px !important;        /* Einheitliche Bildhöhe */
-            width: auto !important;          /* Seitenverhältnis behalten */
-            object-fit: cover !important;    /* Zuschneiden statt verzerren */
-            border-radius: 10px;             /* leicht abgerundet */
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-    </style>
+<style>
+/* --- Einheitliche Produkt-Kachel --- */
+.product-card {
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    padding: 0.4rem;
+    margin-bottom: 1rem;
+    background-color: transparent;
+}
+
+/* --- Einheitliche Bildbox: Weißer Hintergrund + zentriert --- */
+div[data-testid="stImage"] {
+    background-color: white !important;
+    border-radius: 8px !important;
+    display: flex !important;
+    align-items: center !important;       /* vertikal zentrieren */
+    justify-content: center !important;   /* horizontal zentrieren */
+    height: 180px !important;
+    overflow: hidden !important;
+    box-shadow: 0 0 6px rgba(0,0,0,0.05);
+}
+
+/* --- Bild: NIE skalieren oder zuschneiden --- */
+div[data-testid="stImage"] img {
+    object-fit: contain !important;
+    width: auto !important;
+    height: auto !important;
+    max-width: 80% !important;           /* 🧩 kein Zwangszoom */
+    max-height: 80% !important;          /* 🧩 etwas Innenabstand */
+    border-radius: 0 !important;
+    background-color: white !important;
+    margin: auto !important;
+    display: block !important;
+    transform: none !important;          /* kein Zoom-Effekt */
+}
+</style>
 """, unsafe_allow_html=True)
+
+
 
 # ----------------------------
 # Helpers
@@ -45,7 +72,7 @@ def short_text(text: str, max_len: int = 60) -> str:
 
 def get_image_for_product(product_name: str) -> str:
     """Zeigt produktspezifische lokale Bilder aus dem 'resized'-Ordner, sonst Platzhalter."""
-    base_dir = IMAGE_DIR
+    base_dir = Path(r"C:\Users\pfudi\PycharmProjects\PythonProject\Application\images\resized")
     fallback = base_dir / "13463451-Einkaufstuete-mit-verschiedenen-Lebensmitteln-stehend.jpg"
 
     image_map = {
@@ -161,14 +188,14 @@ def normalize_text(s: str) -> str:
     return "".join(c for c in s if not unicodedata.combining(c))
 
 # ----------------------------
-# Daten laden
+# 📦 Daten laden
 # ----------------------------
 files = list(DATA_DIR.glob("*.csv"))
 dfs = []
-for f in files:
-    df = pd.read_csv(f, sep=None, engine="python")
 
-    # Retailer anhand Dateinamen
+for f in files:
+    df = pd.read_csv(f, sep=",", quotechar='"', engine="python")
+    # --- Retailer anhand Dateinamen bestimmen ---
     name = f.name.lower()
     if "lidl" in name:
         retailer = "Lidl"
@@ -184,10 +211,25 @@ for f in files:
         retailer = "Kaufland"
     elif "amazon" in name:
         retailer = "Amazon"
+    elif "edeka" in name:
+        retailer = "Edeka"
+    elif "store_offers" in name:
+        retailer = "Unbekannt"   # ✅ Dein neuer CSV-Name
     else:
         retailer = "Unbekannt"
 
     df["Retailer"] = retailer
+
+    # --- Spezialfall: Mini-CSV (name + image_path) ---
+    if {"name", "image_path"}.issubset(df.columns):
+        df.rename(columns={"name": "Produkt", "image_path": "Lokales_Bild"}, inplace=True)
+        df["Preis"] = None
+        df["Gueltig_von"] = pd.NaT
+        df["Gueltig_bis"] = pd.NaT
+        df["Marke"] = ""
+        dfs.append(df)
+        continue
+
     dfs.append(df)
 
 if not dfs:
@@ -196,29 +238,6 @@ if not dfs:
 
 data = pd.concat(dfs, ignore_index=True)
 
-# Deduplizieren
-data = data.drop_duplicates(
-    subset=["Produkt", "Marke", "Preis", "Gueltig_von", "Gueltig_bis"],
-    keep="first"
-).reset_index(drop=True)
-
-# Numerik-Spalten berechnen
-if "Preis" in data.columns:
-    data["Preis_float"] = data["Preis"].apply(money_to_float)
-if "Vorheriger Preis" in data.columns:
-    data["Vorheriger_float"] = data["Vorheriger Preis"].apply(money_to_float)
-if "Preis_kg" in data.columns:
-    data["Preis_kg_float"] = data["Preis_kg"].apply(money_to_float)
-
-# Rabatt-Berechnung
-if "Vorheriger_float" in data.columns and "Preis_float" in data.columns:
-    data["Rabatt_vs_prev"] = (
-        (data["Vorheriger_float"] - data["Preis_float"]) / data["Vorheriger_float"]
-    )
-    # nur gültige Werte behalten
-    data["Rabatt_vs_prev"] = data["Rabatt_vs_prev"].replace([float("inf"), -float("inf")], None)
-else:
-    data["Rabatt_vs_prev"] = None
 
 # ----------------------------
 # 🌍 GLOBALER DATUMS-SLIDER
@@ -340,7 +359,6 @@ if only_online and "Nur_online" in data.columns:
 
 filtered = data[mask].copy()
 
-
 # ----------------------------
 # Tabs
 # ----------------------------
@@ -382,8 +400,8 @@ tab_labels = [
     "🧱 Karten-Ansicht",
     "⭐ Beobachtung & Verlauf",
     "🛒 Einkaufswagen",
-    "📈 Preis-Historie (Experimental)",
-    "🔥 Top 15 Rabatte(Experimental)"
+    "📈 Preis-Historie",
+    "🔥 Top 15 Rabatte"
 ]
 tab1, tab2, tab3, tab4, tab5 = st.tabs(tab_labels)
 
@@ -508,7 +526,7 @@ with tab1:
 
     # 🔢 Mehr-Anzeigen-Mechanismus
     if "card_limit" not in st.session_state:
-        st.session_state.card_limit = 20  # Startwert
+        st.session_state.card_limit = 12  # Startwert
 
     shown_subset = subset.head(st.session_state.card_limit)
 
@@ -520,16 +538,23 @@ with tab1:
 
         for i, (_, row) in enumerate(shown_subset.iterrows()):
             with cols[i % 3]:
-                st.image(get_image_for_product(row["Produkt"]), use_container_width=True)
+
+                # === Bildwahl ===
+                csv_image = row.get("Bildpfad")
+                if isinstance(csv_image, str) and csv_image.strip():
+                    local_path = CSV_IMG_DIR / csv_image
+                    if local_path.exists():
+                        st.image(local_path.as_posix(), use_container_width=True)
+                    else:
+                        st.image(get_image_for_product(row["Produkt"]), use_container_width=True)
+                else:
+                    st.image(get_image_for_product(row["Produkt"]), use_container_width=True)
+
+                # === Produktinfos ===
                 full_name = str(row.get("Produkt", ""))
                 short_name = short_text(full_name, 60)
 
-                if len(full_name) > 60:
-                    with st.expander(short_name):
-                        st.markdown(f"**{full_name}**")
-                else:
-                    st.markdown(f"**{full_name}**")
-
+                st.markdown(f"**{short_name}**")
                 st.caption(f"{row.get('Marke', '')} – {row['Retailer']}")
                 st.write(f"💶 **{row['Preis']}** ({row.get('Preis_kg', '')})")
 
@@ -540,19 +565,40 @@ with tab1:
 
                 r = row.get("Rabatt_vs_prev")
                 if pd.notna(r) and r > 0:
-                    st.markdown(
-                        f"<span style='color:green'>💸 Rabatt: {(r * 100):.1f}%</span>",
-                        unsafe_allow_html=True
-                    )
+                    st.markdown(f"<span style='color:green'>💸 Rabatt: {(r * 100):.1f}%</span>", unsafe_allow_html=True)
                 else:
-                    st.markdown(
-                        "<span style='color:gray'>🏷️ Aktion / Kein Rabatt</span>",
-                        unsafe_allow_html=True
-                    )
+                    st.markdown("<span style='color:gray'>🏷️ Aktion / Kein Rabatt</span>", unsafe_allow_html=True)
 
-                if st.button("➕ Hinzufügen", key=f"card_add_{i}"):
-                    st.session_state.cart.append(row.to_dict())
-                    st.success(f"✅ {row['Produkt']} hinzugefügt!")
+                # 🟢 Eindeutiger Key pro Produkt
+                widget_key = f"add_btn_{row.name}_{i}"
+                state_key = f"add_state_{row.name}_{i}"
+
+                # 🔸 Initialisieren, falls noch nicht vorhanden
+                if state_key not in st.session_state:
+                    st.session_state[state_key] = False  # False = noch nicht im Warenkorb
+
+                # 🔹 Button-Label abhängig vom Zustand
+                button_label = "➖ Entfernen" if st.session_state[state_key] else "➕ Hinzufügen"
+
+                # 🔹 Button anzeigen
+                if st.button(button_label, key=widget_key):
+                    if st.session_state[state_key]:
+                        # Produkt war im Warenkorb → entfernen
+                        st.session_state.cart = [
+                            item for item in st.session_state.cart
+                            if not (
+                                    item.get("Produkt") == row["Produkt"]
+                                    and item.get("Retailer") == row["Retailer"]
+                            )
+                        ]
+                        st.session_state[state_key] = False  # wieder zu „Hinzufügen“ schalten
+                    else:
+                        # Produkt war noch nicht im Warenkorb → hinzufügen
+                        st.session_state.cart.append(row.to_dict())
+                        st.session_state[state_key] = True  # jetzt „Entfernen“ anzeigen
+
+                    # 🔄 Sofortiges Re-Rendern, damit der Button sofort wechselt
+                    st.rerun()
 
         # 🔽 Mehr-Anzeigen-Button
         if len(subset) > st.session_state.card_limit:
