@@ -10,11 +10,11 @@ from PIL import Image
 from pandas import Timedelta
 
 
-BASE_DIR = Path(__file__).resolve().parents[1]
-DATA_DIR = BASE_DIR / "data"
-IMAGE_DIR = BASE_DIR / "images" / "resized"
-CSV_IMG_DIR = DATA_DIR / "images_edeka"
-FAV_FILE = BASE_DIR / "favourites.json"
+# 🔧 funktioniert lokal UND auf Streamlit Cloud
+REPO_ROOT = Path(__file__).resolve().parents[2] if "Application" in str(Path(__file__).resolve()) else Path(__file__).resolve().parents[1]
+DATA_DIR = REPO_ROOT / "data"
+CSV_IMG_DIR = DATA_DIR / "images" / "images_edeka"
+IMAGE_DIR = REPO_ROOT / "images" / "resized"
 
 
 st.title("🛒 MVP Preisvergleich")
@@ -57,8 +57,6 @@ div[data-testid="stImage"] img {
 }
 </style>
 """, unsafe_allow_html=True)
-
-
 
 # ----------------------------
 # Helpers
@@ -509,12 +507,23 @@ with tab1:
         for i, (_, row) in enumerate(shown_subset.iterrows()):
             with cols[i % 3]:
 
-                # === Bildwahl ===
                 csv_image = row.get("Bildpfad")
                 if isinstance(csv_image, str) and csv_image.strip():
-                    local_path = CSV_IMG_DIR / csv_image
-                    if local_path.exists():
-                        st.image(local_path.as_posix(), use_container_width=True)
+                    img_candidate = Path(csv_image)
+
+                    # 🔍 Versuch 1: Vollständiger Pfad im CSV gültig?
+                    if img_candidate.exists():
+                        st.image(img_candidate.as_posix(), use_container_width=True)
+
+                    # 🔍 Versuch 2: Bild liegt unter data/images/images_edeka
+                    elif (CSV_IMG_DIR / img_candidate.name).exists():
+                        st.image((CSV_IMG_DIR / img_candidate.name).as_posix(), use_container_width=True)
+
+                    # 🔍 Versuch 3: Fallback in resized
+                    elif (IMAGE_DIR / img_candidate.name).exists():
+                        st.image((IMAGE_DIR / img_candidate.name).as_posix(), use_container_width=True)
+
+                    # 🔍 Versuch 4: generisches Produktbild
                     else:
                         st.image(get_image_for_product(row["Produkt"]), use_container_width=True)
                 else:
