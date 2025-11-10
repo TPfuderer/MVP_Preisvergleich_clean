@@ -72,8 +72,8 @@ def short_text(text: str, max_len: int = 60) -> str:
 
 def get_image_for_product(product_name: str) -> str:
     """Zeigt produktspezifische lokale Bilder aus dem 'resized'-Ordner, sonst Platzhalter."""
-    base_dir = Path(r"C:\Users\pfudi\PycharmProjects\PythonProject\Application\images\resized")
-    fallback = base_dir / "13463451-Einkaufstuete-mit-verschiedenen-Lebensmitteln-stehend.jpg"
+    base_dir = Path("images/resized")  # ⚡ relativer Pfad (funktioniert lokal + online)
+    fallback = base_dir / "fallback.jpg"
 
     image_map = {
         # --- Markenspezifische ---
@@ -93,7 +93,6 @@ def get_image_for_product(product_name: str) -> str:
         "banane": "banane.jpg",
         "proteinriegel": "proteinriegel.jpg",
         "protein riegel": "proteinriegel.jpg",
-        "protein-riegel": "proteinriegel.jpg",
         "protein bar": "proteinriegel.jpg",
         "hackfleisch": "hackfleisch.jpg",
         "hähnchen": "hähnchen.jpg",
@@ -105,68 +104,38 @@ def get_image_for_product(product_name: str) -> str:
         "pullover": "pullover.jpg",
         "kerze": "kerze.jpg",
         "schmuck": "schmuck.jpg",
-        "Protein Bar Deluxe": "protein bar deluxe.jpg",
+        "protein bar deluxe": "protein bar deluxe.jpg",
         "beeren": "beeren.jpg",
-        "Big Block Protein-Riegel": "Big Block Protein-Riegel.jpg",
+        "big block protein-riegel": "big block protein-riegel.jpg",
         "whey": "whey.jpg",
         "buttermilch": "buttermilch.jpg",
-        "High Protein Chocolate Pudding": "proteinpudding.jpg",
+        "high protein chocolate pudding": "proteinpudding.jpg",
         "protein pudding": "proteinpudding.jpg",
     }
 
-    # ✅ Sortiere längere Keys zuerst, damit spezifische Begriffe Vorrang haben
+    # ✅ Längere Keys zuerst, damit spezifische Begriffe Vorrang haben
     image_map = dict(sorted(image_map.items(), key=lambda x: len(x[0]), reverse=True))
 
+    # 🧩 Kein gültiger Name → sofort Fallback
     if not isinstance(product_name, str):
-        return str(fallback.as_posix())
+        return fallback.as_posix() if fallback.exists() else \
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/240px-No_image_available.svg"
 
-    # 🔧 Robust normalisieren
+    # 🔧 Normalisieren
     name = product_name.lower().strip()
-    name = name.replace(" ", " ")  # non-breaking space → normal space
-    name = name.replace("-", " ")  # Bindestrich wie Leerzeichen behandeln
-    name = name.replace("_", " ")  # Unterstriche ebenfalls
+    name = name.replace("-", " ").replace("_", " ")
 
-    # 🔍 Suche im resized-Ordner
+    # 🔍 Bildsuche
     for key, filename in image_map.items():
-        # ebenfalls normalisieren
         key_clean = key.lower().replace("-", " ").replace("_", " ")
         if key_clean in name:
             path = base_dir / filename
             if path.exists():
-                return str(path.as_posix())
+                return path.as_posix()
 
     # 🪄 Fallback
-    return str(fallback.as_posix()) if fallback.exists() else "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/240px-No_image_available.svg"
-
-    name = product_name.lower()
-
-    # 🔍 Suche im resized-Ordner nach dem passenden Produktbild
-    for key, filename in image_map.items():
-        if key in name:
-            path = base_dir / filename
-            if path.exists():
-                return str(path.as_posix())
-
-    # 🪄 Fallback
-    if fallback.exists():
-        return str(fallback.as_posix())
-    else:
-        return "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/240px-No_image_available.svg"
-
-    name = product_name.lower()
-
-    # 🔍 Suche im resized-Ordner nach dem passenden Produktbild
-    for key, filename in image_map.items():
-        if key in name:
-            path = base_dir / filename
-            if path.exists():
-                return str(path.as_posix())
-
-    # 🪄 Fallback
-    if fallback.exists():
-        return str(fallback.as_posix())
-    else:
-        return "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/240px-No_image_available.svg"
+    return fallback.as_posix() if fallback.exists() else \
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/240px-No_image_available.svg"
 
 
 def money_to_float(s: str) -> float | None:
