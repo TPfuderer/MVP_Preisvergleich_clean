@@ -15,6 +15,10 @@ REPO_ROOT = Path(__file__).resolve().parents[2] if "Application" in str(Path(__f
 DATA_DIR = REPO_ROOT / "data"
 CSV_IMG_DIR = DATA_DIR / "images" / "images_edeka"
 IMAGE_DIR = REPO_ROOT / "images" / "resized"
+CSV_IMG_DIR_REWE = DATA_DIR / "images" / "images_rewe"
+ALL_CSV_IMG_DIRS = [CSV_IMG_DIR, CSV_IMG_DIR_REWE]
+
+
 
 
 st.title("🛒 MVP Preisvergleich")
@@ -551,12 +555,18 @@ with tab1:
                     img_candidate = Path(csv_image)
                     if img_candidate.exists():
                         st.image(img_candidate.as_posix(), use_container_width=True)
-                    elif (CSV_IMG_DIR / img_candidate.name).exists():
-                        st.image((CSV_IMG_DIR / img_candidate.name).as_posix(), use_container_width=True)
-                    elif (IMAGE_DIR / img_candidate.name).exists():
-                        st.image((IMAGE_DIR / img_candidate.name).as_posix(), use_container_width=True)
                     else:
-                        st.image(get_image_for_product(row["Produkt"]), use_container_width=True)
+                        else_found = False
+                        for img_dir in ALL_CSV_IMG_DIRS:
+                            candidate_path = img_dir / img_candidate.name
+                            if candidate_path.exists():
+                                st.image(candidate_path.as_posix(), use_container_width=True)
+                                else_found = True
+                                break
+                        if not else_found and (IMAGE_DIR / img_candidate.name).exists():
+                            st.image((IMAGE_DIR / img_candidate.name).as_posix(), use_container_width=True)
+                        elif not else_found:
+                            st.image(get_image_for_product(row["Produkt"]), use_container_width=True)
                 else:
                     st.image(get_image_for_product(row["Produkt"]), use_container_width=True)
 
