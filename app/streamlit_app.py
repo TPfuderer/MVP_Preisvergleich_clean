@@ -21,6 +21,51 @@ st.title("🛒 MVP Preisvergleich")
 
 st.markdown("""
 <style>
+/* ================================
+   🧱 Globales Bild-Layout (kein .product-card hier!)
+   ================================ */
+/* Spalten in st.columns: dürfen in der Höhe mitwachsen */
+div[data-testid="stHorizontalBlock"] > div[style*="flex-direction: column"] {
+    align-items: stretch !important;
+}
+
+/* Bildcontainer: zentriert, aber flexibel in der Höhe */
+div[data-testid="stImage"] {
+    background-color: white !important;
+    border-radius: 8px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+
+    /* WICHTIG: keine harte Höhe mehr */
+    height: auto !important;
+    min-height: 200px !important;      /* Basis-Höhe für Optik */
+    max-height: 320px !important;      /* Sicherheitslimit, nicht zu riesig */
+
+    overflow: hidden !important;       /* Kein Überlaufen aus der Box */
+    box-shadow: 0 0 6px rgba(0,0,0,0.05);
+    margin-bottom: 0.5rem !important;
+}
+
+/* Bild selbst: immer komplett sichtbar, skaliert in Box */
+div[data-testid="stImage"] img {
+    object-fit: contain !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 80% !important;
+    max-height: 80% !important;
+    border-radius: 0 !important;
+    background-color: white !important;
+    margin: auto !important;
+    display: block !important;
+    transform: none !important;
+}
+</style>
+""", unsafe_allow_html=True)
+
+st.markdown("""
+<style>
 /* Produktkarte: visuell abgrenzen, ohne eigenes <div> */
 [data-testid="stVerticalBlock"] > [data-testid="stElementContainer"] {
     border: 1px solid #e5e5e5;
