@@ -530,11 +530,9 @@ with tab1:
     elif sort_option == "Rabatt (absteigend)" and "Rabatt_vs_prev" in subset.columns:
         subset = subset.sort_values("Rabatt_vs_prev", ascending=False)
 
-    # 🖼️ Ästhetik: Produkte mit vorhandenem Bild zuerst anzeigen
-    subset["has_image"] = subset["Bildpfad"].apply(
-        lambda p: isinstance(p, str) and Path(p).exists()
-    )
-    subset = subset.sort_values("has_image", ascending=False).drop(columns="has_image")
+    # 🏪 Rewe-Produkte immer zuerst anzeigen (nur ästhetisch)
+    subset["is_rewe"] = subset["Retailer"].str.lower().eq("rewe")
+    subset = subset.sort_values("is_rewe", ascending=False).drop(columns="is_rewe")
 
     # --------------------------------------------------
     # 🔢 Pagination / „Mehr anzeigen“
