@@ -58,6 +58,37 @@ div[data-testid="stImage"] img {
 </style>
 """, unsafe_allow_html=True)
 
+st.markdown("""
+<style>
+/* --- Dynamische Bildbox: passt sich an statt abgeschnitten zu werden --- */
+div[data-testid="stImage"] {
+    background-color: white !important;
+    border-radius: 8px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 150px !important;   /* Mindesthöhe */
+    max-height: 280px !important;   /* Obergrenze für große Bilder */
+    overflow: visible !important;   /* 🚀 Bild darf größer sein */
+    box-shadow: 0 0 6px rgba(0,0,0,0.05);
+}
+
+/* --- Bild selbst --- */
+div[data-testid="stImage"] img {
+    object-fit: contain !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: 100% !important;
+    border-radius: 0 !important;
+    background-color: white !important;
+    margin: auto !important;
+    display: block !important;
+    transform: none !important;
+}
+</style>
+""", unsafe_allow_html=True)
+
+
 # ----------------------------
 # Helpers
 # ----------------------------
