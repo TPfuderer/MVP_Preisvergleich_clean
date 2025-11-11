@@ -514,7 +514,6 @@ with tab1:
     # --------------------------------------------------
     # 🧱 Produktkarten
     # --------------------------------------------------
-    # --- Anzeige ---
     if shown_subset.empty:
         st.info("Keine passenden Produkte gefunden.")
     else:
@@ -522,76 +521,64 @@ with tab1:
 
         for i, (_, row) in enumerate(shown_subset.iterrows()):
             with cols[i % cols_per_row]:
-                # === Bildpfad bestimmen ===
-                csv_image = row.get("Bildpfad")
-                if isinstance(csv_image, str) and csv_image.strip():
-                    img_candidate = Path(csv_image)
-                    if img_candidate.exists():
-                        img_path = img_candidate.as_posix()
-                    elif (CSV_IMG_DIR / img_candidate.name).exists():
-                        img_path = (CSV_IMG_DIR / img_candidate.name).as_posix()
-                    elif (IMAGE_DIR / img_candidate.name).exists():
-                        img_path = (IMAGE_DIR / img_candidate.name).as_posix()
+                # 🔲 Produktkarte als Container
+                with st.container():
+                    st.markdown("<div class='product-card'>", unsafe_allow_html=True)
+
+                    # === Bildanzeige ===
+                    csv_image = row.get("Bildpfad")
+                    if isinstance(csv_image, str) and csv_image.strip():
+                        img_candidate = Path(csv_image)
+                        if img_candidate.exists():
+                            st.image(img_candidate.as_posix(), use_container_width=True)
+                        elif (CSV_IMG_DIR / img_candidate.name).exists():
+                            st.image((CSV_IMG_DIR / img_candidate.name).as_posix(), use_container_width=True)
+                        elif (IMAGE_DIR / img_candidate.name).exists():
+                            st.image((IMAGE_DIR / img_candidate.name).as_posix(), use_container_width=True)
+                        else:
+                            st.image(get_image_for_product(row["Produkt"]), use_container_width=True)
                     else:
-                        img_path = get_image_for_product(row["Produkt"])
-                else:
-                    img_path = get_image_for_product(row["Produkt"])
+                        st.image(get_image_for_product(row["Produkt"]), use_container_width=True)
 
-                # === Textfelder ===
-                produkt = str(row.get("Produkt", ""))
-                marke = row.get("Marke", "")
-                retailer = row.get("Retailer", "")
-                preis = row.get("Preis", "")
-                preis_kg = row.get("Preis_kg", "")
-                von = pd.to_datetime(row.get("Gueltig_von"), errors="coerce")
-                bis = pd.to_datetime(row.get("Gueltig_bis"), errors="coerce")
+                    # === Produktinfos ===
+                    st.markdown(f"**{short_text(str(row.get('Produkt', '')))}**")
+                    st.caption(f"{row.get('Marke', '')} – {row['Retailer']}")
+                    st.write(f"💶 **{row['Preis']}** ({row.get('Preis_kg', '')})")
 
-                # === Rabattanzeige vorbereiten ===
-                r = row.get("Rabatt_vs_prev")
-                if pd.notna(r) and r > 0:
-                    rabatt_html = f"<span style='color:green'>💸 Rabatt: {(r * 100):.1f}%</span>"
-                else:
-                    rabatt_html = "<span style='color:gray'>🏷️ Aktion / Kein Rabatt</span>"
+                    # === Zeitraum ===
+                    von = pd.to_datetime(row.get("Gueltig_von"), errors="coerce")
+                    bis = pd.to_datetime(row.get("Gueltig_bis"), errors="coerce")
+                    if pd.notna(von) and pd.notna(bis):
+                        st.write(f"🗓️ {von:%d.%m.%Y} – {bis:%d.%m.%Y}")
 
-                # === Zeitraumanzeige ===
-                datum_html = ""
-                if pd.notna(von) and pd.notna(bis):
-                    datum_html = f"<p>🗓️ {von:%d.%m.%Y} – {bis:%d.%m.%Y}</p>"
+                    # === Rabattanzeige ===
+                    r = row.get("Rabatt_vs_prev")
+                    if pd.notna(r) and r > 0:
+                        st.markdown(f"<span style='color:green'>💸 Rabatt: {(r * 100):.1f}%</span>", unsafe_allow_html=True)
+                    else:
+                        st.markdown("<span style='color:gray'>🏷️ Aktion / Kein Rabatt</span>", unsafe_allow_html=True)
 
-                # === Komplette Karte als HTML ---
-                card_html = f"""
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="{img_path}" alt="{produkt}" style="width:100%;object-fit:contain;border-radius:8px;background:white;">
-                    </div>
-                    <p><strong>{short_text(produkt)}</strong></p>
-                    <p style="color:#666;">{marke} – {retailer}</p>
-                    <p>💶 <strong>{preis}</strong> ({preis_kg})</p>
-                    {datum_html}
-                    {rabatt_html}
-                </div>
-                """
-
-                st.markdown(card_html, unsafe_allow_html=True)
-
-                # === Warenkorb-Button ===
-                widget_key = f"add_btn_{row.name}_{i}"
-                state_key = f"add_state_{row.name}_{i}"
-                if state_key not in st.session_state:
-                    st.session_state[state_key] = False
-                label = "➖ Entfernen" if st.session_state[state_key] else "➕ Hinzufügen"
-
-                if st.button(label, key=widget_key):
-                    if st.session_state[state_key]:
-                        st.session_state.cart = [
-                            item for item in st.session_state.cart
-                            if not (item.get("Produkt") == row["Produkt"] and item.get("Retailer") == row["Retailer"])
-                        ]
+                    # === Warenkorb-Button ===
+                    widget_key = f"add_btn_{row.name}_{i}"
+                    state_key = f"add_state_{row.name}_{i}"
+                    if state_key not in st.session_state:
                         st.session_state[state_key] = False
-                    else:
-                        st.session_state.cart.append(row.to_dict())
-                        st.session_state[state_key] = True
-                    st.rerun()
+                    label = "➖ Entfernen" if st.session_state[state_key] else "➕ Hinzufügen"
+
+                    if st.button(label, key=widget_key):
+                        if st.session_state[state_key]:
+                            st.session_state.cart = [
+                                item for item in st.session_state.cart
+                                if not (item.get("Produkt") == row["Produkt"]
+                                        and item.get("Retailer") == row["Retailer"])
+                            ]
+                            st.session_state[state_key] = False
+                        else:
+                            st.session_state.cart.append(row.to_dict())
+                            st.session_state[state_key] = True
+                        st.rerun()
+
+                    st.markdown("</div>", unsafe_allow_html=True)
 
         # 🔽 Mehr/Weniger anzeigen
         if len(subset) > st.session_state.card_limit:
