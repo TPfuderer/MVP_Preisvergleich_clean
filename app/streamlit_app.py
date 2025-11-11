@@ -404,6 +404,64 @@ with tab1:
         help="Passe die Anzahl der Produktspalten an (z. B. 1 auf Handy, 3 auf PC)."
     )
 
+    if cols_per_row == 1:
+        # 📱 Handy / 1 Spalte – volle Bildhöhe, kein Clip
+        st.markdown("""
+        <style>
+        div[data-testid="stImage"] {
+            background-color: white !important;
+            border-radius: 10px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            height: auto !important;           /* wächst mit Bild */
+            min-height: 280px !important;      /* groß genug für Hochformatbilder */
+            max-height: none !important;       /* keine künstliche Grenze */
+            overflow: visible !important;      /* kein Abschneiden */
+            box-shadow: 0 0 6px rgba(0,0,0,0.06);
+            margin-bottom: 0.5rem !important;
+        }
+
+        div[data-testid="stImage"] img {
+            width: 100% !important;
+            height: auto !important;
+            object-fit: contain !important;
+        }
+        </style>
+        """, unsafe_allow_html=True)
+
+    elif cols_per_row == 2:
+        # 🧱 Tablet / 2 Spalten – moderate Höhe
+        st.markdown("""
+        <style>
+        div[data-testid="stImage"] {
+            height: 220px !important;
+            overflow: hidden !important;
+        }
+        div[data-testid="stImage"] img {
+            object-fit: contain !important;
+            width: 100% !important;
+            height: 100% !important;
+        }
+        </style>
+        """, unsafe_allow_html=True)
+
+    else:
+        # 💻 Desktop / 3 Spalten – kompakter
+        st.markdown("""
+        <style>
+        div[data-testid="stImage"] {
+            height: 180px !important;
+            overflow: hidden !important;
+        }
+        div[data-testid="stImage"] img {
+            object-fit: contain !important;
+            width: 100% !important;
+            height: 100% !important;
+        }
+        </style>
+        """, unsafe_allow_html=True)
+
     # 🔧 Bildhöhe dynamisch an Spaltenzahl anpassen
     if cols_per_row == 1:
         img_height = 220
