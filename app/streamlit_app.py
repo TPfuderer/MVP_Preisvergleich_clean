@@ -21,9 +21,7 @@ st.title("🛒 MVP Preisvergleich")
 
 st.markdown("""
 <style>
-/* ===============================
-   🧱 Einheitliche Produkt-Kachel
-   =============================== */
+/* --- Einheitliche Produkt-Kachel --- */
 .product-card {
     border: 1px solid #e5e5e5;
     border-radius: 10px;
@@ -32,9 +30,7 @@ st.markdown("""
     background-color: transparent;
 }
 
-/* ===============================
-   📦 Einheitliche Bildbox
-   =============================== */
+/* --- Einheitliche Bildbox: Weißer Hintergrund + zentriert --- */
 div[data-testid="stImage"] {
     background-color: white !important;
     border-radius: 8px !important;
@@ -46,9 +42,7 @@ div[data-testid="stImage"] {
     box-shadow: 0 0 6px rgba(0,0,0,0.05);
 }
 
-/* ===============================
-   🖼️ Bilddarstellung
-   =============================== */
+/* --- Bild: NIE skalieren oder zuschneiden --- */
 div[data-testid="stImage"] img {
     object-fit: contain !important;
     width: auto !important;
@@ -61,33 +55,8 @@ div[data-testid="stImage"] img {
     display: block !important;
     transform: none !important;          /* kein Zoom-Effekt */
 }
-
-/* ===============================
-   📱 Responsive Grid Layout (Option 2)
-   =============================== */
-div[data-testid="stHorizontalBlock"] > div[data-testid="column"] {
-    flex: 1 1 300px !important;
-    max-width: 33.3% !important;
-}
-
-/* --- Tablet (zwei Spalten) --- */
-@media (max-width: 1024px) {
-  div[data-testid="stHorizontalBlock"] > div[data-testid="column"] {
-      max-width: 50% !important;
-      flex: 1 1 50% !important;
-  }
-}
-
-/* --- Handy (eine Spalte) --- */
-@media (max-width: 600px) {
-  div[data-testid="stHorizontalBlock"] > div[data-testid="column"] {
-      max-width: 100% !important;
-      flex: 1 1 100% !important;
-  }
-}
 </style>
 """, unsafe_allow_html=True)
-
 
 # ----------------------------
 # Helpers
@@ -409,6 +378,30 @@ tab1, tab2, tab3, tab4, tab5 = st.tabs(tab_labels)
 # ---------------------------------------------------
 with tab1:
     st.header("🧱 Karten-Ansicht (UI-Methode 2)")
+
+    # 🧱 Spaltenanzahl für Produktkarten (mobilfreundlich)
+    cols_per_row = st.sidebar.select_slider(
+        "Produkte pro Zeile",
+        options=[1, 2, 3],
+        value=3,
+        help="Passe die Anzahl der Produktspalten an (z. B. 1 auf Handy, 3 auf PC)."
+    )
+
+    # 🔧 Bildhöhe dynamisch an Spaltenzahl anpassen
+    if cols_per_row == 1:
+        img_height = 220
+    elif cols_per_row == 2:
+        img_height = 190
+    else:
+        img_height = 170
+
+    st.markdown(f"""
+    <style>
+    div[data-testid="stImage"] {{
+        height: {img_height}px !important;
+    }}
+    </style>
+    """, unsafe_allow_html=True)
 
     # 🛒 Einkaufswagen initialisieren
     if "cart" not in st.session_state:
