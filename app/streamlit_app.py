@@ -526,7 +526,7 @@ with tab1:
     if shown_subset.empty:
         st.info("Keine passenden Produkte gefunden.")
     else:
-        cols = st.columns(3)
+        cols = st.columns(cols_per_row)
 
         for i, (_, row) in enumerate(shown_subset.iterrows()):
             with cols[i % 3]:
