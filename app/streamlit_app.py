@@ -405,11 +405,11 @@ with tab1:
     )
 
     # --------------------------------------------------
-    # 💅 Dynamische CSS-Anpassung
+    # 💅 Dynamische CSS-Anpassung (sauberes, wachsendes Layout)
     # --------------------------------------------------
     st.markdown("""
     <style>
-    /* --- Gemeinsame Produktkarte (Bild + Text + Button) --- */
+    /* --- Gesamtkarte --- */
     .product-card {
         display: flex;
         flex-direction: column;
@@ -418,13 +418,13 @@ with tab1:
         background-color: #fff;
         border: 1px solid #e5e5e5;
         border-radius: 10px;
-        padding: 0.5rem;
+        padding: 0.6rem;
         margin-bottom: 1rem;
         box-shadow: 0 0 6px rgba(0,0,0,0.05);
         overflow: visible !important;
     }
 
-    /* --- Bild-Container innerhalb der Karte --- */
+    /* --- Bildcontainer --- */
     .product-card [data-testid="stImage"],
     .product-card [data-testid="stImageContainer"] {
         height: auto !important;
@@ -435,7 +435,7 @@ with tab1:
         justify-content: center !important;
         flex-direction: column !important;
         background-color: white !important;
-        border-radius: 10px !important;
+        border-radius: 8px !important;
         margin-bottom: 0.5rem !important;
     }
 
@@ -444,13 +444,12 @@ with tab1:
         width: 100% !important;
         height: auto !important;
         max-width: 90% !important;
-        max-height: 90vh !important;
         object-fit: contain !important;
         display: block !important;
         margin: auto !important;
     }
 
-    /* --- Responsives Verhalten je nach Spaltenzahl --- */
+    /* --- Responsive Höhen --- */
     @media (min-width: 900px) {
         .product-card [data-testid="stImage"] { height: 180px !important; overflow: hidden !important; }
     }
@@ -459,6 +458,13 @@ with tab1:
     }
     @media (max-width: 599px) {
         .product-card [data-testid="stImage"] { height: auto !important; overflow: visible !important; }
+    }
+
+    /* --- Markdown-Wrapper neutralisieren --- */
+    .product-card [data-testid="stMarkdown"],
+    .product-card [data-testid="stMarkdownContainer"] {
+        all: unset !important;
+        display: contents !important;
     }
     </style>
     """, unsafe_allow_html=True)
@@ -470,7 +476,7 @@ with tab1:
         st.session_state.cart = []
 
     # --------------------------------------------------
-    # 🔍 Such- und Filteroptionen
+    # 🔍 Filter und Suche
     # --------------------------------------------------
     search_term = st.text_input(
         "Produkte suchen (z. B. Butter, Milch, Joghurt)",
@@ -479,7 +485,7 @@ with tab1:
 
     retailers = sorted(data["Retailer"].dropna().unique())
     selected_retailers = st.multiselect("Händler filtern:", retailers, default=retailers)
-    use_current = st.toggle("Nur aktuelle Angebote anzeigen", value=True, key="filter_current_tab5")
+    use_current = st.toggle("Nur aktuelle Angebote anzeigen", value=True, key="filter_current_tab1")
 
     subset = data[data["Retailer"].isin(selected_retailers)].copy()
     if use_current:
@@ -492,19 +498,14 @@ with tab1:
         ]
 
     # --------------------------------------------------
-    # 💶 Sortierung
+    # 💶 Sortieren
     # --------------------------------------------------
     if "Preis_float" not in subset.columns:
         subset["Preis_float"] = subset["Preis"].apply(money_to_float)
 
     sort_option = st.selectbox(
         "Sortieren nach:",
-        [
-            "Kein Sortieren",
-            "Preis (aufsteigend)",
-            "Preis (absteigend)",
-            "Rabatt (absteigend)"
-        ]
+        ["Kein Sortieren", "Preis (aufsteigend)", "Preis (absteigend)", "Rabatt (absteigend)"]
     )
     if sort_option == "Preis (aufsteigend)":
         subset = subset.sort_values("Preis_float", ascending=True)
@@ -514,14 +515,14 @@ with tab1:
         subset = subset.sort_values("Rabatt_vs_prev", ascending=False)
 
     # --------------------------------------------------
-    # 🔢 Pagination / „Mehr anzeigen“
+    # 🔢 Pagination
     # --------------------------------------------------
     if "card_limit" not in st.session_state:
         st.session_state.card_limit = 12
     shown_subset = subset.head(st.session_state.card_limit)
 
     # --------------------------------------------------
-    # 🧱 Produktanzeige
+    # 🧱 Produktkarten
     # --------------------------------------------------
     if shown_subset.empty:
         st.info("Keine passenden Produkte gefunden.")
@@ -530,11 +531,11 @@ with tab1:
 
         for i, (_, row) in enumerate(shown_subset.iterrows()):
             with cols[i % cols_per_row]:
-                # 🧱 gesamte Produktkarte kapseln
+                # 🔲 Produktkarte als Container
                 with st.container():
                     st.markdown("<div class='product-card'>", unsafe_allow_html=True)
 
-                    # === Bild ===
+                    # === Bildanzeige ===
                     csv_image = row.get("Bildpfad")
                     if isinstance(csv_image, str) and csv_image.strip():
                         img_candidate = Path(csv_image)
@@ -554,15 +555,20 @@ with tab1:
                     st.caption(f"{row.get('Marke', '')} – {row['Retailer']}")
                     st.write(f"💶 **{row['Preis']}** ({row.get('Preis_kg', '')})")
 
-                    # === Rabatt etc. ===
+                    # === Zeitraum ===
+                    von = pd.to_datetime(row.get("Gueltig_von"), errors="coerce")
+                    bis = pd.to_datetime(row.get("Gueltig_bis"), errors="coerce")
+                    if pd.notna(von) and pd.notna(bis):
+                        st.write(f"🗓️ {von:%d.%m.%Y} – {bis:%d.%m.%Y}")
+
+                    # === Rabattanzeige ===
                     r = row.get("Rabatt_vs_prev")
                     if pd.notna(r) and r > 0:
-                        st.markdown(f"<span style='color:green'>💸 Rabatt: {(r * 100):.1f}%</span>",
-                                    unsafe_allow_html=True)
+                        st.markdown(f"<span style='color:green'>💸 Rabatt: {(r * 100):.1f}%</span>", unsafe_allow_html=True)
                     else:
                         st.markdown("<span style='color:gray'>🏷️ Aktion / Kein Rabatt</span>", unsafe_allow_html=True)
 
-                    # === Button ===
+                    # === Warenkorb-Button ===
                     widget_key = f"add_btn_{row.name}_{i}"
                     state_key = f"add_state_{row.name}_{i}"
                     if state_key not in st.session_state:
