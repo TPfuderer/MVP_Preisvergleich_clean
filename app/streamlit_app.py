@@ -492,7 +492,7 @@ with tab1:
                 & (pd.to_datetime(subset["Gueltig_bis"], errors="coerce") >= selected_range[0])
             ]
 
-    # ↕️ Sortieroption
+    # ↕️ Sortieroption#
     sort_option = st.selectbox(
         "Sortieren nach:",
         [
