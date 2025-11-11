@@ -21,7 +21,9 @@ st.title("🛒 MVP Preisvergleich")
 
 st.markdown("""
 <style>
-/* --- Einheitliche Produkt-Kachel --- */
+/* ===============================
+   🧱 Einheitliche Produkt-Kachel
+   =============================== */
 .product-card {
     border: 1px solid #e5e5e5;
     border-radius: 10px;
@@ -30,7 +32,9 @@ st.markdown("""
     background-color: transparent;
 }
 
-/* --- Einheitliche Bildbox: Weißer Hintergrund + zentriert --- */
+/* ===============================
+   📦 Einheitliche Bildbox
+   =============================== */
 div[data-testid="stImage"] {
     background-color: white !important;
     border-radius: 8px !important;
@@ -42,7 +46,9 @@ div[data-testid="stImage"] {
     box-shadow: 0 0 6px rgba(0,0,0,0.05);
 }
 
-/* --- Bild: NIE skalieren oder zuschneiden --- */
+/* ===============================
+   🖼️ Bilddarstellung
+   =============================== */
 div[data-testid="stImage"] img {
     object-fit: contain !important;
     width: auto !important;
@@ -55,8 +61,33 @@ div[data-testid="stImage"] img {
     display: block !important;
     transform: none !important;          /* kein Zoom-Effekt */
 }
+
+/* ===============================
+   📱 Responsive Grid Layout (Option 2)
+   =============================== */
+div[data-testid="stHorizontalBlock"] > div[data-testid="column"] {
+    flex: 1 1 300px !important;
+    max-width: 33.3% !important;
+}
+
+/* --- Tablet (zwei Spalten) --- */
+@media (max-width: 1024px) {
+  div[data-testid="stHorizontalBlock"] > div[data-testid="column"] {
+      max-width: 50% !important;
+      flex: 1 1 50% !important;
+  }
+}
+
+/* --- Handy (eine Spalte) --- */
+@media (max-width: 600px) {
+  div[data-testid="stHorizontalBlock"] > div[data-testid="column"] {
+      max-width: 100% !important;
+      flex: 1 1 100% !important;
+  }
+}
 </style>
 """, unsafe_allow_html=True)
+
 
 # ----------------------------
 # Helpers
