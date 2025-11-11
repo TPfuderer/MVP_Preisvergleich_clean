@@ -21,48 +21,42 @@ st.title("🛒 MVP Preisvergleich")
 
 st.markdown("""
 <style>
-/* ================================
-   🧱 Globales Bild-Layout (kein .product-card hier!)
-   ================================ */
-/* Spalten in st.columns: dürfen in der Höhe mitwachsen */
-div[data-testid="stHorizontalBlock"] > div[style*="flex-direction: column"] {
-    align-items: stretch !important;
-}
-
-/* Bildcontainer: zentriert, aber flexibel in der Höhe */
-div[data-testid="stImage"] {
-    background-color: white !important;
-    border-radius: 8px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    width: 100% !important;
-
-    /* WICHTIG: keine harte Höhe mehr */
-    height: auto !important;
-    min-height: 200px !important;      /* Basis-Höhe für Optik */
-    max-height: 320px !important;      /* Sicherheitslimit, nicht zu riesig */
-
-    overflow: hidden !important;       /* Kein Überlaufen aus der Box */
+/* Produktkarte: visuell abgrenzen, ohne eigenes <div> */
+[data-testid="stVerticalBlock"] > [data-testid="stElementContainer"] {
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    background: #fff;
     box-shadow: 0 0 6px rgba(0,0,0,0.05);
-    margin-bottom: 0.5rem !important;
+    padding: 0.6rem;
+    margin-bottom: 1rem;
 }
 
-/* Bild selbst: immer komplett sichtbar, skaliert in Box */
+/* Bildbox optisch angleichen */
+div[data-testid="stImage"] {
+    border-radius: 8px;
+    background: #fff;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 0 2px rgba(0,0,0,0.05);
+}
+
+/* Bild selbst */
 div[data-testid="stImage"] img {
-    object-fit: contain !important;
-    width: 100% !important;
-    height: 100% !important;
-    max-width: 80% !important;
-    max-height: 80% !important;
-    border-radius: 0 !important;
-    background-color: white !important;
-    margin: auto !important;
-    display: block !important;
-    transform: none !important;
+    object-fit: contain;
+    max-width: 85%;
+    max-height: 85%;
+    border-radius: 4px;
+}
+
+/* Abstand zu Preis und Text */
+[data-testid="stMarkdownContainer"] p {
+    margin: 0.25rem 0;
 }
 </style>
 """, unsafe_allow_html=True)
+
 
 
 # ----------------------------
@@ -521,29 +515,35 @@ with tab1:
 
         for i, (_, row) in enumerate(shown_subset.iterrows()):
             with cols[i % cols_per_row]:
-                # 🔲 Produktkarte als Container
-                with st.container():
-                    st.markdown("<div class='product-card'>", unsafe_allow_html=True)
-
+                with st.container():  # Produktkarte-Container über CSS
                     # === Bildanzeige ===
                     csv_image = row.get("Bildpfad")
+                    img_path = None
                     if isinstance(csv_image, str) and csv_image.strip():
                         img_candidate = Path(csv_image)
                         if img_candidate.exists():
-                            st.image(img_candidate.as_posix(), use_container_width=True)
+                            img_path = img_candidate.as_posix()
                         elif (CSV_IMG_DIR / img_candidate.name).exists():
-                            st.image((CSV_IMG_DIR / img_candidate.name).as_posix(), use_container_width=True)
+                            img_path = (CSV_IMG_DIR / img_candidate.name).as_posix()
                         elif (IMAGE_DIR / img_candidate.name).exists():
-                            st.image((IMAGE_DIR / img_candidate.name).as_posix(), use_container_width=True)
+                            img_path = (IMAGE_DIR / img_candidate.name).as_posix()
                         else:
-                            st.image(get_image_for_product(row["Produkt"]), use_container_width=True)
+                            img_path = get_image_for_product(row["Produkt"])
                     else:
-                        st.image(get_image_for_product(row["Produkt"]), use_container_width=True)
+                        img_path = get_image_for_product(row["Produkt"])
+
+                    st.image(img_path, use_container_width=True)
 
                     # === Produktinfos ===
-                    st.markdown(f"**{short_text(str(row.get('Produkt', '')))}**")
-                    st.caption(f"{row.get('Marke', '')} – {row['Retailer']}")
-                    st.write(f"💶 **{row['Preis']}** ({row.get('Preis_kg', '')})")
+                    produkt_name = short_text(str(row.get("Produkt", "")))
+                    marke = row.get("Marke", "")
+                    retailer = row.get("Retailer", "")
+                    preis = row.get("Preis", "")
+                    preis_kg = row.get("Preis_kg", "")
+
+                    st.markdown(f"**{produkt_name}**")
+                    st.caption(f"{marke} – {retailer}")
+                    st.write(f"💶 **{preis}** ({preis_kg})")
 
                     # === Zeitraum ===
                     von = pd.to_datetime(row.get("Gueltig_von"), errors="coerce")
@@ -551,22 +551,26 @@ with tab1:
                     if pd.notna(von) and pd.notna(bis):
                         st.write(f"🗓️ {von:%d.%m.%Y} – {bis:%d.%m.%Y}")
 
-                    # === Rabattanzeige ===
+                    # === Rabatt-Anzeige ===
                     r = row.get("Rabatt_vs_prev")
                     if pd.notna(r) and r > 0:
-                        st.markdown(f"<span style='color:green'>💸 Rabatt: {(r * 100):.1f}%</span>", unsafe_allow_html=True)
+                        st.markdown(f"<span style='color:green'>💸 Rabatt: {(r * 100):.1f}%</span>",
+                                    unsafe_allow_html=True)
                     else:
                         st.markdown("<span style='color:gray'>🏷️ Aktion / Kein Rabatt</span>", unsafe_allow_html=True)
 
                     # === Warenkorb-Button ===
                     widget_key = f"add_btn_{row.name}_{i}"
                     state_key = f"add_state_{row.name}_{i}"
+
                     if state_key not in st.session_state:
                         st.session_state[state_key] = False
+
                     label = "➖ Entfernen" if st.session_state[state_key] else "➕ Hinzufügen"
 
                     if st.button(label, key=widget_key):
                         if st.session_state[state_key]:
+                            # Entfernen
                             st.session_state.cart = [
                                 item for item in st.session_state.cart
                                 if not (item.get("Produkt") == row["Produkt"]
@@ -574,21 +578,20 @@ with tab1:
                             ]
                             st.session_state[state_key] = False
                         else:
+                            # Hinzufügen
                             st.session_state.cart.append(row.to_dict())
                             st.session_state[state_key] = True
                         st.rerun()
 
-                    st.markdown("</div>", unsafe_allow_html=True)
-
-        # 🔽 Mehr/Weniger anzeigen
-        if len(subset) > st.session_state.card_limit:
-            if st.button("🔽 Mehr anzeigen"):
-                st.session_state.card_limit += 9
-                st.rerun()
-        elif len(subset) > 12:
-            if st.button("🔼 Weniger anzeigen"):
-                st.session_state.card_limit = 12
-                st.rerun()
+    # 🔽 Mehr/Weniger anzeigen
+    if len(subset) > st.session_state.card_limit:
+        if st.button("🔽 Mehr anzeigen"):
+            st.session_state.card_limit += 9
+            st.rerun()
+    elif len(subset) > 12:
+        if st.button("🔼 Weniger anzeigen"):
+            st.session_state.card_limit = 12
+            st.rerun()
 
     st.divider()
 
