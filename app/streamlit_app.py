@@ -21,82 +21,42 @@ st.title("🛒 MVP Preisvergleich")
 
 st.markdown("""
 <style>
-/* ================================
-   🧱 Produktkarten & Bilder-Layout
-   ================================ */
-
-/* --- Äußere Produktkarte --- */
-.product-card, div[data-testid="stVerticalBlock"] {
-    border: 1px solid #e5e5e5 !important;
-    border-radius: 10px !important;
-    padding: 0.6rem !important;
-    margin-bottom: 1rem !important;
-    background-color: transparent !important;
+/* --- Einheitliche Produkt-Kachel --- */
+.product-card {
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    padding: 0.4rem;
+    margin-bottom: 1rem;
+    background-color: transparent;
 }
 
-/* --- Bildcontainer: passt sich automatisch an --- */
-div[data-testid="stImage"] {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    background-color: white !important;
-    border-radius: 10px !important;
-    width: 100% !important;
-    height: auto !important;               /* automatische Höhe */
-    min-height: 200px !important;          /* untere Grenze */
-    max-height: 320px !important;          /* obere Grenze */
-    overflow: hidden !important;           /* verhindert Überlauf */
-    box-shadow: 0 0 6px rgba(0,0,0,0.06) !important;
-    margin-bottom: 0.5rem !important;
-}
-
-/* --- Bild selbst: immer vollständig sichtbar --- */
-div[data-testid="stImage"] img {
-    object-fit: contain !important;
-    width: 100% !important;
-    height: auto !important;
-    max-width: 100% !important;
-    max-height: 100% !important;
-    border-radius: 0 !important;
-    background-color: white !important;
-    display: block !important;
-    margin: auto !important;
-}
-</style>
-""", unsafe_allow_html=True)
-
-
-
-st.markdown("""
-<style>
-/* --- Dynamische Bildbox: passt sich an statt abgeschnitten zu werden --- */
+/* --- Einheitliche Bildbox: Weißer Hintergrund + zentriert --- */
 div[data-testid="stImage"] {
     background-color: white !important;
     border-radius: 8px !important;
     display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    min-height: 150px !important;   /* Mindesthöhe */
-    max-height: 280px !important;   /* Obergrenze für große Bilder */
-    overflow: visible !important;   /* 🚀 Bild darf größer sein */
+    align-items: center !important;       /* vertikal zentrieren */
+    justify-content: center !important;   /* horizontal zentrieren */
+    height: 180px !important;
+    overflow: hidden !important;
     box-shadow: 0 0 6px rgba(0,0,0,0.05);
 }
 
-/* --- Bild selbst --- */
+/* --- Bild: NIE skalieren oder zuschneiden --- */
 div[data-testid="stImage"] img {
     object-fit: contain !important;
-    width: 100% !important;
+    width: auto !important;
     height: auto !important;
-    max-height: 100% !important;
+    max-width: 80% !important;           /* 🧩 kein Zwangszoom */
+    max-height: 80% !important;          /* 🧩 etwas Innenabstand */
     border-radius: 0 !important;
     background-color: white !important;
     margin: auto !important;
     display: block !important;
-    transform: none !important;
+    transform: none !important;          /* kein Zoom-Effekt */
 }
 </style>
 """, unsafe_allow_html=True)
-
 
 # ----------------------------
 # Helpers
@@ -417,31 +377,7 @@ tab1, tab2, tab3, tab4, tab5 = st.tabs(tab_labels)
 # Tab 1 – Karten-Ansicht (vormals Tab5)
 # ---------------------------------------------------
 with tab1:
-    st.header("Karten-Ansicht")
-
-    # 🧱 Spaltenanzahl für Produktkarten (mobilfreundlich)
-    cols_per_row = st.sidebar.select_slider(
-        "Produkte pro Zeile",
-        options=[1, 2, 3],
-        value=3,
-        help="Passe die Anzahl der Produktspalten an (z. B. 1 auf Handy, 3 auf PC)."
-    )
-
-    # 🔧 Bildhöhe dynamisch an Spaltenzahl anpassen
-    if cols_per_row == 1:
-        img_height = 220
-    elif cols_per_row == 2:
-        img_height = 190
-    else:
-        img_height = 170
-
-    st.markdown(f"""
-    <style>
-    div[data-testid="stImage"] {{
-        height: {img_height}px !important;
-    }}
-    </style>
-    """, unsafe_allow_html=True)
+    st.header("🧱 Karten-Ansicht (UI-Methode 2)")
 
     # 🛒 Einkaufswagen initialisieren
     if "cart" not in st.session_state:
@@ -566,11 +502,10 @@ with tab1:
     if shown_subset.empty:
         st.info("Keine passenden Produkte gefunden.")
     else:
-        cols = st.columns(cols_per_row)
+        cols = st.columns(3)
 
         for i, (_, row) in enumerate(shown_subset.iterrows()):
-            with cols[i % cols_per_row]:
-
+            with cols[i % 3]:
 
                 csv_image = row.get("Bildpfad")
                 if isinstance(csv_image, str) and csv_image.strip():
