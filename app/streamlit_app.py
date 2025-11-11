@@ -74,6 +74,19 @@ div[data-testid="stImage"] img {
 </style>
 """, unsafe_allow_html=True)
 
+st.markdown("""
+<style>
+/* 🚫 Unsichtbar machen: leeres .product-card innerhalb Markdown */
+div[data-testid="stMarkdownContainer"] > .product-card:empty {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+</style>
+""", unsafe_allow_html=True)
+
 
 # ----------------------------
 # Helpers
