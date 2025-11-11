@@ -21,43 +21,50 @@ st.title("🛒 MVP Preisvergleich")
 
 st.markdown("""
 <style>
-/* --- Einheitliche Produkt-Kachel --- */
-.product-card {
-    border: 1px solid #e5e5e5;
-    border-radius: 10px;
-    padding: 0.4rem;
-    margin-bottom: 1rem;
-    background-color: transparent;
+/* ================================
+   🧱 Produktkarten & Bilder-Layout
+   ================================ */
+
+/* --- Äußere Produktkarte --- */
+.product-card, div[data-testid="stVerticalBlock"] {
+    border: 1px solid #e5e5e5 !important;
+    border-radius: 10px !important;
+    padding: 0.6rem !important;
+    margin-bottom: 1rem !important;
+    background-color: transparent !important;
 }
 
-/* --- Einheitliche Bildbox: Weißer Hintergrund + zentriert --- */
+/* --- Bildcontainer: passt sich automatisch an --- */
 div[data-testid="stImage"] {
-    background-color: white !important;
-    border-radius: 8px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    height: 230px !important;           /* 📏 etwas größer – verhindert Abschneiden */
-    overflow: hidden !important;        /* 🚫 Kein Überlauf */
-    box-shadow: 0 0 6px rgba(0,0,0,0.05);
-    margin-bottom: 0.5rem !important;   /* Etwas Abstand nach unten */
+    background-color: white !important;
+    border-radius: 10px !important;
+    width: 100% !important;
+    height: auto !important;               /* automatische Höhe */
+    min-height: 200px !important;          /* untere Grenze */
+    max-height: 320px !important;          /* obere Grenze */
+    overflow: hidden !important;           /* verhindert Überlauf */
+    box-shadow: 0 0 6px rgba(0,0,0,0.06) !important;
+    margin-bottom: 0.5rem !important;
 }
 
-/* --- Bild: passt sich an, bleibt vollständig sichtbar --- */
+/* --- Bild selbst: immer vollständig sichtbar --- */
 div[data-testid="stImage"] img {
     object-fit: contain !important;
-    width: auto !important;
+    width: 100% !important;
     height: auto !important;
-    max-width: 90% !important;
-    max-height: 90% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
     border-radius: 0 !important;
     background-color: white !important;
-    margin: auto !important;
     display: block !important;
-    transform: none !important;
+    margin: auto !important;
 }
 </style>
 """, unsafe_allow_html=True)
+
 
 
 st.markdown("""
