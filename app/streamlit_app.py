@@ -21,30 +21,11 @@ st.title("🛒 MVP Preisvergleich")
 
 st.markdown("""
 <style>
-/* --- 🧱 Korrigiert abgeschnittene Bilder in flexiblen Spalten --- */
-div[data-testid="stHorizontalBlock"] > div[style*="flex-direction: column"] {
-    align-items: stretch !important;    /* Spaltenhöhe passt sich an */
-}
+/* ================================
+   🧱 Produktkarten & Bilder-Layout
+   ================================ */
 
-div[data-testid="stImage"] {
-    height: auto !important;            /* Box wächst mit Bild */
-    min-height: 200px !important;       /* untere Grenze, gleiche Optik */
-    max-height: none !important;        /* keine harte Obergrenze */
-    overflow: visible !important;       /* kein Abschneiden mehr */
-}
-
-div[data-testid="stImage"] img {
-    width: 100% !important;
-    height: auto !important;
-    object-fit: contain !important;
-}
-</style>
-""", unsafe_allow_html=True)
-
-
-st.markdown("""
-<style>
-/* --- Einheitliche Produkt-Kachel --- */
+/* Produkt-Karte (optional, falls du .product-card nutzt) */
 .product-card {
     border: 1px solid #e5e5e5;
     border-radius: 10px;
@@ -53,33 +34,46 @@ st.markdown("""
     background-color: transparent;
 }
 
-/* --- Einheitliche Bildbox: Weißer Hintergrund + zentriert --- */
+/* Spalten in st.columns: dürfen in der Höhe mitwachsen */
+div[data-testid="stHorizontalBlock"] > div[style*="flex-direction: column"] {
+    align-items: stretch !important;
+}
+
+/* Bildcontainer: zentriert, aber flexibel in der Höhe */
 div[data-testid="stImage"] {
     background-color: white !important;
     border-radius: 8px !important;
     display: flex !important;
-    align-items: center !important;       /* vertikal zentrieren */
-    justify-content: center !important;   /* horizontal zentrieren */
-    height: 180px !important;
-    overflow: hidden !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+
+    /* WICHTIG: keine harte Höhe mehr */
+    height: auto !important;
+    min-height: 200px !important;      /* Basis-Höhe für Optik */
+    max-height: 320px !important;      /* Sicherheitslimit, nicht zu riesig */
+
+    overflow: hidden !important;       /* Kein Überlaufen aus der Box */
     box-shadow: 0 0 6px rgba(0,0,0,0.05);
+    margin-bottom: 0.5rem !important;
 }
 
-/* --- Bild: NIE skalieren oder zuschneiden --- */
+/* Bild selbst: immer komplett sichtbar, skaliert in Box */
 div[data-testid="stImage"] img {
     object-fit: contain !important;
-    width: auto !important;
-    height: auto !important;
-    max-width: 80% !important;           /* 🧩 kein Zwangszoom */
-    max-height: 80% !important;          /* 🧩 etwas Innenabstand */
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
     border-radius: 0 !important;
     background-color: white !important;
     margin: auto !important;
     display: block !important;
-    transform: none !important;          /* kein Zoom-Effekt */
+    transform: none !important;
 }
 </style>
 """, unsafe_allow_html=True)
+
 
 # ----------------------------
 # Helpers
