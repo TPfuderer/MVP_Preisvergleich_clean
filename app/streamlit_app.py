@@ -21,6 +21,29 @@ st.title("🛒 MVP Preisvergleich")
 
 st.markdown("""
 <style>
+/* --- 🧱 Korrigiert abgeschnittene Bilder in flexiblen Spalten --- */
+div[data-testid="stHorizontalBlock"] > div[style*="flex-direction: column"] {
+    align-items: stretch !important;    /* Spaltenhöhe passt sich an */
+}
+
+div[data-testid="stImage"] {
+    height: auto !important;            /* Box wächst mit Bild */
+    min-height: 200px !important;       /* untere Grenze, gleiche Optik */
+    max-height: none !important;        /* keine harte Obergrenze */
+    overflow: visible !important;       /* kein Abschneiden mehr */
+}
+
+div[data-testid="stImage"] img {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
+}
+</style>
+""", unsafe_allow_html=True)
+
+
+st.markdown("""
+<style>
 /* --- Einheitliche Produkt-Kachel --- */
 .product-card {
     border: 1px solid #e5e5e5;
