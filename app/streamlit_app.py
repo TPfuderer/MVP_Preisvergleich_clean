@@ -408,27 +408,44 @@ with tab1:
         # 📱 Handy / 1 Spalte – volle Bildhöhe, kein Clip
         st.markdown("""
         <style>
+        /* Äußerer Container (Streamlit) */
         div[data-testid="stImage"] {
             background-color: white !important;
             border-radius: 10px !important;
             display: flex !important;
             align-items: center !important;
             justify-content: center !important;
-            height: auto !important;           /* wächst mit Bild */
-            min-height: 280px !important;      /* groß genug für Hochformatbilder */
-            max-height: none !important;       /* keine künstliche Grenze */
-            overflow: visible !important;      /* kein Abschneiden */
+            flex-direction: column !important;
+            height: auto !important;               /* erlaubt flexibles Wachsen */
+            min-height: 260px !important;          /* Basisgröße */
+            overflow: visible !important;          /* kein Clip auf äußerem Container */
             box-shadow: 0 0 6px rgba(0,0,0,0.06);
             margin-bottom: 0.5rem !important;
         }
 
-        div[data-testid="stImage"] img {
+        /* Innerer Container – hier passiert der Clip standardmäßig */
+        div[data-testid="stImageContainer"] {
+            height: auto !important;               /* 🔥 Wächst mit Bild */
+            max-height: none !important;
+            overflow: visible !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            flex-direction: column !important;
+        }
+
+        /* Bild selbst */
+        div[data-testid="stImageContainer"] img {
             width: 100% !important;
             height: auto !important;
             object-fit: contain !important;
+            max-height: none !important;
+            display: block !important;
+            margin: auto !important;
         }
         </style>
         """, unsafe_allow_html=True)
+
 
     elif cols_per_row == 2:
         # 🧱 Tablet / 2 Spalten – moderate Höhe
