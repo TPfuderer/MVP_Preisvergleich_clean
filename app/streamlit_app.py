@@ -529,7 +529,8 @@ with tab1:
         cols = st.columns(cols_per_row)
 
         for i, (_, row) in enumerate(shown_subset.iterrows()):
-            with cols[i % 3]:
+            with cols[i % cols_per_row]:
+
 
                 csv_image = row.get("Bildpfad")
                 if isinstance(csv_image, str) and csv_image.strip():
