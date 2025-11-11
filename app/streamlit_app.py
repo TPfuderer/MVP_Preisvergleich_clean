@@ -35,28 +35,30 @@ div[data-testid="stImage"] {
     background-color: white !important;
     border-radius: 8px !important;
     display: flex !important;
-    align-items: center !important;       /* vertikal zentrieren */
-    justify-content: center !important;   /* horizontal zentrieren */
-    height: 180px !important;
-    overflow: hidden !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 230px !important;           /* 📏 etwas größer – verhindert Abschneiden */
+    overflow: hidden !important;        /* 🚫 Kein Überlauf */
     box-shadow: 0 0 6px rgba(0,0,0,0.05);
+    margin-bottom: 0.5rem !important;   /* Etwas Abstand nach unten */
 }
 
-/* --- Bild: NIE skalieren oder zuschneiden --- */
+/* --- Bild: passt sich an, bleibt vollständig sichtbar --- */
 div[data-testid="stImage"] img {
     object-fit: contain !important;
     width: auto !important;
     height: auto !important;
-    max-width: 80% !important;           /* 🧩 kein Zwangszoom */
-    max-height: 80% !important;          /* 🧩 etwas Innenabstand */
+    max-width: 90% !important;
+    max-height: 90% !important;
     border-radius: 0 !important;
     background-color: white !important;
     margin: auto !important;
     display: block !important;
-    transform: none !important;          /* kein Zoom-Effekt */
+    transform: none !important;
 }
 </style>
 """, unsafe_allow_html=True)
+
 
 st.markdown("""
 <style>
