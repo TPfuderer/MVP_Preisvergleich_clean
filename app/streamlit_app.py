@@ -22,71 +22,57 @@ st.title("🛒 MVP Preisvergleich")
 st.markdown("""
 <style>
 /* ================================
-   🧱 Produktkarten (HTML-Version)
+   🧱 Produktkarten & Bilder-Layout
    ================================ */
 
-/* 🧱 Karte */
+/* Produkt-Karte (optional, falls du .product-card nutzt) */
 .product-card {
     border: 1px solid #e5e5e5;
     border-radius: 10px;
-    padding: 0.6rem;
+    padding: 0.4rem;
     margin-bottom: 1rem;
-    background-color: #fff;
+    background-color: transparent;
+}
+
+/* Spalten in st.columns: dürfen in der Höhe mitwachsen */
+div[data-testid="stHorizontalBlock"] > div[style*="flex-direction: column"] {
+    align-items: stretch !important;
+}
+
+/* Bildcontainer: zentriert, aber flexibel in der Höhe */
+div[data-testid="stImage"] {
+    background-color: white !important;
+    border-radius: 8px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+
+    /* WICHTIG: keine harte Höhe mehr */
+    height: auto !important;
+    min-height: 200px !important;      /* Basis-Höhe für Optik */
+    max-height: 320px !important;      /* Sicherheitslimit, nicht zu riesig */
+
+    overflow: hidden !important;       /* Kein Überlaufen aus der Box */
     box-shadow: 0 0 6px rgba(0,0,0,0.05);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
+    margin-bottom: 0.5rem !important;
 }
 
-/* 🖼️ Bildbox */
-.product-img {
-    width: 100%;
-    background: white;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    margin-bottom: 0.5rem;
-    min-height: 180px;
-}
-
-/* 🖼️ Bild selbst */
-.product-img img {
-    object-fit: contain;
-    width: 100%;
-    height: auto;
-    max-width: 85%;
-    max-height: 85%;
-    transition: transform 0.2s ease;
-}
-
-/* Hover-Effekt */
-.product-card:hover .product-img img {
-    transform: scale(1.05);
-}
-
-/* 🧾 Textabstände */
-.product-info p {
-    margin: 0.25rem 0;
-    text-align: center;
-    line-height: 1.3;
-}
-
-/* 📱 Responsive */
-@media (max-width: 599px) {
-    .product-img { min-height: 240px; }
-}
-@media (min-width: 600px) and (max-width: 899px) {
-    .product-img { min-height: 200px; }
-}
-@media (min-width: 900px) {
-    .product-img { min-height: 180px; }
+/* Bild selbst: immer komplett sichtbar, skaliert in Box */
+div[data-testid="stImage"] img {
+    object-fit: contain !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 80% !important;
+    max-height: 80% !important;
+    border-radius: 0 !important;
+    background-color: white !important;
+    margin: auto !important;
+    display: block !important;
+    transform: none !important;
 }
 </style>
 """, unsafe_allow_html=True)
-
 
 
 # ----------------------------
@@ -535,7 +521,7 @@ with tab1:
     shown_subset = subset.head(st.session_state.card_limit)
 
     # --------------------------------------------------
-    # 🧱 Produktkarten (HTML-basiert)
+    # 🧱 Produktanzeige
     # --------------------------------------------------
     if shown_subset.empty:
         st.info("Keine passenden Produkte gefunden.")
@@ -544,73 +530,48 @@ with tab1:
 
         for i, (_, row) in enumerate(shown_subset.iterrows()):
             with cols[i % cols_per_row]:
-                csv_image = row.get("Bildpfad")
-                img_path = None
+                st.markdown("<div class='product-card'>", unsafe_allow_html=True)
 
-                # --- Bildpfad ermitteln ---
+                # === Bildanzeige ===
+                csv_image = row.get("Bildpfad")
                 if isinstance(csv_image, str) and csv_image.strip():
                     img_candidate = Path(csv_image)
                     if img_candidate.exists():
-                        img_path = img_candidate.as_posix()
+                        st.image(img_candidate.as_posix(), use_container_width=True)
                     elif (CSV_IMG_DIR / img_candidate.name).exists():
-                        img_path = (CSV_IMG_DIR / img_candidate.name).as_posix()
+                        st.image((CSV_IMG_DIR / img_candidate.name).as_posix(), use_container_width=True)
                     elif (IMAGE_DIR / img_candidate.name).exists():
-                        img_path = (IMAGE_DIR / img_candidate.name).as_posix()
+                        st.image((IMAGE_DIR / img_candidate.name).as_posix(), use_container_width=True)
                     else:
-                        img_path = get_image_for_product(row["Produkt"])
+                        st.image(get_image_for_product(row["Produkt"]), use_container_width=True)
                 else:
-                    img_path = get_image_for_product(row["Produkt"])
+                    st.image(get_image_for_product(row["Produkt"]), use_container_width=True)
 
-                # --- Daten vorbereiten ---
-                produkt_name = short_text(str(row.get("Produkt", "")))
-                marke = row.get("Marke", "")
-                retailer = row.get("Retailer", "")
-                preis = row.get("Preis", "")
-                preis_kg = row.get("Preis_kg", "")
+                # === Produktinfos ===
+                full_name = str(row.get("Produkt", ""))
+                short_name = short_text(full_name, 60)
+                st.markdown(f"**{short_name}**")
+                st.caption(f"{row.get('Marke', '')} – {row['Retailer']}")
+                st.write(f"💶 **{row['Preis']}** ({row.get('Preis_kg', '')})")
+
                 von = pd.to_datetime(row.get("Gueltig_von"), errors="coerce")
                 bis = pd.to_datetime(row.get("Gueltig_bis"), errors="coerce")
+                if pd.notna(von) and pd.notna(bis):
+                    st.write(f"🗓️ {von:%d.%m.%Y} – {bis:%d.%m.%Y}")
 
-                # Rabatttext
                 r = row.get("Rabatt_vs_prev")
                 if pd.notna(r) and r > 0:
-                    rabatt_html = f"<p style='color:green;'>💸 Rabatt: {(r * 100):.1f}%</p>"
+                    st.markdown(f"<span style='color:green'>💸 Rabatt: {(r * 100):.1f}%</span>", unsafe_allow_html=True)
                 else:
-                    rabatt_html = "<p style='color:gray;'>🏷️ Aktion / Kein Rabatt</p>"
+                    st.markdown("<span style='color:gray'>🏷️ Aktion / Kein Rabatt</span>", unsafe_allow_html=True)
 
-                # Datumsanzeige
-                datum_html = (
-                    f"<p>🗓️ {von:%d.%m.%Y} – {bis:%d.%m.%Y}</p>"
-                    if pd.notna(von) and pd.notna(bis)
-                    else ""
-                )
-
-                # --- Warenkorb-Button-Zustand ---
+                # === Warenkorb-Button ===
                 widget_key = f"add_btn_{row.name}_{i}"
                 state_key = f"add_state_{row.name}_{i}"
                 if state_key not in st.session_state:
                     st.session_state[state_key] = False
                 button_label = "➖ Entfernen" if st.session_state[state_key] else "➕ Hinzufügen"
 
-                # --- Karte zusammenbauen ---
-                card_html = f"""
-                <div class="product-card">
-                    <div class="product-img">
-                        <img src="{img_path}" alt="{produkt_name}">
-                    </div>
-                    <div class="product-info">
-                        <p><strong>{produkt_name}</strong></p>
-                        <p style="color:#666;">{marke} – {retailer}</p>
-                        <p>💶 <strong>{preis}</strong> ({preis_kg})</p>
-                        {datum_html}
-                        {rabatt_html}
-                    </div>
-                </div>
-                """
-
-                # Karte rendern
-                st.markdown(card_html, unsafe_allow_html=True)
-
-                # --- Button unter Karte ---
                 if st.button(button_label, key=widget_key):
                     if st.session_state[state_key]:
                         st.session_state.cart = [
@@ -624,15 +585,17 @@ with tab1:
                         st.session_state[state_key] = True
                     st.rerun()
 
-    # 🔽 Mehr/Weniger anzeigen
-    if len(subset) > st.session_state.card_limit:
-        if st.button("🔽 Mehr anzeigen"):
-            st.session_state.card_limit += 9
-            st.rerun()
-    elif len(subset) > 12:
-        if st.button("🔼 Weniger anzeigen"):
-            st.session_state.card_limit = 12
-            st.rerun()
+                st.markdown("</div>", unsafe_allow_html=True)
+
+        # 🔽 Mehr/Weniger anzeigen
+        if len(subset) > st.session_state.card_limit:
+            if st.button("🔽 Mehr anzeigen"):
+                st.session_state.card_limit += 9
+                st.rerun()
+        elif len(subset) > 12:
+            if st.button("🔼 Weniger anzeigen"):
+                st.session_state.card_limit = 12
+                st.rerun()
 
     st.divider()
 
