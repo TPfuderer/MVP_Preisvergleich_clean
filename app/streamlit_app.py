@@ -391,12 +391,12 @@ tab_labels = [
 tab1, tab2, tab3, tab4, tab5 = st.tabs(tab_labels)
 
 # ---------------------------------------------------
-# Tab 1 – Karten-Ansicht (vormals Tab5)
+# Tab 1 – Karten-Ansicht
 # ---------------------------------------------------
 with tab1:
     st.header("🧱 Karten-Ansicht")
 
-    # 🧱 Spaltenanzahl für Produktkarten (mobilfreundlich)
+    # 🧱 Spaltenanzahl (responsiv)
     cols_per_row = st.sidebar.select_slider(
         "Produkte pro Zeile",
         options=[1, 2, 3],
@@ -404,217 +404,125 @@ with tab1:
         help="Passe die Anzahl der Produktspalten an (z. B. 1 auf Handy, 3 auf PC)."
     )
 
-    if cols_per_row == 1:
-        # 📱 Handy / 1 Spalte – volle Bildhöhe, kein Clip
-        st.markdown("""
-        <style>
-        /* Äußerer Container (Streamlit) */
-        div[data-testid="stImage"] {
-            background-color: white !important;
-            border-radius: 10px !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            flex-direction: column !important;
-            height: auto !important;               /* erlaubt flexibles Wachsen */
-            min-height: 260px !important;          /* Basisgröße */
-            overflow: visible !important;          /* kein Clip auf äußerem Container */
-            box-shadow: 0 0 6px rgba(0,0,0,0.06);
-            margin-bottom: 0.5rem !important;
-        }
-
-        /* Innerer Container – hier passiert der Clip standardmäßig */
-        div[data-testid="stImageContainer"] {
-            height: auto !important;               /* 🔥 Wächst mit Bild */
-            max-height: none !important;
-            overflow: visible !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            flex-direction: column !important;
-        }
-
-        /* Bild selbst */
-        div[data-testid="stImageContainer"] img {
-            width: 100% !important;
-            height: auto !important;
-            object-fit: contain !important;
-            max-height: none !important;
-            display: block !important;
-            margin: auto !important;
-        }
-        </style>
-        """, unsafe_allow_html=True)
-
-
-    elif cols_per_row == 2:
-        # 🧱 Tablet / 2 Spalten – moderate Höhe
-        st.markdown("""
-        <style>
-        div[data-testid="stImage"] {
-            height: 220px !important;
-            overflow: hidden !important;
-        }
-        div[data-testid="stImage"] img {
-            object-fit: contain !important;
-            width: 100% !important;
-            height: 100% !important;
-        }
-        </style>
-        """, unsafe_allow_html=True)
-
-    else:
-        # 💻 Desktop / 3 Spalten – kompakter
-        st.markdown("""
-        <style>
-        div[data-testid="stImage"] {
-            height: 180px !important;
-            overflow: hidden !important;
-        }
-        div[data-testid="stImage"] img {
-            object-fit: contain !important;
-            width: 100% !important;
-            height: 100% !important;
-        }
-        </style>
-        """, unsafe_allow_html=True)
-
-    # 🔧 Bildhöhe dynamisch an Spaltenzahl anpassen
-    if cols_per_row == 1:
-        img_height = 220
-    elif cols_per_row == 2:
-        img_height = 190
-    else:
-        img_height = 170
-
-    st.markdown(f"""
+    # --------------------------------------------------
+    # 💅 Dynamische CSS-Anpassung
+    # --------------------------------------------------
+    st.markdown("""
     <style>
-    div[data-testid="stImage"] {{
-        height: {img_height}px !important;
-    }}
+    /* --- Gemeinsame Produktkarte (Bild + Text + Button) --- */
+    .product-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        background-color: #fff;
+        border: 1px solid #e5e5e5;
+        border-radius: 10px;
+        padding: 0.5rem;
+        margin-bottom: 1rem;
+        box-shadow: 0 0 6px rgba(0,0,0,0.05);
+        overflow: visible !important;
+    }
+
+    /* --- Bild-Container innerhalb der Karte --- */
+    .product-card [data-testid="stImage"],
+    .product-card [data-testid="stImageContainer"] {
+        height: auto !important;
+        max-height: none !important;
+        overflow: visible !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex-direction: column !important;
+        background-color: white !important;
+        border-radius: 10px !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    /* --- Bild selbst --- */
+    .product-card [data-testid="stImageContainer"] img {
+        width: 100% !important;
+        height: auto !important;
+        max-width: 90% !important;
+        max-height: 90vh !important;
+        object-fit: contain !important;
+        display: block !important;
+        margin: auto !important;
+    }
+
+    /* --- Responsives Verhalten je nach Spaltenzahl --- */
+    @media (min-width: 900px) {
+        .product-card [data-testid="stImage"] { height: 180px !important; overflow: hidden !important; }
+    }
+    @media (min-width: 600px) and (max-width: 899px) {
+        .product-card [data-testid="stImage"] { height: 220px !important; overflow: hidden !important; }
+    }
+    @media (max-width: 599px) {
+        .product-card [data-testid="stImage"] { height: auto !important; overflow: visible !important; }
+    }
     </style>
     """, unsafe_allow_html=True)
 
+    # --------------------------------------------------
     # 🛒 Einkaufswagen initialisieren
+    # --------------------------------------------------
     if "cart" not in st.session_state:
         st.session_state.cart = []
 
-    # 🔍 Suchfeld
+    # --------------------------------------------------
+    # 🔍 Such- und Filteroptionen
+    # --------------------------------------------------
     search_term = st.text_input(
         "Produkte suchen (z. B. Butter, Milch, Joghurt)",
         placeholder="Produktname eingeben …"
     ).strip().lower()
 
-    # Sofortige Vorschläge beim Tippen
-    if search_term and len(search_term) >= 2:
-        all_names = pd.concat([
-            data["Produkt"].dropna().astype(str),
-            data.get("Marke", pd.Series(dtype=str)).dropna().astype(str)
-        ]).unique()
-        suggestions = [name for name in all_names if search_term in name.lower()][:5]
-
-    # 🏪 Händler-Filter
     retailers = sorted(data["Retailer"].dropna().unique())
-    selected_retailers = st.multiselect(
-        "Händler filtern:",
-        retailers,
-        default=retailers
-    )
-
-    # 🧭 Filter: nur aktuelle oder alle anzeigen
+    selected_retailers = st.multiselect("Händler filtern:", retailers, default=retailers)
     use_current = st.toggle("Nur aktuelle Angebote anzeigen", value=True, key="filter_current_tab5")
 
+    subset = data[data["Retailer"].isin(selected_retailers)].copy()
     if use_current:
-        subset = data[data["Ist_aktuell"] & data["Retailer"].isin(selected_retailers)].copy()
-    else:
-        subset = data[data["Retailer"].isin(selected_retailers)].copy()
+        subset = subset[subset["Ist_aktuell"]]
 
-    # 🔎 Suchfeld anwenden
     if search_term:
         subset = subset[
             subset["Produkt"].str.lower().str.contains(search_term, na=False)
             | subset["Marke"].str.lower().str.contains(search_term, na=False)
         ]
 
-    # 💶 Preis-Konvertierung
+    # --------------------------------------------------
+    # 💶 Sortierung
+    # --------------------------------------------------
     if "Preis_float" not in subset.columns:
         subset["Preis_float"] = subset["Preis"].apply(money_to_float)
 
-    def unit_price_to_float(s: str) -> float | None:
-        if not isinstance(s, str) or not s.strip():
-            return None
-        s_clean = s.lower().replace("€", "").replace(" ", "")
-        m = re.search(r"([\d,.]+)\s*/\s*(kg|g|l|ml)", s_clean)
-        if not m:
-            return None
-        val = float(m.group(1).replace(",", "."))
-        unit = m.group(2)
-        if unit == "g":
-            return val * 1000
-        elif unit == "ml":
-            return val * 1000
-        else:
-            return val
-
-    if "Preis_kg_float" not in subset.columns and "Preis_kg" in subset.columns:
-        subset["Preis_kg_float"] = subset["Preis_kg"].apply(unit_price_to_float)
-
-    # 🕒 Zeitraum-Filter (Datums-Slider)
-    if "Gueltig_von" in subset.columns and "Gueltig_bis" in subset.columns:
-        min_date = pd.to_datetime(subset["Gueltig_von"], errors="coerce").min()
-        max_date = pd.to_datetime(subset["Gueltig_bis"], errors="coerce").max()
-
-        if pd.notna(min_date) and pd.notna(max_date):
-            min_date = min_date.to_pydatetime()
-            max_date = max_date.to_pydatetime()
-
-            today = datetime.today()
-            limit_min = max(min_date, today - timedelta(days=1))
-
-            selected_range = st.slider(
-                "Zeitraum auswählen:",
-                min_value=limit_min,
-                max_value=max_date,
-                value=(limit_min, max_date),
-                format="DD.MM.YYYY"
-            )
-
-            subset = subset[
-                (pd.to_datetime(subset["Gueltig_von"], errors="coerce") <= selected_range[1])
-                & (pd.to_datetime(subset["Gueltig_bis"], errors="coerce") >= selected_range[0])
-            ]
-
-    # ↕️ Sortieroption#
     sort_option = st.selectbox(
         "Sortieren nach:",
         [
             "Kein Sortieren",
             "Preis (aufsteigend)",
             "Preis (absteigend)",
-            "Preis pro kg/l (aufsteigend)",
-            "Preis pro kg/l (absteigend)",
             "Rabatt (absteigend)"
         ]
     )
-
     if sort_option == "Preis (aufsteigend)":
         subset = subset.sort_values("Preis_float", ascending=True)
     elif sort_option == "Preis (absteigend)":
         subset = subset.sort_values("Preis_float", ascending=False)
-    elif sort_option == "Preis pro kg/l (aufsteigend)" and "Preis_kg_float" in subset.columns:
-        subset = subset.sort_values("Preis_kg_float", ascending=True)
-    elif sort_option == "Preis pro kg/l (absteigend)" and "Preis_kg_float" in subset.columns:
-        subset = subset.sort_values("Preis_kg_float", ascending=False)
     elif sort_option == "Rabatt (absteigend)" and "Rabatt_vs_prev" in subset.columns:
         subset = subset.sort_values("Rabatt_vs_prev", ascending=False)
 
-    # 🔢 Mehr-Anzeigen-Mechanismus
+    # --------------------------------------------------
+    # 🔢 Pagination / „Mehr anzeigen“
+    # --------------------------------------------------
     if "card_limit" not in st.session_state:
-        st.session_state.card_limit = 12  # Startwert
-
+        st.session_state.card_limit = 12
     shown_subset = subset.head(st.session_state.card_limit)
 
-    # --- Anzeige ---
+    # --------------------------------------------------
+    # 🧱 Produktanzeige
+    # --------------------------------------------------
     if shown_subset.empty:
         st.info("Keine passenden Produkte gefunden.")
     else:
@@ -622,23 +530,18 @@ with tab1:
 
         for i, (_, row) in enumerate(shown_subset.iterrows()):
             with cols[i % cols_per_row]:
+                st.markdown("<div class='product-card'>", unsafe_allow_html=True)
+
+                # === Bildanzeige ===
                 csv_image = row.get("Bildpfad")
                 if isinstance(csv_image, str) and csv_image.strip():
                     img_candidate = Path(csv_image)
-
-                    # 🔍 Versuch 1: Vollständiger Pfad im CSV gültig?
                     if img_candidate.exists():
                         st.image(img_candidate.as_posix(), use_container_width=True)
-
-                    # 🔍 Versuch 2: Bild liegt unter data/images/images_edeka
                     elif (CSV_IMG_DIR / img_candidate.name).exists():
                         st.image((CSV_IMG_DIR / img_candidate.name).as_posix(), use_container_width=True)
-
-                    # 🔍 Versuch 3: Fallback in resized
                     elif (IMAGE_DIR / img_candidate.name).exists():
                         st.image((IMAGE_DIR / img_candidate.name).as_posix(), use_container_width=True)
-
-                    # 🔍 Versuch 4: generisches Produktbild
                     else:
                         st.image(get_image_for_product(row["Produkt"]), use_container_width=True)
                 else:
@@ -647,7 +550,6 @@ with tab1:
                 # === Produktinfos ===
                 full_name = str(row.get("Produkt", ""))
                 short_name = short_text(full_name, 60)
-
                 st.markdown(f"**{short_name}**")
                 st.caption(f"{row.get('Marke', '')} – {row['Retailer']}")
                 st.write(f"💶 **{row['Preis']}** ({row.get('Preis_kg', '')})")
@@ -663,56 +565,43 @@ with tab1:
                 else:
                     st.markdown("<span style='color:gray'>🏷️ Aktion / Kein Rabatt</span>", unsafe_allow_html=True)
 
-                # 🟢 Eindeutiger Key pro Produkt
+                # === Warenkorb-Button ===
                 widget_key = f"add_btn_{row.name}_{i}"
                 state_key = f"add_state_{row.name}_{i}"
-
-                # 🔸 Initialisieren, falls noch nicht vorhanden
                 if state_key not in st.session_state:
-                    st.session_state[state_key] = False  # False = noch nicht im Warenkorb
-
-                # 🔹 Button-Label abhängig vom Zustand
+                    st.session_state[state_key] = False
                 button_label = "➖ Entfernen" if st.session_state[state_key] else "➕ Hinzufügen"
 
-                # 🔹 Button anzeigen
                 if st.button(button_label, key=widget_key):
                     if st.session_state[state_key]:
-                        # Produkt war im Warenkorb → entfernen
                         st.session_state.cart = [
                             item for item in st.session_state.cart
-                            if not (
-                                    item.get("Produkt") == row["Produkt"]
-                                    and item.get("Retailer") == row["Retailer"]
-                            )
+                            if not (item.get("Produkt") == row["Produkt"]
+                                    and item.get("Retailer") == row["Retailer"])
                         ]
-                        st.session_state[state_key] = False  # wieder zu „Hinzufügen“ schalten
+                        st.session_state[state_key] = False
                     else:
-                        # Produkt war noch nicht im Warenkorb → hinzufügen
                         st.session_state.cart.append(row.to_dict())
-                        st.session_state[state_key] = True  # jetzt „Entfernen“ anzeigen
-
-                    # 🔄 Sofortiges Re-Rendern, damit der Button sofort wechselt
+                        st.session_state[state_key] = True
                     st.rerun()
 
-        # 🔽 Mehr-Anzeigen-Button
+                st.markdown("</div>", unsafe_allow_html=True)
+
+        # 🔽 Mehr/Weniger anzeigen
         if len(subset) > st.session_state.card_limit:
-            st.markdown("")
-            col1, col2, col3 = st.columns([1, 1, 1])
-            with col2:
-                if st.button("🔽 Mehr anzeigen"):
-                    st.session_state.card_limit += 9
-                    st.rerun()
+            if st.button("🔽 Mehr anzeigen"):
+                st.session_state.card_limit += 9
+                st.rerun()
         elif len(subset) > 12:
-            st.markdown("")
-            col1, col2, col3 = st.columns([1, 1, 1])
-            with col2:
-                if st.button("🔼 Weniger anzeigen"):
-                    st.session_state.card_limit = 12
-                    st.rerun()
+            if st.button("🔼 Weniger anzeigen"):
+                st.session_state.card_limit = 12
+                st.rerun()
 
     st.divider()
 
-    # --- 🛒 Einkaufswagen-Vorschau ---
+    # --------------------------------------------------
+    # 🛒 Einkaufswagen-Vorschau
+    # --------------------------------------------------
     if st.session_state.cart:
         st.markdown("### 🛒 Aktueller Einkaufswagen")
         st.dataframe(
