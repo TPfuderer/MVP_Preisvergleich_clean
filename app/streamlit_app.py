@@ -22,17 +22,9 @@ st.title("🛒 MVP Preisvergleich")
 st.markdown("""
 <style>
 /* ================================
-   🧱 Produktkarten & Bilder-Layout
+   🧱 Globales Bild-Layout (kein .product-card hier!)
    ================================ */
 
-/* Produkt-Karte (optional, falls du .product-card nutzt) */
-.product-card {
-    border: 1px solid #e5e5e5;
-    border-radius: 10px;
-    padding: 0.4rem;
-    margin-bottom: 1rem;
-    background-color: transparent;
-}
 
 /* Spalten in st.columns: dürfen in der Höhe mitwachsen */
 div[data-testid="stHorizontalBlock"] > div[style*="flex-direction: column"] {
