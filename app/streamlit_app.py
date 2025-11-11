@@ -341,7 +341,14 @@ def get_base_data(tab_key: str, default_current: bool = True) -> pd.DataFrame:
 # ----------------------------
 with st.sidebar:
     st.header("Filter")
-    retailers = st.multiselect("Retailer", sorted(data["Retailer"].unique()), default=sorted(data["Retailer"].unique()))
+    retailers_all = sorted(data["Retailer"].unique())
+    default_retailers = [r for r in retailers_all if r in ["Rewe", "Edeka"]]
+
+    retailers = st.multiselect(
+        "Retailer",
+        retailers_all,
+        default=default_retailers
+    )
     search = st.text_input("Suche nach Produkt oder Marke (z.B. 'Butter' findet auch 'Süßrahmbutter')")
     only_online = st.checkbox("Nur Online verfügbar", value=False)
     max_rows = st.slider("Anzahl Zeilen anzeigen", 50, 1000, 200, step=50)
@@ -530,9 +537,6 @@ with tab1:
     elif sort_option == "Rabatt (absteigend)" and "Rabatt_vs_prev" in subset.columns:
         subset = subset.sort_values("Rabatt_vs_prev", ascending=False)
 
-    # 🏪 Rewe-Produkte immer zuerst anzeigen (nur ästhetisch)
-    subset["is_rewe"] = subset["Retailer"].str.lower().eq("rewe")
-    subset = subset.sort_values("is_rewe", ascending=False).drop(columns="is_rewe")
 
     # --------------------------------------------------
     # 🔢 Pagination / „Mehr anzeigen“
