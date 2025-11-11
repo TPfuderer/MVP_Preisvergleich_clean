@@ -377,7 +377,7 @@ tab1, tab2, tab3, tab4, tab5 = st.tabs(tab_labels)
 # Tab 1 – Karten-Ansicht (vormals Tab5)
 # ---------------------------------------------------
 with tab1:
-    st.header("🧱 Karten-Ansicht (UI-Methode 2)")
+    st.header("Karten-Ansicht")
 
     # 🧱 Spaltenanzahl für Produktkarten (mobilfreundlich)
     cols_per_row = st.sidebar.select_slider(
