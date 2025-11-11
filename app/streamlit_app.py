@@ -377,7 +377,31 @@ tab1, tab2, tab3, tab4, tab5 = st.tabs(tab_labels)
 # Tab 1 – Karten-Ansicht (vormals Tab5)
 # ---------------------------------------------------
 with tab1:
-    st.header("🧱 Karten-Ansicht (UI-Methode 2)")
+    st.header("🧱 Karten-Ansicht")
+
+    # 🧱 Spaltenanzahl für Produktkarten (mobilfreundlich)
+    cols_per_row = st.sidebar.select_slider(
+        "Produkte pro Zeile",
+        options=[1, 2, 3],
+        value=3,
+        help="Passe die Anzahl der Produktspalten an (z. B. 1 auf Handy, 3 auf PC)."
+    )
+
+    # 🔧 Bildhöhe dynamisch an Spaltenzahl anpassen
+    if cols_per_row == 1:
+        img_height = 220
+    elif cols_per_row == 2:
+        img_height = 190
+    else:
+        img_height = 170
+
+    st.markdown(f"""
+    <style>
+    div[data-testid="stImage"] {{
+        height: {img_height}px !important;
+    }}
+    </style>
+    """, unsafe_allow_html=True)
 
     # 🛒 Einkaufswagen initialisieren
     if "cart" not in st.session_state:
@@ -502,11 +526,10 @@ with tab1:
     if shown_subset.empty:
         st.info("Keine passenden Produkte gefunden.")
     else:
-        cols = st.columns(3)
+        cols = st.columns(cols_per_row)
 
         for i, (_, row) in enumerate(shown_subset.iterrows()):
-            with cols[i % 3]:
-
+            with cols[i % cols_per_row]:
                 csv_image = row.get("Bildpfad")
                 if isinstance(csv_image, str) and csv_image.strip():
                     img_candidate = Path(csv_image)
