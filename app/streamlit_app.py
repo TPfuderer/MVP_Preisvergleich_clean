@@ -24,8 +24,6 @@ st.markdown("""
 /* ================================
    🧱 Globales Bild-Layout (kein .product-card hier!)
    ================================ */
-
-
 /* Spalten in st.columns: dürfen in der Höhe mitwachsen */
 div[data-testid="stHorizontalBlock"] > div[style*="flex-direction: column"] {
     align-items: stretch !important;
