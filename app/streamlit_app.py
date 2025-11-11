@@ -22,8 +22,18 @@ st.title("🛒 MVP Preisvergleich")
 st.markdown("""
 <style>
 /* ================================
-   🧱 Globales Bild-Layout (kein .product-card hier!)
+   🧱 Produktkarten & Bilder-Layout
    ================================ */
+
+/* Produkt-Karte (optional, falls du .product-card nutzt) */
+.product-card {
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    padding: 0.4rem;
+    margin-bottom: 1rem;
+    background-color: transparent;
+}
+
 /* Spalten in st.columns: dürfen in der Höhe mitwachsen */
 div[data-testid="stHorizontalBlock"] > div[style*="flex-direction: column"] {
     align-items: stretch !important;
@@ -63,45 +73,6 @@ div[data-testid="stImage"] img {
 }
 </style>
 """, unsafe_allow_html=True)
-
-st.markdown("""
-<style>
-/* Produktkarte: visuell abgrenzen, ohne eigenes <div> */
-[data-testid="stVerticalBlock"] > [data-testid="stElementContainer"] {
-    border: 1px solid #e5e5e5;
-    border-radius: 10px;
-    background: #fff;
-    box-shadow: 0 0 6px rgba(0,0,0,0.05);
-    padding: 0.6rem;
-    margin-bottom: 1rem;
-}
-
-/* Bildbox optisch angleichen */
-div[data-testid="stImage"] {
-    border-radius: 8px;
-    background: #fff;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: inset 0 0 2px rgba(0,0,0,0.05);
-}
-
-/* Bild selbst */
-div[data-testid="stImage"] img {
-    object-fit: contain;
-    max-width: 85%;
-    max-height: 85%;
-    border-radius: 4px;
-}
-
-/* Abstand zu Preis und Text */
-[data-testid="stMarkdownContainer"] p {
-    margin: 0.25rem 0;
-}
-</style>
-""", unsafe_allow_html=True)
-
 
 
 # ----------------------------
@@ -434,11 +405,11 @@ with tab1:
     )
 
     # --------------------------------------------------
-    # 💅 Dynamische CSS-Anpassung (sauberes, wachsendes Layout)
+    # 💅 Dynamische CSS-Anpassung
     # --------------------------------------------------
     st.markdown("""
     <style>
-    /* --- Gesamtkarte --- */
+    /* --- Gemeinsame Produktkarte (Bild + Text + Button) --- */
     .product-card {
         display: flex;
         flex-direction: column;
@@ -447,13 +418,13 @@ with tab1:
         background-color: #fff;
         border: 1px solid #e5e5e5;
         border-radius: 10px;
-        padding: 0.6rem;
+        padding: 0.5rem;
         margin-bottom: 1rem;
         box-shadow: 0 0 6px rgba(0,0,0,0.05);
         overflow: visible !important;
     }
 
-    /* --- Bildcontainer --- */
+    /* --- Bild-Container innerhalb der Karte --- */
     .product-card [data-testid="stImage"],
     .product-card [data-testid="stImageContainer"] {
         height: auto !important;
@@ -464,7 +435,7 @@ with tab1:
         justify-content: center !important;
         flex-direction: column !important;
         background-color: white !important;
-        border-radius: 8px !important;
+        border-radius: 10px !important;
         margin-bottom: 0.5rem !important;
     }
 
@@ -473,12 +444,13 @@ with tab1:
         width: 100% !important;
         height: auto !important;
         max-width: 90% !important;
+        max-height: 90vh !important;
         object-fit: contain !important;
         display: block !important;
         margin: auto !important;
     }
 
-    /* --- Responsive Höhen --- */
+    /* --- Responsives Verhalten je nach Spaltenzahl --- */
     @media (min-width: 900px) {
         .product-card [data-testid="stImage"] { height: 180px !important; overflow: hidden !important; }
     }
@@ -487,13 +459,6 @@ with tab1:
     }
     @media (max-width: 599px) {
         .product-card [data-testid="stImage"] { height: auto !important; overflow: visible !important; }
-    }
-
-    /* --- Markdown-Wrapper neutralisieren --- */
-    .product-card [data-testid="stMarkdown"],
-    .product-card [data-testid="stMarkdownContainer"] {
-        all: unset !important;
-        display: contents !important;
     }
     </style>
     """, unsafe_allow_html=True)
@@ -505,7 +470,7 @@ with tab1:
         st.session_state.cart = []
 
     # --------------------------------------------------
-    # 🔍 Filter und Suche
+    # 🔍 Such- und Filteroptionen
     # --------------------------------------------------
     search_term = st.text_input(
         "Produkte suchen (z. B. Butter, Milch, Joghurt)",
@@ -514,7 +479,7 @@ with tab1:
 
     retailers = sorted(data["Retailer"].dropna().unique())
     selected_retailers = st.multiselect("Händler filtern:", retailers, default=retailers)
-    use_current = st.toggle("Nur aktuelle Angebote anzeigen", value=True, key="filter_current_tab1")
+    use_current = st.toggle("Nur aktuelle Angebote anzeigen", value=True, key="filter_current_tab5")
 
     subset = data[data["Retailer"].isin(selected_retailers)].copy()
     if use_current:
@@ -527,14 +492,19 @@ with tab1:
         ]
 
     # --------------------------------------------------
-    # 💶 Sortieren
+    # 💶 Sortierung
     # --------------------------------------------------
     if "Preis_float" not in subset.columns:
         subset["Preis_float"] = subset["Preis"].apply(money_to_float)
 
     sort_option = st.selectbox(
         "Sortieren nach:",
-        ["Kein Sortieren", "Preis (aufsteigend)", "Preis (absteigend)", "Rabatt (absteigend)"]
+        [
+            "Kein Sortieren",
+            "Preis (aufsteigend)",
+            "Preis (absteigend)",
+            "Rabatt (absteigend)"
+        ]
     )
     if sort_option == "Preis (aufsteigend)":
         subset = subset.sort_values("Preis_float", ascending=True)
@@ -544,14 +514,14 @@ with tab1:
         subset = subset.sort_values("Rabatt_vs_prev", ascending=False)
 
     # --------------------------------------------------
-    # 🔢 Pagination
+    # 🔢 Pagination / „Mehr anzeigen“
     # --------------------------------------------------
     if "card_limit" not in st.session_state:
         st.session_state.card_limit = 12
     shown_subset = subset.head(st.session_state.card_limit)
 
     # --------------------------------------------------
-    # 🧱 Produktkarten
+    # 🧱 Produktanzeige
     # --------------------------------------------------
     if shown_subset.empty:
         st.info("Keine passenden Produkte gefunden.")
@@ -560,43 +530,31 @@ with tab1:
 
         for i, (_, row) in enumerate(shown_subset.iterrows()):
             with cols[i % cols_per_row]:
-                with st.container():  # Produktkarte-Container über CSS
-                    # === Bildanzeige ===
+                # 🧱 gesamte Produktkarte kapseln
+                with st.container():
+                    st.markdown("<div class='product-card'>", unsafe_allow_html=True)
+
+                    # === Bild ===
                     csv_image = row.get("Bildpfad")
-                    img_path = None
                     if isinstance(csv_image, str) and csv_image.strip():
                         img_candidate = Path(csv_image)
                         if img_candidate.exists():
-                            img_path = img_candidate.as_posix()
+                            st.image(img_candidate.as_posix(), use_container_width=True)
                         elif (CSV_IMG_DIR / img_candidate.name).exists():
-                            img_path = (CSV_IMG_DIR / img_candidate.name).as_posix()
+                            st.image((CSV_IMG_DIR / img_candidate.name).as_posix(), use_container_width=True)
                         elif (IMAGE_DIR / img_candidate.name).exists():
-                            img_path = (IMAGE_DIR / img_candidate.name).as_posix()
+                            st.image((IMAGE_DIR / img_candidate.name).as_posix(), use_container_width=True)
                         else:
-                            img_path = get_image_for_product(row["Produkt"])
+                            st.image(get_image_for_product(row["Produkt"]), use_container_width=True)
                     else:
-                        img_path = get_image_for_product(row["Produkt"])
-
-                    st.image(img_path, use_container_width=True)
+                        st.image(get_image_for_product(row["Produkt"]), use_container_width=True)
 
                     # === Produktinfos ===
-                    produkt_name = short_text(str(row.get("Produkt", "")))
-                    marke = row.get("Marke", "")
-                    retailer = row.get("Retailer", "")
-                    preis = row.get("Preis", "")
-                    preis_kg = row.get("Preis_kg", "")
+                    st.markdown(f"**{short_text(str(row.get('Produkt', '')))}**")
+                    st.caption(f"{row.get('Marke', '')} – {row['Retailer']}")
+                    st.write(f"💶 **{row['Preis']}** ({row.get('Preis_kg', '')})")
 
-                    st.markdown(f"**{produkt_name}**")
-                    st.caption(f"{marke} – {retailer}")
-                    st.write(f"💶 **{preis}** ({preis_kg})")
-
-                    # === Zeitraum ===
-                    von = pd.to_datetime(row.get("Gueltig_von"), errors="coerce")
-                    bis = pd.to_datetime(row.get("Gueltig_bis"), errors="coerce")
-                    if pd.notna(von) and pd.notna(bis):
-                        st.write(f"🗓️ {von:%d.%m.%Y} – {bis:%d.%m.%Y}")
-
-                    # === Rabatt-Anzeige ===
+                    # === Rabatt etc. ===
                     r = row.get("Rabatt_vs_prev")
                     if pd.notna(r) and r > 0:
                         st.markdown(f"<span style='color:green'>💸 Rabatt: {(r * 100):.1f}%</span>",
@@ -604,18 +562,15 @@ with tab1:
                     else:
                         st.markdown("<span style='color:gray'>🏷️ Aktion / Kein Rabatt</span>", unsafe_allow_html=True)
 
-                    # === Warenkorb-Button ===
+                    # === Button ===
                     widget_key = f"add_btn_{row.name}_{i}"
                     state_key = f"add_state_{row.name}_{i}"
-
                     if state_key not in st.session_state:
                         st.session_state[state_key] = False
-
                     label = "➖ Entfernen" if st.session_state[state_key] else "➕ Hinzufügen"
 
                     if st.button(label, key=widget_key):
                         if st.session_state[state_key]:
-                            # Entfernen
                             st.session_state.cart = [
                                 item for item in st.session_state.cart
                                 if not (item.get("Produkt") == row["Produkt"]
@@ -623,20 +578,21 @@ with tab1:
                             ]
                             st.session_state[state_key] = False
                         else:
-                            # Hinzufügen
                             st.session_state.cart.append(row.to_dict())
                             st.session_state[state_key] = True
                         st.rerun()
 
-    # 🔽 Mehr/Weniger anzeigen
-    if len(subset) > st.session_state.card_limit:
-        if st.button("🔽 Mehr anzeigen"):
-            st.session_state.card_limit += 9
-            st.rerun()
-    elif len(subset) > 12:
-        if st.button("🔼 Weniger anzeigen"):
-            st.session_state.card_limit = 12
-            st.rerun()
+                    st.markdown("</div>", unsafe_allow_html=True)
+
+        # 🔽 Mehr/Weniger anzeigen
+        if len(subset) > st.session_state.card_limit:
+            if st.button("🔽 Mehr anzeigen"):
+                st.session_state.card_limit += 9
+                st.rerun()
+        elif len(subset) > 12:
+            if st.button("🔼 Weniger anzeigen"):
+                st.session_state.card_limit = 12
+                st.rerun()
 
     st.divider()
 
