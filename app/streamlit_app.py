@@ -63,8 +63,8 @@ div[data-testid="stImage"] img {
     object-fit: contain !important;
     width: 100% !important;
     height: 100% !important;
-    max-width: 100% !important;
-    max-height: 100% !important;
+    max-width: 80% !important;
+    max-height: 80% !important;
     border-radius: 0 !important;
     background-color: white !important;
     margin: auto !important;
