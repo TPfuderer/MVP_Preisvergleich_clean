@@ -16,7 +16,8 @@ DATA_DIR = REPO_ROOT / "data"
 CSV_IMG_DIR = DATA_DIR / "images" / "images_edeka"
 IMAGE_DIR = REPO_ROOT / "images" / "resized"
 CSV_IMG_DIR_REWE = DATA_DIR / "images" / "images_rewe"
-ALL_CSV_IMG_DIRS = [CSV_IMG_DIR, CSV_IMG_DIR_REWE]
+CSV_IMG_DIR_TEGUT = DATA_DIR / "images" / "images_tegut"
+ALL_CSV_IMG_DIRS = [CSV_IMG_DIR, CSV_IMG_DIR_REWE, CSV_IMG_DIR_TEGUT]
 
 
 
@@ -215,6 +216,8 @@ for f in files:
         retailer = "Amazon"
     elif "edeka" in name:
         retailer = "Edeka"
+    elif "tegut" in name:
+        retailer = "Tegut"
     elif "store_offers" in name:
         retailer = "Unbekannt"   # ✅ Dein neuer CSV-Name
     else:
