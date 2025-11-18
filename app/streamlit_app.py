@@ -469,6 +469,15 @@ with tab1:
         flex-grow: 1;
         width: 100%;
     }
+    
+    .product-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    max-width: 100%;
+    cursor: pointer;
+}
 
     </style>
     """, unsafe_allow_html=True)
@@ -571,7 +580,18 @@ with tab1:
                 # === Produktinfos ===
                 full_name = str(row.get("Produkt", ""))
                 short_name = short_text(full_name, 60)
-                st.markdown(f"**{short_name}**")
+
+                st.markdown(
+                    f"<div class='product-title' title='{full_name}'>{short_name}</div>",
+                    unsafe_allow_html=True
+                )
+
+                # 🔽 GENAU HIER EINFÜGEN
+                if len(full_name) > 60:
+                    with st.expander("Vollständiger Produktname"):
+                        st.write(full_name)
+                # 🔼 GENAU HIER
+
                 st.caption(f"{row.get('Marke', '')} – {row['Retailer']}")
                 st.write(f"💶 **{row['Preis']}** ({row.get('Preis_kg', '')})")
 
