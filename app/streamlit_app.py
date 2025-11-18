@@ -17,7 +17,8 @@ CSV_IMG_DIR = DATA_DIR / "images" / "images_edeka"
 IMAGE_DIR = REPO_ROOT / "images" / "resized"
 CSV_IMG_DIR_REWE = DATA_DIR / "images" / "images_rewe"
 CSV_IMG_DIR_TEGUT = DATA_DIR / "images" / "images_tegut"
-ALL_CSV_IMG_DIRS = [CSV_IMG_DIR, CSV_IMG_DIR_REWE, CSV_IMG_DIR_TEGUT]
+CSV_IMG_DIR_KAUFLAND = DATA_DIR / "images" / "images_kaufland"
+ALL_CSV_IMG_DIRS = [CSV_IMG_DIR, CSV_IMG_DIR_REWE, CSV_IMG_DIR_TEGUT,CSV_IMG_DIR_KAUFLAND]
 
 
 
