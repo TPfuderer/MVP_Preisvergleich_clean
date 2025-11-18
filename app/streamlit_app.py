@@ -423,51 +423,99 @@ with tab1:
        🧱 FIX: Einheitliche Kachelhöhe + sauberer Bild-Container
        ========================================================= */
 
-    /* --- Produktkarte: Fixe Höhe + flexibles Innenlayout --- */
     .product-card {
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: flex-start;
 
         width: 100%;
-        height: 380px;  /* 💡 Höhe kannst du 340–420 variieren */
-
+        height: 400px;   /* Hauptkartenhöhe */
         background-color: #fff;
         border: 1px solid #e5e5e5;
         border-radius: 10px;
-        padding: 0.5rem;
+        padding: 0.6rem;
         margin-bottom: 1rem;
         box-shadow: 0 0 6px rgba(0,0,0,0.05);
 
-        overflow: hidden; /* verhindert Sprünge */
+        overflow: hidden;
     }
 
-    /* --- Bildbereich immer gleiche Höhe --- */
-    .product-card .image-wrapper {
-        height: 180px;      /* 💡 AUCH anpassbar */
+    .image-wrapper {
+        height: 180px;        /* fester Bildbereich */
         width: 100%;
-
         display: flex;
         justify-content: center;
         align-items: center;
-
         margin-bottom: 0.5rem;
     }
 
-    /* --- Bild selbst: niemals zugeschnitten, immer enthalten --- */
-    .product-card .image-wrapper img {
+    .image-wrapper img {
         max-width: 100%;
         max-height: 100%;
-
         object-fit: contain !important;
-        margin: auto;
         display: block;
     }
 
-    /* Text & Buttons bleiben unten stabil */
-    .product-card .content-area {
+    /* ============================
+       📌 Fixierte Textbereiche
+       ============================ */
+
+    .content-area {
         flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
         width: 100%;
+    }
+
+    .product-title {
+        font-weight: 600;
+        font-size: 0.95rem;
+
+        display: -webkit-box;
+        -webkit-line-clamp: 2;     /* Max 2 Zeilen */
+        -webkit-box-orient: vertical;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        min-height: 2.6em;         /* fix Höhe */
+    }
+
+    .product-brand {
+        font-size: 0.8rem;
+        color: #666;
+
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        min-height: 1.2em;
+        margin-bottom: 0.3rem;
+    }
+
+    .product-price {
+        font-size: 0.9rem;
+        min-height: 1.4em;
+        margin-bottom: 0.3rem;
+    }
+
+    .product-date {
+        font-size: 0.8rem;
+        min-height: 1.3em;
+        color: #444;
+        margin-bottom: 0.3rem;
+    }
+
+    .product-discount {
+        min-height: 1.2em;
+        margin-bottom: 0.4rem;
+    }
+
+    .card-button-area {
+        margin-top: auto;
+        width: 100%;
+        text-align: center;
     }
 
     </style>
@@ -493,7 +541,7 @@ with tab1:
         retailers,
         default=[r for r in retailers if r in ["Rewe", "Edeka", "Kaufland"]]
     )
-    use_current = st.toggle("Nur aktuelle Angebote anzeigen", value=True, key="filter_current_tab5")
+    use_current = st.toggle("Nur aktuelle Angebote anzeigen", value=True, key="filter_current_tab_1")
 
     subset = data[data["Retailer"].isin(selected_retailers)].copy()
     if use_current:
@@ -527,9 +575,8 @@ with tab1:
     elif sort_option == "Rabatt (absteigend)" and "Rabatt_vs_prev" in subset.columns:
         subset = subset.sort_values("Rabatt_vs_prev", ascending=False)
 
-
     # --------------------------------------------------
-    # 🔢 Pagination / „Mehr anzeigen“
+    # 🔢 Pagination
     # --------------------------------------------------
     if "card_limit" not in st.session_state:
         st.session_state.card_limit = 12
@@ -547,50 +594,80 @@ with tab1:
             with cols[i % cols_per_row]:
                 st.markdown("<div class='product-card'>", unsafe_allow_html=True)
 
-                # === Bildanzeige ===
+                # === Bildanzeige (HTML statt st.image) ===
                 csv_image = row.get("Bildpfad")
+                img_path = None
+
                 if isinstance(csv_image, str) and csv_image.strip():
                     img_candidate = Path(csv_image)
                     if img_candidate.exists():
-                        st.image(img_candidate.as_posix(), use_container_width=True)
+                        img_path = img_candidate.as_posix()
                     else:
-                        else_found = False
                         for img_dir in ALL_CSV_IMG_DIRS:
                             candidate_path = img_dir / img_candidate.name
                             if candidate_path.exists():
-                                st.image(candidate_path.as_posix(), use_container_width=True)
-                                else_found = True
+                                img_path = candidate_path.as_posix()
                                 break
-                        if not else_found and (IMAGE_DIR / img_candidate.name).exists():
-                            st.image((IMAGE_DIR / img_candidate.name).as_posix(), use_container_width=True)
-                        elif not else_found:
-                            st.image(get_image_for_product(row["Produkt"]), use_container_width=True)
-                else:
-                    st.image(get_image_for_product(row["Produkt"]), use_container_width=True)
+                        if img_path is None and (IMAGE_DIR / img_candidate.name).exists():
+                            img_path = (IMAGE_DIR / img_candidate.name).as_posix()
 
-                # === Produktinfos ===
+                if img_path is None:
+                    img_path = get_image_for_product(row["Produkt"])
+
+                st.markdown(
+                    f"<div class='image-wrapper'><img src='{img_path}'></div>",
+                    unsafe_allow_html=True
+                )
+
+                # === TEXTBEREICH ===
                 full_name = str(row.get("Produkt", ""))
                 short_name = short_text(full_name, 60)
-                st.markdown(f"**{short_name}**")
-                st.caption(f"{row.get('Marke', '')} – {row['Retailer']}")
-                st.write(f"💶 **{row['Preis']}** ({row.get('Preis_kg', '')})")
+
+                st.markdown("<div class='content-area'>", unsafe_allow_html=True)
+
+                st.markdown(
+                    f"<div class='product-title'>{short_name}</div>",
+                    unsafe_allow_html=True
+                )
+
+                st.markdown(
+                    f"<div class='product-brand'>{row.get('Marke', '')} – {row['Retailer']}</div>",
+                    unsafe_allow_html=True
+                )
+
+                st.markdown(
+                    f"<div class='product-price'>💶 <b>{row['Preis']}</b> ({row.get('Preis_kg', '')})</div>",
+                    unsafe_allow_html=True
+                )
 
                 von = pd.to_datetime(row.get("Gueltig_von"), errors="coerce")
                 bis = pd.to_datetime(row.get("Gueltig_bis"), errors="coerce")
                 if pd.notna(von) and pd.notna(bis):
-                    st.write(f"🗓️ {von:%d.%m.%Y} – {bis:%d.%m.%Y}")
+                    st.markdown(
+                        f"<div class='product-date'>🗓️ {von:%d.%m.%Y} – {bis:%d.%m.%Y}</div>",
+                        unsafe_allow_html=True
+                    )
 
                 r = row.get("Rabatt_vs_prev")
                 if pd.notna(r) and r > 0:
-                    st.markdown(f"<span style='color:green'>💸 Rabatt: {(r * 100):.1f}%</span>", unsafe_allow_html=True)
+                    st.markdown(
+                        f"<div class='product-discount' style='color:green'>💸 Rabatt: {(r * 100):.1f}%</div>",
+                        unsafe_allow_html=True
+                    )
                 else:
-                    st.markdown("<span style='color:gray'>🏷️ Aktion / Kein Rabatt</span>", unsafe_allow_html=True)
+                    st.markdown(
+                        "<div class='product-discount' style='color:gray'>🏷️ Aktion / Kein Rabatt</div>",
+                        unsafe_allow_html=True
+                    )
 
-                # === Warenkorb-Button ===
+                # === Button immer unten ===
+                st.markdown("<div class='card-button-area'>", unsafe_allow_html=True)
+
                 widget_key = f"add_btn_{row.name}_{i}"
                 state_key = f"add_state_{row.name}_{i}"
                 if state_key not in st.session_state:
                     st.session_state[state_key] = False
+
                 button_label = "➖ Entfernen" if st.session_state[state_key] else "➕ Hinzufügen"
 
                 if st.button(button_label, key=widget_key):
@@ -606,7 +683,10 @@ with tab1:
                         st.session_state[state_key] = True
                     st.rerun()
 
-                st.markdown("</div>", unsafe_allow_html=True)
+                st.markdown("</div>", unsafe_allow_html=True)  # button-area
+                st.markdown("</div>", unsafe_allow_html=True)  # content-area
+
+                st.markdown("</div>", unsafe_allow_html=True)  # product-card
 
         # 🔽 Mehr/Weniger anzeigen
         if len(subset) > st.session_state.card_limit:
@@ -629,6 +709,7 @@ with tab1:
             pd.DataFrame(st.session_state.cart)[["Retailer", "Produkt", "Preis"]],
             use_container_width=True
         )
+
 
 # ---------------------------------------------------
 # Tab 2 – Beobachtung & Verlauf (vormals Tab7)
