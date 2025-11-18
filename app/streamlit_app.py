@@ -483,9 +483,19 @@ with tab1:
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-size: 0.95rem;
+    margin-bottom: 0.2rem;
     max-width: 100%;
-    font-size: 0.9rem;
+}
+
+.product-ppkg {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.8rem;
+    color: #666;
     margin-bottom: 0.3rem;
+    max-width: 100%;
 }
 
 .product-brand {
@@ -618,12 +628,20 @@ with tab1:
                     f"<div class='product-brand'>{brand_line}</div>",
                     unsafe_allow_html=True
                 )
-                price_line = f"💶 <b>{row['Preis']}</b> ({row.get('Preis_kg', '')})"
-
+                # Preis → eigene Zeile
+                price_display = f"💶 <b>{row['Preis']}</b>"
                 st.markdown(
-                    f"<div class='product-price'>{price_line}</div>",
+                    f"<div class='product-price'>{price_display}</div>",
                     unsafe_allow_html=True
                 )
+
+                # Preis pro kg/L → eigene Zeile
+                ppkg = row.get("Preis_kg", "")
+                if ppkg:
+                    st.markdown(
+                        f"<div class='product-ppkg'>{ppkg}</div>",
+                        unsafe_allow_html=True
+                    )
 
                 von = pd.to_datetime(row.get("Gueltig_von"), errors="coerce")
                 bis = pd.to_datetime(row.get("Gueltig_bis"), errors="coerce")
