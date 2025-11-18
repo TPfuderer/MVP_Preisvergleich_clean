@@ -479,6 +479,26 @@ with tab1:
     cursor: pointer;
 }
 
+.product-price {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+}
+
+.product-brand {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    font-size: 0.8rem;
+    color: #666;
+}
+
+
+
     </style>
     """, unsafe_allow_html=True)
 
@@ -592,8 +612,18 @@ with tab1:
                         st.write(full_name)
                 # 🔼 GENAU HIER
 
-                st.caption(f"{row.get('Marke', '')} – {row['Retailer']}")
-                st.write(f"💶 **{row['Preis']}** ({row.get('Preis_kg', '')})")
+                brand_line = f"{row.get('Marke', '')} – {row['Retailer']}"
+
+                st.markdown(
+                    f"<div class='product-brand'>{brand_line}</div>",
+                    unsafe_allow_html=True
+                )
+                price_line = f"💶 <b>{row['Preis']}</b> ({row.get('Preis_kg', '')})"
+
+                st.markdown(
+                    f"<div class='product-price'>{price_line}</div>",
+                    unsafe_allow_html=True
+                )
 
                 von = pd.to_datetime(row.get("Gueltig_von"), errors="coerce")
                 bis = pd.to_datetime(row.get("Gueltig_bis"), errors="coerce")
