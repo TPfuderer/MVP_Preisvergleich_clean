@@ -344,33 +344,15 @@ def get_base_data(tab_key: str, default_current: bool = True) -> pd.DataFrame:
 # Sidebar Filter
 # ----------------------------
 with st.sidebar:
-    st.header("Filter")
-    retailers_all = sorted(data["Retailer"].unique())
-    default_retailers = [r for r in retailers_all if r in ["Rewe", "Edeka"]]
-
-    retailers = st.multiselect(
-        "Retailer",
-        retailers_all,
-        default=default_retailers
-    )
-    search = st.text_input("Suche nach Produkt oder Marke (z.B. 'Butter' findet auch 'Süßrahmbutter')")
-    only_online = st.checkbox("Nur Online verfügbar", value=False)
-    max_rows = st.slider("Anzahl Zeilen anzeigen", 50, 1000, 200, step=50)
-
-# Filter anwenden (nur aktuelle Angebote)
-mask = data["Retailer"].isin(retailers) & data["Ist_aktuell"]
-
-if search:
-    s = normalize_text(search)
-    mask &= (
-        data["Produkt"].apply(lambda x: s in normalize_text(str(x))) |
-        data["Marke"].apply(lambda x: s in normalize_text(str(x)))
+    st.header("Layout")
+    cols_per_row = st.slider(
+        "Produkte pro Zeile",
+        min_value=1,
+        max_value=6,
+        value=3,
+        step=1
     )
 
-if only_online and "Nur_online" in data.columns:
-    mask &= data["Nur_online"].str.lower() == "ja"
-
-filtered = data[mask].copy()
 
 # ----------------------------
 # Tabs
@@ -414,9 +396,8 @@ tab_labels = [
     "⭐ Beobachtung & Verlauf",
     "🛒 Einkaufswagen",
     "📈 Preis-Historie",
-    "🔥 Top 15 Rabatte"
 ]
-tab1, tab2, tab3, tab4, tab5 = st.tabs(tab_labels)
+tab1, tab2, tab3, tab4 = st.tabs(tab_labels)
 
 # ---------------------------------------------------
 # Tab 1 – Karten-Ansicht
@@ -849,31 +830,3 @@ with tab4:
     else:
         st.info("Bitte gib ein Stichwort ein, um Preisverläufe zu sehen.")
 
-# ---------------------------------------------------
-# Tab 5 – Top Deals (vormals Tab1)
-# ---------------------------------------------------
-with tab5:
-    base = get_base_data("tab1")
-    if not base.empty and "Rabatt_vs_prev" in base.columns:
-        top_deals = base.sort_values("Rabatt_vs_prev", ascending=False).head(15)
-        st.subheader("🔥 Top 15 größte Rabatte heute")
-
-        top_deals_display = top_deals.copy()
-        if "Rabatt_vs_prev" in top_deals_display.columns:
-            top_deals_display["Rabatt_vs_prev"] = (top_deals_display["Rabatt_vs_prev"] * 100).round(1).astype(str) + "%"
-
-        cols_to_show = [
-            c for c in [
-                "Retailer", "Produkt", "Marke", "Preis", "Preis_kg", "Vorheriger Preis",
-                "Rabatt_vs_prev", "Hinweis", "Nur_online",
-                "Gueltig_von", "Gueltig_bis", "UnitPriceLeader"
-            ] if c in top_deals_display.columns
-        ]
-
-        for col in ["Gueltig_von", "Gueltig_bis"]:
-            if col in top_deals_display.columns:
-                top_deals_display[col] = pd.to_datetime(
-                    top_deals_display[col], errors="coerce"
-                ).dt.strftime("%d.%m.%Y")
-
-        st.dataframe(top_deals_display[cols_to_show], use_container_width=True)
