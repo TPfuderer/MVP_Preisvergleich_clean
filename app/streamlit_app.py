@@ -418,57 +418,58 @@ with tab1:
     # --------------------------------------------------
     st.markdown("""
     <style>
-    /* --- Gemeinsame Produktkarte (Bild + Text + Button) --- */
+
+    /* =========================================================
+       🧱 FIX: Einheitliche Kachelhöhe + sauberer Bild-Container
+       ========================================================= */
+
+    /* --- Produktkarte: Fixe Höhe + flexibles Innenlayout --- */
     .product-card {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
+        justify-content: space-between;
+
+        width: 100%;
+        height: 380px;  /* 💡 Höhe kannst du 340–420 variieren */
+
         background-color: #fff;
         border: 1px solid #e5e5e5;
         border-radius: 10px;
         padding: 0.5rem;
         margin-bottom: 1rem;
         box-shadow: 0 0 6px rgba(0,0,0,0.05);
-        overflow: visible !important;
+
+        overflow: hidden; /* verhindert Sprünge */
     }
 
-    /* --- Bild-Container innerhalb der Karte --- */
-    .product-card [data-testid="stImage"],
-    .product-card [data-testid="stImageContainer"] {
-        height: auto !important;
-        max-height: none !important;
-        overflow: visible !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        flex-direction: column !important;
-        background-color: white !important;
-        border-radius: 10px !important;
-        margin-bottom: 0.5rem !important;
+    /* --- Bildbereich immer gleiche Höhe --- */
+    .product-card .image-wrapper {
+        height: 180px;      /* 💡 AUCH anpassbar */
+        width: 100%;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        margin-bottom: 0.5rem;
     }
 
-    /* --- Bild selbst --- */
-    .product-card [data-testid="stImageContainer"] img {
-        width: 100% !important;
-        height: auto !important;
-        max-width: 90% !important;
-        max-height: 90vh !important;
+    /* --- Bild selbst: niemals zugeschnitten, immer enthalten --- */
+    .product-card .image-wrapper img {
+        max-width: 100%;
+        max-height: 100%;
+
         object-fit: contain !important;
-        display: block !important;
-        margin: auto !important;
+        margin: auto;
+        display: block;
     }
 
-    /* --- Responsives Verhalten je nach Spaltenzahl --- */
-    @media (min-width: 900px) {
-        .product-card [data-testid="stImage"] { height: 180px !important; overflow: hidden !important; }
+    /* Text & Buttons bleiben unten stabil */
+    .product-card .content-area {
+        flex-grow: 1;
+        width: 100%;
     }
-    @media (min-width: 600px) and (max-width: 899px) {
-        .product-card [data-testid="stImage"] { height: 220px !important; overflow: hidden !important; }
-    }
-    @media (max-width: 599px) {
-        .product-card [data-testid="stImage"] { height: auto !important; overflow: visible !important; }
-    }
+
     </style>
     """, unsafe_allow_html=True)
 
