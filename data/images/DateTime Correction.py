@@ -1,23 +1,29 @@
 import pandas as pd
 from pathlib import Path
 
-# --- Pfad zur Datei ---
+# --- Pfad zur Netto-CSV ---
 csv_path = Path(r"C:\Users\pfudi\PycharmProjects\MVP_Preisvergleich\data\netto_angebote_2025-11-23.csv")
 
 # --- CSV laden ---
 df = pd.read_csv(csv_path, dtype=str)
 
-# --- Datumsfelder bereinigen ---
-# Netto liefert DD.MM.YY → in datetime umwandeln
-df["Gueltig_von"] = pd.to_datetime(df["Gueltig_von"], dayfirst=True, errors="coerce")
-df["Gueltig_bis"] = pd.to_datetime(df["Gueltig_bis"], dayfirst=True, errors="coerce")
+# -------------------------------------------------------------
+# 1) SPALTENNAMEN NORMALISIEREN  (WICHTIGSTER FIX!)
+# -------------------------------------------------------------
+df.columns = df.columns.str.strip()
 
-# --- Als ISO-Format exportieren (YYYY-MM-DD) ---
-df["Gueltig_von"] = df["Gueltig_von"].dt.strftime("%Y-%m-%d")
-df["Gueltig_bis"] = df["Gueltig_bis"].dt.strftime("%Y-%m-%d")
+# -------------------------------------------------------------
+# 2) DATUMSFELDER NORMALISIEREN (DD.MM.YY → YYYY-MM-DD)
+# -------------------------------------------------------------
+for col in ["Gueltig_von", "Gueltig_bis"]:
+    if col in df.columns:
+        df[col] = pd.to_datetime(df[col], dayfirst=True, errors="coerce")
+        df[col] = df[col].dt.strftime("%Y-%m-%d")
 
-# --- Speichern: gleiche Datei überschreiben ---
+# -------------------------------------------------------------
+# 3) SPEICHERN (UTF-8 + gleichen Namen behalten)
+# -------------------------------------------------------------
 df.to_csv(csv_path, index=False, encoding="utf-8-sig")
 
-print("✨ Netto-Datumsfelder bereinigt und gespeichert!")
-print(df[["Gueltig_von", "Gueltig_bis"]].head())
+print("✨ Netto-CSV normalisiert & gespeichert:")
+print(df.head())
