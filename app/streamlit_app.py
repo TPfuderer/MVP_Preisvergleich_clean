@@ -287,11 +287,11 @@ data["Ist_im_Slider"] = (
     & (data["Gueltig_bis"] >= selected_range[0])
 )
 
-# Angebot ist HEUTE gültig
-data["Ist_heute"] = (
-    (data["Gueltig_von"] <= today)
+data["Ist_aktuell"] = (
+    (data["Gueltig_von"] <= today + pd.Timedelta(days=1))
     & (data["Gueltig_bis"] >= today)
 )
+
 
 # Kompatibilität: 'Ist_aktuell' = heute gültig (bestehende Filter/Tabs nutzen das)
 data["Ist_aktuell"] = data["Ist_heute"]
@@ -751,13 +751,7 @@ with tab2:
         today = datetime.today().replace(hour=0, minute=0, second=0, microsecond=0)
         tomorrow = today + timedelta(days=1)
 
-        date_mask = (
-                ((pd.to_datetime(data["Gueltig_von"], errors="coerce") <= today) &
-                 (pd.to_datetime(data["Gueltig_bis"], errors="coerce") >= today))
-                |
-                ((pd.to_datetime(data["Gueltig_von"], errors="coerce") <= tomorrow) &
-                 (pd.to_datetime(data["Gueltig_bis"], errors="coerce") >= tomorrow))
-        )
+        date_mask = data["Ist_aktuell"]
 
         subset_list = []
         for cat in active_cats:
