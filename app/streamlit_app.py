@@ -294,7 +294,11 @@ data["Ist_aktuell"] = (
 
 
 # Kompatibilität: 'Ist_aktuell' = heute gültig (bestehende Filter/Tabs nutzen das)
-data["Ist_aktuell"] = data["Ist_heute"]
+data["Ist_aktuell"] = (
+    (data["Gueltig_von"] <= today + pd.Timedelta(days=1))
+    & (data["Gueltig_bis"] >= today)
+)
+
 # ─────────────────────────────────────
 
 st.sidebar.caption(f"📅 Zeitraum: {selected_range[0].date()} – {selected_range[1].date()}")
