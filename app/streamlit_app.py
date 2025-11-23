@@ -273,11 +273,12 @@ filtered_data = data[
     & (data["Gueltig_bis"] >= selected_range[0])
 ].copy()
 
-# 🌟 Nur heute gültige Angebote
+# 🌟 Nur heute gültige Angebote (inkl. morgen startende)
 filtered_data_current = filtered_data[
-    (filtered_data["Gueltig_von"] <= today)
+    (filtered_data["Gueltig_von"] <= today + pd.Timedelta(days=1))
     & (filtered_data["Gueltig_bis"] >= today)
 ].copy()
+
 
 # ➕➕➕ DATUMS-FLAGS (NEU) ─────────────
 # Angebot überlappt den gewählten Slider-Zeitraum
