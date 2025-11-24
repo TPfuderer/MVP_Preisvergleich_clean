@@ -415,8 +415,8 @@ with tab1:
     # 🧱 Spaltenanzahl (responsiv)
     cols_per_row = st.sidebar.select_slider(
         "Produkte pro Zeile",
-        options=[1, 2, 3],
-        value=3,
+        options=[1, 2, 3, 4, 5, 6, 7, 8],
+        value=4,
         help="Passe die Anzahl der Produktspalten an (z. B. 1 auf Handy, 3 auf PC)."
     )
 
