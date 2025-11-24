@@ -575,7 +575,7 @@ with tab1:
     # 🔢 Pagination / „Mehr anzeigen“
     # --------------------------------------------------
     if "card_limit" not in st.session_state:
-        st.session_state.card_limit = 12
+        st.session_state.card_limit = 50
     shown_subset = subset.head(st.session_state.card_limit)
 
     # --------------------------------------------------
@@ -683,11 +683,11 @@ with tab1:
         # 🔽 Mehr/Weniger anzeigen
         if len(subset) > st.session_state.card_limit:
             if st.button("🔽 Mehr anzeigen"):
-                st.session_state.card_limit += 9
+                st.session_state.card_limit += 40
                 st.rerun()
         elif len(subset) > 12:
             if st.button("🔼 Weniger anzeigen"):
-                st.session_state.card_limit = 12
+                st.session_state.card_limit = 40
                 st.rerun()
 
     st.divider()
