@@ -7,6 +7,7 @@ import unicodedata
 import json
 from datetime import datetime, timedelta
 
+st.set_page_config(layout="wide")
 
 # 🔧 funktioniert lokal UND auf Streamlit Cloud
 REPO_ROOT = Path(__file__).resolve().parents[2] if "Application" in str(Path(__file__).resolve()) else Path(__file__).resolve().parents[1]
@@ -24,6 +25,7 @@ ALL_CSV_IMG_DIRS = [CSV_IMG_DIR, CSV_IMG_DIR_MARKTGURU, CSV_IMG_DIR_REWE, CSV_IM
 
 
 st.title("🛒 MVP Preisvergleich")
+
 
 st.markdown("""
 <style>
