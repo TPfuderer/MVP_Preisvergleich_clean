@@ -561,6 +561,7 @@ with tab1:
         "Sortieren nach:",
         [
             "Kein Sortieren",
+            "Preis pro kg/l (aufsteigend)",
             "Preis (aufsteigend)",
             "Preis (absteigend)",
             "Rabatt (absteigend)"
@@ -568,6 +569,8 @@ with tab1:
     )
     if sort_option == "Preis (aufsteigend)":
         subset = subset.sort_values("Preis_float", ascending=True)
+    elif sort_option == "Preis pro kg/l (aufsteigend)":
+        subset = subset.sort_values("Preis_kg_float", ascending=True, na_position="last")
     elif sort_option == "Preis (absteigend)":
         subset = subset.sort_values("Preis_float", ascending=False)
     elif sort_option == "Rabatt (absteigend)" and "Rabatt_vs_prev" in subset.columns:
