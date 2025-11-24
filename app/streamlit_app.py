@@ -6,8 +6,6 @@ import altair as alt
 import unicodedata
 import json
 from datetime import datetime, timedelta
-from PIL import Image
-from pandas import Timedelta
 
 
 # 🔧 funktioniert lokal UND auf Streamlit Cloud
@@ -293,12 +291,6 @@ data["Ist_aktuell"] = (
     & (data["Gueltig_bis"] >= today)
 )
 
-
-# Kompatibilität: 'Ist_aktuell' = heute gültig (bestehende Filter/Tabs nutzen das)
-data["Ist_aktuell"] = (
-    (data["Gueltig_von"] <= today + pd.Timedelta(days=1))
-    & (data["Gueltig_bis"] >= today)
-)
 
 # ─────────────────────────────────────
 
@@ -727,7 +719,6 @@ with tab2:
     fav_data = json.loads(fav_file.read_text(encoding="utf-8"))
     favourites = fav_data.get("favourites", [])
     favourite_brands = fav_data.get("favourite_brands", [])
-    favourite_categories = fav_data.get("favourite_categories", [])
 
     if "cart" not in st.session_state:
         st.session_state.cart = []
