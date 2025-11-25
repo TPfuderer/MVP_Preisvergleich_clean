@@ -4,7 +4,6 @@ import re
 
 DATA_DIR = Path(r"C:\Users\pfudi\PycharmProjects\MVP_Preisvergleich_clean\data")
 
-# Alle CSV-Dateien im Ordner
 csv_files = list(DATA_DIR.glob("*.csv"))
 
 def normalize_price(value):
@@ -13,7 +12,7 @@ def normalize_price(value):
 
     val = str(value).strip()
 
-    # Alles außer Ziffern, Punkt und Komma entfernen
+    # Alles außer Ziffern, Punkt, Komma entfernen
     val = re.sub(r"[^0-9\.,]", "", val)
 
     # Punkt durch Komma ersetzen
@@ -23,11 +22,11 @@ def normalize_price(value):
     if "," not in val:
         val = f"{val},00"
 
-    # Falls Komma ohne Nachkommastellen (z.B. "3,") → "3,00"
+    # Falls Komma ohne Nachkommastellen → "X,00"
     if re.match(r"^\d+,$", val):
         val = val + "00"
 
-    # Falls mehr als 2 Nachkommastellen → nur normalisieren, NICHT runden
+    # Falls mehr als 2 Nachkommastellen → nur die ersten beiden behalten
     parts = val.split(",")
     if len(parts) == 2 and len(parts[1]) > 2:
         val = parts[0] + "," + parts[1][:2]
@@ -44,7 +43,7 @@ for file in csv_files:
     if "Marke" in df.columns:
         df["Marke"] = df["Marke"].replace("", "Keine Marke").fillna("Keine Marke")
 
-    # --- Regel 2: Vorheriger Preis ---
+    # --- Regel 2: Vorheriger Preis leer ---
     if "Vorheriger Preis" in df.columns:
         df["Vorheriger Preis"] = (
             df["Vorheriger Preis"]
@@ -52,7 +51,7 @@ for file in csv_files:
             .fillna("Kein vorheriger Preis")
         )
 
-    # --- Regel 3: Preis_kg ---
+    # --- Regel 3: Preis_kg leer ---
     if "Preis_kg" in df.columns:
         df["Preis_kg"] = (
             df["Preis_kg"]
@@ -64,7 +63,16 @@ for file in csv_files:
     if "Preis" in df.columns:
         df["Preis"] = df["Preis"].apply(normalize_price)
 
-    # Speichern (überschreibt Original)
+    # --- Regel 5: Vorheriger Preis normalisieren ---
+    if "Vorheriger Preis" in df.columns:
+        def norm_prev(v):
+            if isinstance(v, str) and "Kein vorheriger Preis" in v:
+                return v
+            return normalize_price(v)
+
+        df["Vorheriger Preis"] = df["Vorheriger Preis"].apply(norm_prev)
+
+    # Speichern
     df.to_csv(file, index=False, encoding="utf-8-sig")
 
 print("✅ Alle CSVs erfolgreich normalisiert.")
