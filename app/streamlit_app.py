@@ -396,9 +396,10 @@ tab_labels = [
     "🧱 Karten-Ansicht",
     "⭐ Beobachtung & Verlauf",
     "🛒 Einkaufswagen",
-    "📈 Preis-Historie",
+    "📈 Preis-Historie"
+    "Empfehlungen",
 ]
-tab1, tab2, tab3, tab4 = st.tabs(tab_labels)
+tab1, tab2, tab3, tab4, tab5 = st.tabs(tab_labels)
 
 # ---------------------------------------------------
 # Tab 1 – Karten-Ansicht
@@ -900,3 +901,89 @@ with tab4:
     else:
         st.info("Bitte gib ein Stichwort ein, um Preisverläufe zu sehen.")
 
+# ---------------------------------------------------
+# Tab 5 – Empfehlungen (aus gespeicherten CSVs)
+# ---------------------------------------------------
+with st.tab("⭐ Empfehlungen"):
+    st.header("🔮 Week 1 Empfehlungen (vorgefertigt)")
+
+    # Ordner mit deinen Recommendation-CSVs
+    reco_folder = Path(
+        r"C:\Users\pfudi\PycharmProjects\MVP_Preisvergleich_clean\data\user_recommendations\week1"
+    )
+
+    reco_files = list(reco_folder.glob("*.csv"))
+
+    if not reco_files:
+        st.warning("Keine Empfehlungsdateien in week1 gefunden.")
+        st.stop()
+
+    # Alle CSVs laden und zusammenführen
+    reco_dfs = []
+    for f in reco_files:
+        try:
+            df = pd.read_csv(f)
+            df["Quelle"] = f.name
+            reco_dfs.append(df)
+        except Exception as e:
+            st.error(f"Fehler beim Laden von {f.name}: {e}")
+
+    if not reco_dfs:
+        st.warning("Konnte keine Empfehlungstabellen laden.")
+        st.stop()
+
+    reco = pd.concat(reco_dfs, ignore_index=True)
+
+    # Score vorhanden → sortieren
+    if "Score" in reco.columns:
+        reco = reco.sort_values("Score", ascending=False).reset_index(drop=True)
+    else:
+        st.error("Score fehlt in den gespeicherten week1-Empfehlungen!")
+        st.stop()
+
+    st.success(f"📦 {len(reco)} Empfehlungen geladen (Week 1)")
+
+    # ---- Anzeige wie in Tab 1 ----
+    cols = st.columns(cols_per_row)
+
+    for i, (_, row) in enumerate(reco.iterrows()):
+        with cols[i % cols_per_row]:
+            st.markdown("<div class='product-card'>", unsafe_allow_html=True)
+
+            # === Bild ===
+            st.image(get_image_for_product(row.get("Produkt", "")), use_container_width=True)
+
+            # === Produktname ===
+            full_name = str(row.get("Produkt", ""))
+            short_name = short_text(full_name, 60)
+
+            st.markdown(
+                f"<div class='product-title' title='{full_name}'>{short_name}</div>",
+                unsafe_allow_html=True
+            )
+
+            # Optional Volltext
+            if len(full_name) > 60:
+                with st.expander("Vollständiger Produktname"):
+                    st.write(full_name)
+
+            # Marke + Händler
+            brand_line = f"{row.get('Marke', '')} – {row.get('Retailer', 'Unbekannt')}"
+            st.markdown(f"<div class='product-brand'>{brand_line}</div>", unsafe_allow_html=True)
+
+            # Preis
+            st.markdown(
+                f"<div class='product-price'><b>{row.get('Preis', '')}</b></div>",
+                unsafe_allow_html=True
+            )
+
+            # Score anzeigen
+            st.caption(f"🔢 Score: {row.get('Score', 0)}")
+
+            # === Datum (falls vorhanden) ===
+            von = pd.to_datetime(row.get("Gueltig_von"), errors="coerce")
+            bis = pd.to_datetime(row.get("Gueltig_bis"), errors="coerce")
+            if pd.notna(von) and pd.notna(bis):
+                st.write(f"🗓️ {von:%d.%m.%Y} – {bis:%d.%m.%Y}")
+
+            st.markdown("</div>", unsafe_allow_html=True)
