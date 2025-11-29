@@ -906,8 +906,8 @@ with tab4:
 # ---------------------------------------------------
 # Tab 5 – Empfehlungen (aus gespeicherten CSVs)
 # ---------------------------------------------------
-with st.tab("⭐ Empfehlungen"):
-    st.header("🔮 Week 1 Empfehlungen (vorgefertigt)")
+with tab5:
+    st.header("🔮 Week 1 Empfehlungen")
 
     # Ordner mit deinen Recommendation-CSVs
     reco_folder = Path(
