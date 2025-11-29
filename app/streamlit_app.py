@@ -910,13 +910,7 @@ with tab5:
     st.header("🔮 Week 1 Empfehlungen")
 
     # Ordner mit deinen Recommendation-CSVs
-    reco_folder = Path(
-        r"C:\Users\pfudi\PycharmProjects\MVP_Preisvergleich_clean\data\user_recommendations\week1"
-    )
-    st.write("DATA_DIR:", DATA_DIR)
-    st.write("Reco folder:", reco_folder)
-    st.write("Exists:", reco_folder.exists())
-    st.write("Files:", list(reco_folder.glob("*.csv")))
+    reco_folder = DATA_DIR / "user_recommendations" / "week1"
 
     reco_files = list(reco_folder.glob("*.csv"))
 
