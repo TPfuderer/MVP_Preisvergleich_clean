@@ -913,6 +913,10 @@ with tab5:
     reco_folder = Path(
         r"C:\Users\pfudi\PycharmProjects\MVP_Preisvergleich_clean\data\user_recommendations\week1"
     )
+    st.write("DATA_DIR:", DATA_DIR)
+    st.write("Reco folder:", reco_folder)
+    st.write("Exists:", reco_folder.exists())
+    st.write("Files:", list(reco_folder.glob("*.csv")))
 
     reco_files = list(reco_folder.glob("*.csv"))
 
