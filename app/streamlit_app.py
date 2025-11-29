@@ -396,10 +396,12 @@ tab_labels = [
     "🧱 Karten-Ansicht",
     "⭐ Beobachtung & Verlauf",
     "🛒 Einkaufswagen",
-    "📈 Preis-Historie"
-    "Empfehlungen",
+    "📈 Preis-Historie",
+    "⭐ Empfehlungen"   # oder einfach "Empfehlungen"
 ]
+
 tab1, tab2, tab3, tab4, tab5 = st.tabs(tab_labels)
+
 
 # ---------------------------------------------------
 # Tab 1 – Karten-Ansicht
