@@ -941,39 +941,53 @@ with tab5:
             "rabatt", "aktion", "pfand", "preisvorteil"
         }
 
+
         def tokenize_by_empty_lines(text):
             """
-            1) Split nach Leerzeilen → jede Produktposition separat.
-            2) Preise/Zahlen/Prozente raus.
-            3) Marken- & Produkttext normalisieren.
+            1) Split by whitespace → jedes Wort ein Token
+            2) Preise/Zahlen/Sonderfälle entfernen
+            3) Normalisieren
+            4) Nur valide Produkt-Tokens behalten
             """
-            blocks = re.split(r"\n\s*\n", text.strip(), flags=re.MULTILINE)
+            import re
+            import unicodedata
+
+            # 1) Word split
+            raw_tokens = re.split(r"\s+", text.lower())
             tokens = []
 
-            for block in blocks:
-                line = block.strip().lower()
-                if not line:
+            for tok in raw_tokens:
+                tok = tok.strip()
+                if not tok:
                     continue
 
-                # Entfernt Preise wie "1,29", "-0,50", "20%", "0,99 B"
-                line = re.sub(r"\d+[.,]?\d*\s*[abm]?", " ", line)
-                line = re.sub(r"\d+%?", " ", line)
+                # Umlaute normalisieren
+                tok = unicodedata.normalize("NFKD", tok)
+                tok = "".join(c for c in tok if not unicodedata.combining(c))
 
-                # Sonderzeichen raus, Punkte/Komma/Minus entfernen
-                line = re.sub(r"[^a-zäöüß ]", " ", line)
+                # Preise entfernen (1,29 0.99 -0,50)
+                tok = re.sub(r"^\d+[.,]?\d*$", "", tok)  # reine Preis-Zahlen
+                tok = re.sub(r"\d+%$", "", tok)  # "20%" → ""
 
-                # Whitespace normalisieren
-                line = re.sub(r"\s+", " ", line).strip()
+                # Müll entfernen
+                tok = re.sub(r"[^a-z0-9]", "", tok)
 
-                # Stopwords → skip
-                if any(sw in line for sw in STOPWORDS):
+                # Nach Clean leer?
+                if not tok:
                     continue
 
-                # Jede Produktbezeichnung exakt 1 Token
-                if len(line) >= 3:
-                    tokens.append(line)
+                # Stopwords entfernen
+                if tok in STOPWORDS:
+                    continue
+
+                # Zu kurz?
+                if len(tok) < 2:
+                    continue
+
+                tokens.append(tok)
 
             return tokens
+
 
         # -----------------------------------------------
         # Tokens extrahieren
