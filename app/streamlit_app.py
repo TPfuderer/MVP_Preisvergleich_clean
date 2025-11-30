@@ -1063,25 +1063,21 @@ with tab6:
 
     st.success(f"✔ JSON geladen – {len(personal_weights)} Tokens erkannt.")
 
-
     # ============================================================
-    # 2) Datenbasis – Tab 6 soll *immer* ALLE Produkte sehen
+    # 2) Datenbasis – ALLE Produkte (wie gewünscht), aber Toggle wie in Tab 1
     # ============================================================
     use_current = st.toggle(
-        "Nur aktuelle Angebote anzeigen (derzeit ohne Filterwirkung)",
+        "Nur aktuelle Angebote anzeigen",
         value=False,
         key="use_current_tab6"
     )
 
-    # 🔥 WICHTIG: NICHT filtered_data verwenden!
-    base_data = data.copy()
+    # Basis = ALLE Produkte
+    subset = data.copy()
 
-    subset = base_data.copy()      # <-- Toggle hat derzeit keine Wirkung
-
-    if subset.empty:
-        st.info("Keine Produkte in den geladenen CSVs.")
-        st.stop()
-
+    # Toggle anwenden (GENAU wie Tab 1)
+    if use_current:
+        subset = subset[subset["Ist_aktuell"]]
 
     # ============================================================
     # 3) SCORING – Marke + Produkt kombiniert
