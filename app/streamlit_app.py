@@ -397,10 +397,11 @@ tab_labels = [
     "⭐ Beobachtung & Verlauf",
     "🛒 Einkaufswagen",
     "📈 Preis-Historie",
-    "⭐ Empfehlungen"   # oder einfach "Empfehlungen"
+    "⭐ Empfehlungen",
+    "📝 Einkaufszettel → Persönliche Gewichtungen"
 ]
 
-tab1, tab2, tab3, tab4, tab5 = st.tabs(tab_labels)
+tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(tab_labels)
 
 
 # ---------------------------------------------------
@@ -1116,5 +1117,74 @@ with tab5:
         if st.button("🔼 Weniger anzeigen", key="less_tab5"):
             st.session_state.card_limit_tab5 = 40
             st.rerun()
+
+# ---------------------------------------------------
+# Tab 6 – Einkaufszettel → personal_weights.json
+# ---------------------------------------------------
+with tab6:
+    st.header("📝 Einkaufszettel → Persönliche Gewichtungen")
+
+    st.markdown("""
+    Gib hier deinen Einkaufszettel ein.  
+    Die App erzeugt daraus gewichtete Token, die später im Tab „Empfehlungen“
+    verwendet werden können.  
+    """)
+
+    # ================================
+    # 1) Einkaufliste eingeben
+    # ================================
+    input_text = st.text_area(
+        "Einkaufszettel eingeben:",
+        height=200,
+        placeholder="Beispiel:\nProteinriegel\nMilch 3,5%\nEhrmann High Protein Pudding\nÄpfel\nHackfleisch\nSchokolade\n..."
+    )
+
+    if st.button("🔍 Gewichtungen berechnen"):
+        if not input_text.strip():
+            st.warning("Bitte gib zuerst deinen Einkaufszettel ein.")
+            st.stop()
+
+        # ----------------------------------------------------------
+        # TOKENIZER (deiner aus dem bestehenden Skript!)
+        # ----------------------------------------------------------
+        def tokenize(text):
+            text = str(text).lower()
+            text = re.sub(r"[^a-z0-9äöüß ]", " ", text)
+            return [t for t in text.split() if t.strip()]
+
+        from collections import Counter
+        tokens = tokenize(input_text)
+        weights = Counter(tokens)
+
+        if not weights:
+            st.warning("Es konnten keine Tokens erzeugt werden.")
+            st.stop()
+
+        # Sortiert für Übersichtlichkeit
+        weights_sorted = dict(sorted(weights.items(), key=lambda x: -x[1]))
+
+        st.success(f"✔ {len(weights_sorted)} gewichtete Tokens erzeugt!")
+        st.json(weights_sorted)
+
+        # ----------------------------------------------------------
+        # 2) JSON als Download anbieten
+        # ----------------------------------------------------------
+        json_bytes = json.dumps(
+            weights_sorted,
+            indent=2,
+            ensure_ascii=False
+        ).encode("utf-8")
+
+        st.download_button(
+            label="⬇ personal_weights.json herunterladen",
+            data=json_bytes,
+            file_name="personal_weights.json",
+            mime="application/json"
+        )
+
+        st.info("""
+        Danach kannst du diese JSON im Tab **„Empfehlungen“** wieder hochladen,
+        und du erhältst personalisierte Produkt-Sortierungen für die aktuelle Woche.
+        """)
 
 
