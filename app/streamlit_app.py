@@ -186,15 +186,6 @@ def money_to_float(s: str) -> float | None:
     m = re.search(r"[-+]?\d+(\.\d+)?", s)
     return float(m.group(0)) if m else None
 
-# ============================================================
-# GLOBAL TOKENIZER
-# ============================================================
-def tokenize(text):
-    text = str(text).lower()
-    text = re.sub(r"[^a-z0-9äöüß ]", " ", text)
-    return [t for t in text.split() if t.strip()]
-
-
 def normalize_text(s: str) -> str:
     if not isinstance(s, str):
         return ""
@@ -922,35 +913,84 @@ with tab5:
 
     st.markdown("""
     Gib hier deinen Einkaufszettel ein.  
-    Die App erzeugt daraus Tokens (1 pro Zeile = 1 Produkt).  
-    Lade die JSON im Tab „Empfehlungen“ hoch.
+    Die App erzeugt daraus gewichtete Token (je Produkt EIN Token),
+    die später im Tab „Empfehlungen“ verwendet werden können.
     """)
 
+    # ================================
+    # 1) Einkaufszettel Eingabe
+    # ================================
     input_text = st.text_area(
         "Einkaufszettel eingeben:",
-        height=260,
-        placeholder="Beispiel:\nSkyr Heidelbeere\nLight-Ketchup\nSettele Spätzle\nStaudensellerie\n..."
+        height=200,
+        placeholder="Beispiel:\nProteinriegel\nSkyr Erdbeer\nCoca-Cola Zero\n..."
     )
 
-    if st.button("🔍 Gewichtungen berechnen", key="btn_tab5"):
+    if st.button("🔍 Gewichtungen berechnen"):
         if not input_text.strip():
-            st.warning("Bitte gib den Einkaufszettel ein.")
+            st.warning("Bitte gib zuerst deinen Einkaufszettel ein.")
             st.stop()
 
-        lines = input_text.splitlines()
-        tokens = [" ".join(tokenize(line)) for line in lines if tokenize(line)]
-
-        if not tokens:
-            st.warning("Keine Tokens erzeugt.")
-            st.stop()
-
+        import re
+        import unicodedata
         from collections import Counter
-        weights = Counter(tokens)
+
+        # -----------------------------------------------
+        # ROBUSTER TOKENIZER → PRO LEERZEILE EIN TOKEN
+        # -----------------------------------------------
+        STOPWORDS = {
+            "preisvorteil", "rabatt", "pfand"
+        }
+
+        def tokenize_by_empty_lines(text):
+            # 1) strikt splitten nach Leerzeilen (Produktblöcke)
+            blocks = re.split(r"\n\s*\n", text.strip(), flags=re.MULTILINE)
+            tokens = []
+
+            for block in blocks:
+                line = block.strip().lower()
+                if not line:
+                    continue
+
+                # Umlaute normalisieren
+                line = unicodedata.normalize("NFKD", line)
+                line = "".join(c for c in line if not unicodedata.combining(c))
+
+                # Preise wie 1,29 –0,50 0.99 B → entfernen
+                line = re.sub(r"\d+[.,]?\d*\s*[abm]?", " ", line)
+                line = re.sub(r"\d+%?", " ", line)
+
+                # Sonderzeichen entfernen
+                line = re.sub(r"[^a-z0-9 ]", " ", line)
+
+                # Whitespace normalisieren
+                line = re.sub(r"\s+", " ", line).strip()
+
+                # Stopwords überspringen
+                if any(sw in line for sw in STOPWORDS):
+                    continue
+
+                if len(line) >= 3:
+                    tokens.append(line)
+
+            return tokens
+
+        # Token extrahieren
+        raw_tokens = tokenize_by_empty_lines(input_text)
+        weights = Counter(raw_tokens)
+
+        if not weights:
+            st.warning("Es konnten keine Produkt-Tokens erzeugt werden.")
+            st.stop()
+
         weights_sorted = dict(sorted(weights.items(), key=lambda x: -x[1]))
 
-        st.success(f"✔ {len(weights_sorted)} Produkt-Tokens erzeugt!")
+        st.success(f"✔ {len(weights_sorted)} gewichtete Tokens erzeugt!")
         st.json(weights_sorted)
 
+        # -----------------------------------------------
+        # JSON Download
+        # -----------------------------------------------
         json_bytes = json.dumps(
             weights_sorted,
             indent=2,
@@ -958,42 +998,53 @@ with tab5:
         ).encode("utf-8")
 
         st.download_button(
-            "⬇ personal_weights.json herunterladen",
+            label="⬇ personal_weights.json herunterladen",
             data=json_bytes,
             file_name="personal_weights.json",
-            mime="application/json",
-            key="download_tab5"
+            mime="application/json"
         )
 
-        st.info("→ Lade diese Datei im Tab **„Empfehlungen“** hoch.")
+        st.info("""
+        Danach kannst du diese Datei im Tab **„Empfehlungen“** hochladen,
+        um personalisierte Angebote sortiert nach deinen Vorlieben zu sehen.
+        """)
+
+
 # ---------------------------------------------------
-# Tab 6 – Persönliche Empfehlungen (JSON Upload)
+# Tab 6 – Empfehlungen (aus Einkaufszettel-JSON)
 # ---------------------------------------------------
 with tab6:
-    st.header("⭐ Empfehlungen (JSON Upload)")
+    st.header("🔮 Persönliche Empfehlungen (Einkaufszettel → JSON)")
 
+    # ============================================================
+    # 1) JSON upload
+    # ============================================================
     uploaded = st.file_uploader(
         "📤 Lade deine personal_weights.json hoch",
         type=["json"],
-        key="upload_tab6"
+        accept_multiple_files=False
     )
 
     if not uploaded:
-        st.info("Bitte eine personal_weights.json hochladen.")
+        st.info("Bitte personal_weights.json hochladen, um Empfehlungen zu erhalten.")
         st.stop()
 
     try:
         personal_weights = json.load(uploaded)
     except Exception as e:
-        st.error(f"❌ Fehler beim Lesen: {e}")
+        st.error(f"❌ Fehler beim Lesen der JSON: {e}")
         st.stop()
 
     if not isinstance(personal_weights, dict) or len(personal_weights) == 0:
-        st.warning("⚠️ JSON enthält keine Tokens.")
+        st.warning("⚠️ JSON ist leer oder ungültig.")
         st.stop()
 
     st.success(f"✔ JSON geladen – {len(personal_weights)} Tokens erkannt.")
 
+
+    # ============================================================
+    # 2) Datenbasis wie Tab 1
+    # ============================================================
     use_current = st.toggle(
         "Nur aktuelle Angebote anzeigen",
         value=True,
@@ -1002,27 +1053,48 @@ with tab6:
     subset = filtered_data_current.copy() if use_current else filtered_data.copy()
 
     if subset.empty:
-        st.info("Keine Daten im gewählten Zeitraum.")
+        st.info("Keine Produkte im gewählten Zeitraum.")
         st.stop()
 
-    def score_product_combined(row, user_profile):
+
+    # ============================================================
+    # 3) SCORING – Marke + Produkt kombiniert
+    # ============================================================
+    def normalize_for_matching(text):
+        import unicodedata
+        text = str(text).lower()
+        text = unicodedata.normalize("NFKD", text)
+        text = "".join(c for c in text if not unicodedata.combining(c))
+        text = re.sub(r"[^a-z0-9 ]", " ", text)
+        text = re.sub(r"\s+", " ", text)
+        return text.strip()
+
+    def tokenize_simple(text):
+        text = normalize_for_matching(text)
+        return text.split()
+
+    def score_product(row, weights):
         combined = f"{row.get('Marke','')} {row.get('Produkt','')}"
-        tokens = tokenize(combined)
-        return sum(user_profile.get(t, 0) for t in tokens)
+        prod_tokens = tokenize_simple(combined)
+        return sum(weights.get(t, 0) for t in prod_tokens)
 
-    subset["Score"] = subset.apply(
-        lambda row: score_product_combined(row, personal_weights),
-        axis=1
-    )
+    subset["score"] = subset.apply(lambda row: score_product(row, personal_weights), axis=1)
 
-    if subset["Score"].max() <= 0:
-        st.warning("❗ Keine Übereinstimmungen gefunden.")
+    if subset["score"].max() <= 0:
+        st.warning("❗ Keine Übereinstimmungen zwischen deinen Tokens und den Angeboten.")
         st.stop()
 
-    subset = subset.sort_values("Score", ascending=False)
+    subset = subset.sort_values("score", ascending=False)
+
+
+    # ============================================================
+    # 4) Optionale Suche
+    # ============================================================
+    st.markdown("### 🔥 Deine personalisierten Top-Angebote")
 
     search_term = st.text_input(
-        "Produkte durchsuchen",
+        "Produkte durchsuchen (optional)",
+        placeholder="z. B. Quark, Spätzle, Cola",
         key="search_tab6"
     ).strip().lower()
 
@@ -1033,9 +1105,13 @@ with tab6:
         ]
 
     if subset.empty:
-        st.warning("Keine Produkte nach Suche übrig.")
+        st.warning("Keine Produkte nach Filterung übrig.")
         st.stop()
 
+
+    # ============================================================
+    # 5) Spaltenlayout
+    # ============================================================
     cols_per_row = st.sidebar.select_slider(
         "Produkte pro Zeile (Empfehlungen)",
         options=[1, 2, 3, 4, 5, 6],
@@ -1043,16 +1119,117 @@ with tab6:
         key="cols_tab6"
     )
 
+
+    # ============================================================
+    # 6) Pagination
+    # ============================================================
     if "card_limit_tab6" not in st.session_state:
         st.session_state.card_limit_tab6 = 40
 
     shown_subset = subset.head(st.session_state.card_limit_tab6)
 
-    st.markdown("### 🔥 Deine personalisierten Top-Angebote")
 
+    # ============================================================
+    # 7) Produktkacheln (1:1 wie Tab 1)
+    # ============================================================
     cols = st.columns(cols_per_row)
 
-    # Kachelanzeige wie Tab 1...
-    # (bleibt unverändert)
+    for i, (_, row) in enumerate(shown_subset.iterrows()):
+        with cols[i % cols_per_row]:
+            st.markdown("<div class='product-card'>", unsafe_allow_html=True)
+
+            # === Bildanzeige ===
+            csv_image = row.get("Bildpfad")
+            if isinstance(csv_image, str) and csv_image.strip():
+                img_candidate = Path(csv_image)
+                if img_candidate.exists():
+                    st.image(img_candidate.as_posix(), use_container_width=True)
+                else:
+                    found = False
+                    for img_dir in ALL_CSV_IMG_DIRS:
+                        candidate_path = img_dir / img_candidate.name
+                        if candidate_path.exists():
+                            st.image(candidate_path.as_posix(), use_container_width=True)
+                            found = True
+                            break
+                    if not found:
+                        st.image(get_image_for_product(row["Produkt"]), use_container_width=True)
+            else:
+                st.image(get_image_for_product(row["Produkt"]), use_container_width=True)
+
+            # === Produktinfos ===
+            full_name = str(row.get("Produkt", ""))
+            short_name = short_text(full_name, 60)
+
+            st.markdown(
+                f"<div class='product-title' title='{full_name}'>{short_name}</div>",
+                unsafe_allow_html=True
+            )
+
+            if len(full_name) > 60:
+                with st.expander("Vollständiger Produktname"):
+                    st.write(full_name)
+
+            st.markdown(
+                f"<div class='product-brand'>{row.get('Marke', '')} – {row['Retailer']}</div>",
+                unsafe_allow_html=True
+            )
+
+            st.markdown(
+                f"<div class='product-price'>💶 <b>{row['Preis']}</b></div>",
+                unsafe_allow_html=True
+            )
+
+            if row.get("Preis_kg"):
+                st.markdown(
+                    f"<div class='product-ppkg'>{row['Preis_kg']}</div>",
+                    unsafe_allow_html=True
+                )
+
+            von, bis = row.get("Gueltig_von"), row.get("Gueltig_bis")
+            if pd.notna(von) and pd.notna(bis):
+                st.write(f"🗓️ {von:%d.%m.%Y} – {bis:%d.%m.%Y}")
+
+            r = row.get("Rabatt_vs_prev")
+            if pd.notna(r) and r > 0:
+                st.markdown(f"<span style='color:green'>💸 Rabatt: {(r * 100):.1f}%</span>",
+                            unsafe_allow_html=True)
+            else:
+                st.markdown("<span style='color:gray'>🏷️ Aktion / Kein Rabatt</span>",
+                            unsafe_allow_html=True)
+
+            # === Warenkorb ===
+            widget_key = f"add_btn_tab6_{row.name}_{i}"
+            state_key = f"add_state_tab6_{row.name}_{i}"
+
+            if state_key not in st.session_state:
+                st.session_state[state_key] = False
+
+            btn_label = "➖ Entfernen" if st.session_state[state_key] else "➕ Hinzufügen"
+
+            if st.button(btn_label, key=widget_key):
+                if st.session_state[state_key]:
+                    st.session_state.cart = [
+                        itm for itm in st.session_state.cart
+                        if not (itm["Produkt"] == row["Produkt"] and itm["Retailer"] == row["Retailer"])
+                    ]
+                    st.session_state[state_key] = False
+                else:
+                    st.session_state.cart.append(row.to_dict())
+                    st.session_state[state_key] = True
+                st.rerun()
+
+            st.markdown("</div>", unsafe_allow_html=True)
+
+
+    # Pagination Buttons
+    if len(subset) > st.session_state.card_limit_tab6:
+        if st.button("🔽 Mehr anzeigen", key="more_tab6"):
+            st.session_state.card_limit_tab6 += 40
+            st.rerun()
+    elif len(subset) > 12:
+        if st.button("🔼 Weniger anzeigen", key="less_tab6"):
+            st.session_state.card_limit_tab6 = 40
+            st.rerun()
 
 
