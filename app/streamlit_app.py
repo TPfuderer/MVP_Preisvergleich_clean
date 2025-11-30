@@ -1036,6 +1036,7 @@ with tab5:
 # ---------------------------------------------------
 with tab6:
     st.header("🔮 Persönliche Empfehlungen (Einkaufszettel → JSON)")
+    st.write("Retailer in filtered_data:", filtered_data["Retailer"].unique())
 
     # ============================================================
     # 1) JSON upload
