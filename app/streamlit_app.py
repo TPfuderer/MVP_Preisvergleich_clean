@@ -937,11 +937,6 @@ with tab5:
         # -----------------------------------------------
         # 🔥 DEIN TOKENIZER – 1:1 übernommen
         # -----------------------------------------------
-        STOPWORDS = {
-            "rabatt", "aktion", "pfand", "preisvorteil"
-        }
-
-
         def tokenize_by_empty_lines(text):
             """
             1) Split by whitespace → jedes Wort ein Token
@@ -949,7 +944,10 @@ with tab5:
             3) Original deutsche Umlaute bleiben erhalten
             4) Nicht-Produktwörter filtern
             """
-            import re
+
+            STOPWORDS = {
+                "rabatt", "aktion", "pfand", "preisvorteil", "eur"
+            }
 
             # 1) Word split
             raw_tokens = re.split(r"\s+", text.lower())
@@ -960,23 +958,33 @@ with tab5:
                 if not tok:
                     continue
 
+                # ======================================================
+                # 🔥 2) REINE ZAHLEN entfernen ("018", "10", "250", "20")
+                # ======================================================
+                if tok.isdigit():
+                    continue
+
                 # --- Preise entfernen (1,29 0.99 -0,50 20%) ---
                 if re.fullmatch(r"\d+[.,]?\d*", tok):
                     continue
                 if re.fullmatch(r"\d+%?", tok):
                     continue
 
-                # --- Buchstaben, aber Umlaute behalten ---
+                # --- Nur erlaubte Zeichen, Umlaute behalten ---
                 tok = re.sub(r"[^a-z0-9äöüß]", "", tok)
 
                 if not tok:
+                    continue
+
+                # --- Nach Entfernen kann es wieder reiner Digit sein ---
+                if tok.isdigit():
                     continue
 
                 # Stopwords raus
                 if tok in STOPWORDS:
                     continue
 
-                # Einzelbuchstaben / zu kurz ignorieren
+                # Einzelbuchstaben / sehr kurze Tokens ignorieren
                 if len(tok) < 2:
                     continue
 
