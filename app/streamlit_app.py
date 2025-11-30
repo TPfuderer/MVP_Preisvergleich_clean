@@ -1065,17 +1065,20 @@ with tab6:
 
 
     # ============================================================
-    # 2) Datenbasis wie Tab 1
+    # 2) Datenbasis – **ALLE Produkte erlauben**
+    #    Der Toggle bleibt, aber hat KEINE Filterfunktion.
     # ============================================================
     use_current = st.toggle(
-        "Nur aktuelle Angebote anzeigen",
-        value=True,
+        "Nur aktuelle Angebote anzeigen (derzeit ohne Filterwirkung)",
+        value=False,
         key="use_current_tab6"
     )
-    subset = filtered_data_current.copy() if use_current else filtered_data.copy()
+
+    # 🚀 Ab jetzt IMMER ALLE CSVs verwenden
+    subset = filtered_data.copy()
 
     if subset.empty:
-        st.info("Keine Produkte im gewählten Zeitraum.")
+        st.info("Keine Produkte in den geladenen CSVs.")
         st.stop()
 
 
@@ -1084,18 +1087,16 @@ with tab6:
     # ============================================================
 
     def normalize(text):
-        """Nur kleinschreibung + simple Reinigung, keine Umlaut-Entfernung."""
+        """Nur Kleinbuchstaben + einfache Sonderzeichenbereinigung."""
         text = str(text).lower()
         text = re.sub(r"[^a-z0-9äöüß ]", " ", text)
         text = re.sub(r"\s+", " ", text)
         return text.strip()
 
-
     def tokenize_prod(text):
-        """Tokenisiert Marke+Produkt in echte Wörter."""
+        """Tokenisiert Marke+Produkt sauber in Wörter."""
         text = normalize(text)
         return text.split()
-
 
     def score_product(row, weights):
         combined = f"{row.get('Marke', '')} {row.get('Produkt', '')}"
@@ -1103,18 +1104,18 @@ with tab6:
 
         score = 0
         for tok in prod_tokens:
-            if tok in weights:  # nur EXAKT, kein substring!
+            if tok in weights:       # exakte Token-Übereinstimmung
                 score += weights[tok]
         return score
-
 
     subset["score"] = subset.apply(lambda row: score_product(row, personal_weights), axis=1)
 
     if subset["score"].max() <= 0:
-        st.warning("❗ Keine Übereinstimmungen zwischen deinen Tokens und den Angeboten.")
+        st.warning("❗ Keine Übereinstimmungen zwischen deinen Tokens und den Angeboten gefunden.")
         st.stop()
 
     subset = subset.sort_values("score", ascending=False)
+
 
     # ============================================================
     # 4) Optionale Suche
