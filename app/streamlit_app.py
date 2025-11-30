@@ -1036,7 +1036,7 @@ with tab5:
 # ---------------------------------------------------
 with tab6:
     st.header("🔮 Persönliche Empfehlungen (Einkaufszettel → JSON)")
-    st.write("Retailer in filtered_data:", filtered_data["Retailer"].unique())
+    st.write("Retailer in ALL DATA:", data["Retailer"].unique())
 
     # ============================================================
     # 1) JSON upload
@@ -1065,8 +1065,7 @@ with tab6:
 
 
     # ============================================================
-    # 2) Datenbasis – **ALLE Produkte erlauben**
-    #    Der Toggle bleibt, aber hat KEINE Filterfunktion.
+    # 2) Datenbasis – Tab 6 soll *immer* ALLE Produkte sehen
     # ============================================================
     use_current = st.toggle(
         "Nur aktuelle Angebote anzeigen (derzeit ohne Filterwirkung)",
@@ -1074,8 +1073,10 @@ with tab6:
         key="use_current_tab6"
     )
 
-    # 🚀 Ab jetzt IMMER ALLE CSVs verwenden
-    subset = filtered_data.copy()
+    # 🔥 WICHTIG: NICHT filtered_data verwenden!
+    base_data = data.copy()
+
+    subset = base_data.copy()      # <-- Toggle hat derzeit keine Wirkung
 
     if subset.empty:
         st.info("Keine Produkte in den geladenen CSVs.")
@@ -1083,30 +1084,22 @@ with tab6:
 
 
     # ============================================================
-    # 3) SCORING – Marke + Produkt kombiniert & simples Matching
+    # 3) SCORING – Marke + Produkt kombiniert
     # ============================================================
-
     def normalize(text):
-        """Nur Kleinbuchstaben + einfache Sonderzeichenbereinigung."""
         text = str(text).lower()
         text = re.sub(r"[^a-z0-9äöüß ]", " ", text)
         text = re.sub(r"\s+", " ", text)
         return text.strip()
 
     def tokenize_prod(text):
-        """Tokenisiert Marke+Produkt sauber in Wörter."""
         text = normalize(text)
         return text.split()
 
     def score_product(row, weights):
         combined = f"{row.get('Marke', '')} {row.get('Produkt', '')}"
         prod_tokens = tokenize_prod(combined)
-
-        score = 0
-        for tok in prod_tokens:
-            if tok in weights:       # exakte Token-Übereinstimmung
-                score += weights[tok]
-        return score
+        return sum(weights.get(tok, 0) for tok in prod_tokens)
 
     subset["score"] = subset.apply(lambda row: score_product(row, personal_weights), axis=1)
 
@@ -1115,7 +1108,6 @@ with tab6:
         st.stop()
 
     subset = subset.sort_values("score", ascending=False)
-
 
     # ============================================================
     # 4) Optionale Suche
