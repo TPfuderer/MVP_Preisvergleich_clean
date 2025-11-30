@@ -2,7 +2,7 @@ from pathlib import Path
 from PIL import Image
 
 # === Haupt-Images-Ordner ===
-ROOT_DIR = Path(r"C:\Users\pfudi\PycharmProjects\MVP_Preisvergleich\data\images")
+ROOT_DIR = Path(r"C:\Users\pfudi\PycharmProjects\MVP_Preisvergleich_clean\data\images")
 
 # === Zielgröße für ALLE Bilder ===
 FINAL_SIZE = (512, 512)
@@ -26,12 +26,15 @@ def normalize_image(img_path: Path):
             new_img.paste(img, (offset_x, offset_y), img)
             new_img = new_img.convert("RGB")
 
-            # Sicher überschreiben
-            tmp = img_path.with_suffix(img_path.suffix + ".tmp")
+            # FIX: echte temporäre Datei erzeugen
+            tmp = img_path.with_name(img_path.stem + "_tmp.jpg")
             new_img.save(tmp, "JPEG", quality=95)
+
+            # Original sicher ersetzen
             tmp.replace(img_path)
 
             print(f"  ✓ {img_path.name}")
+
     except Exception as e:
         print(f"  ⚠ Fehler bei {img_path.name}: {e}")
 
@@ -64,6 +67,7 @@ def main():
         print()
 
     print("\n🎉 Fertig! Alle Bilder normalisiert auf", FINAL_SIZE)
+
 
 
 if __name__ == "__main__":
