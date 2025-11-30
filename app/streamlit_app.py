@@ -397,11 +397,12 @@ tab_labels = [
     "⭐ Beobachtung & Verlauf",
     "🛒 Einkaufswagen",
     "📈 Preis-Historie",
-    "⭐ Empfehlungen",
-    "📝 Einkaufszettel → Persönliche Gewichtungen"
+    "📝 Einkaufszettel → Persönliche Gewichtungen",   # jetzt Tab 5
+    "⭐ Empfehlungen"                                 # jetzt Tab 6
 ]
 
 tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(tab_labels)
+
 
 
 # ---------------------------------------------------
@@ -905,13 +906,76 @@ with tab4:
         st.info("Bitte gib ein Stichwort ein, um Preisverläufe zu sehen.")
 
 # ---------------------------------------------------
-# Tab 5 – Empfehlungen (aus gespeicherten CSVs)
+# Tab 5 – Einkaufszettel → personal_weights.json
 # ---------------------------------------------------
 with tab5:
+    st.header("📝 Einkaufszettel → Persönliche Gewichtungen")
+
+    st.markdown("""
+    Gib hier deinen Einkaufszettel ein.  
+    Die App erzeugt daraus gewichtete Token, die später im Tab „Empfehlungen“
+    verwendet werden können.  
+    """)
+
+    # ================================
+    # 1) Einkaufszettel Eingabe
+    # ================================
+    input_text = st.text_area(
+        "Einkaufszettel eingeben:",
+        height=200,
+        placeholder="Beispiel:\nProteinriegel\nMilch 3,5%\nEhrmann High Protein Pudding\nÄpfel\nHackfleisch\nSchokolade\n..."
+    )
+
+    if st.button("🔍 Gewichtungen berechnen"):
+        if not input_text.strip():
+            st.warning("Bitte gib zuerst deinen Einkaufszettel ein.")
+            st.stop()
+
+        # TOKENIZER (identisch zu deinem System)
+        def tokenize(text):
+            text = str(text).lower()
+            text = re.sub(r"[^a-z0-9äöüß ]", " ", text)
+            return [t for t in text.split() if t.strip()]
+
+        from collections import Counter
+        tokens = tokenize(input_text)
+        weights = Counter(tokens)
+
+        if not weights:
+            st.warning("Es konnten keine Tokens erzeugt werden.")
+            st.stop()
+
+        weights_sorted = dict(sorted(weights.items(), key=lambda x: -x[1]))
+
+        st.success(f"✔ {len(weights_sorted)} gewichtete Tokens erzeugt!")
+        st.json(weights_sorted)
+
+        # JSON Download
+        json_bytes = json.dumps(
+            weights_sorted,
+            indent=2,
+            ensure_ascii=False
+        ).encode("utf-8")
+
+        st.download_button(
+            label="⬇ personal_weights.json herunterladen",
+            data=json_bytes,
+            file_name="personal_weights.json",
+            mime="application/json"
+        )
+
+        st.info("""
+        Danach kannst du diese Datei im Tab **„Empfehlungen“** hochladen,
+        um personalisierte Wochen-Empfehlungen zu erhalten.
+        """)
+# ---------------------------------------------------
+# Tab 6 – Empfehlungen (aus gespeicherten CSVs)
+# ---------------------------------------------------
+with tab6:
     st.header("🔮 Week 1 Empfehlungen")
 
     # ============================================================
-    # 1) JSON UPLOAD - personal_weights.json
+    # 1) JSON Upload
     # ============================================================
     uploaded = st.file_uploader(
         "📤 Lade deine personal_weights.json hoch (aus deinem Einkaufszettel)",
@@ -923,7 +987,6 @@ with tab5:
         st.info("Bitte eine personal_weights.json hochladen, um personalisierte Empfehlungen zu sehen.")
         st.stop()
 
-    # JSON lesen
     try:
         personal_weights = json.load(uploaded)
     except Exception as e:
@@ -937,23 +1000,22 @@ with tab5:
     st.success(f"✔ JSON geladen – {len(personal_weights)} gewichtete Tokens gefunden.")
 
     # ============================================================
-    # 2) Nur aktuelle Angebote nutzen (Tab-1-Style Toggle)
+    # 2) Nur aktuelle Angebote (wie Tab1)
     # ============================================================
     use_current = st.toggle(
         "Nur aktuelle Angebote anzeigen",
         value=True,
-        key="use_current_tab5"
+        key="use_current_tab6"
     )
 
     subset = filtered_data_current.copy() if use_current else filtered_data.copy()
 
-    # Wenn subset leer ist:
     if subset.empty:
         st.info("Keine Produkte im gewählten Zeitraum.")
         st.stop()
 
     # ============================================================
-    # 3) Scoring-Funktion – Matching wie beim Tokenizer
+    # 3) Scoring
     # ============================================================
     def score_product(row, weights):
         name = str(row.get("Produkt", "")).lower()
@@ -965,28 +1027,21 @@ with tab5:
                 score += w
         return score
 
-    # Score zuweisen
     subset["score"] = subset.apply(lambda row: score_product(row, personal_weights), axis=1)
 
-    # Falls keine Übereinstimmungen gefunden wurden
     if subset["score"].max() <= 0:
         st.warning("❗ Keine Übereinstimmung zwischen deinen Tokens und den Angeboten dieser Woche gefunden.")
         st.stop()
 
-    # Nach score sortieren
     subset = subset.sort_values("score", ascending=False)
-
-    # ============================================================
-    # 4) KACHEL-ANSICHT (1:1 wie Tab 1)
-    # ============================================================
 
     st.markdown("### 🔥 Deine personalisierten Top-Angebote")
 
-    # Produktsuche (optional wie Tab1)
+    # Produktsuche
     search_term = st.text_input(
         "Produkte durchsuchen (optional)",
         placeholder="Produktname eingeben …",
-        key="search_tab5"
+        key="search_tab6"
     ).strip().lower()
 
     if search_term:
@@ -999,30 +1054,28 @@ with tab5:
         st.warning("Keine Produkte nach Suche/Filter übrig.")
         st.stop()
 
-    # Anzahl Spalten
+    # Spaltenanzahl
     cols_per_row = st.sidebar.select_slider(
         "Produkte pro Zeile (Empfehlungen)",
         options=[1, 2, 3, 4, 5, 6],
         value=4,
-        key="cols_tab5"
+        key="cols_tab6"
     )
 
     # Pagination
-    if "card_limit_tab5" not in st.session_state:
-        st.session_state.card_limit_tab5 = 40
+    if "card_limit_tab6" not in st.session_state:
+        st.session_state.card_limit_tab6 = 40
 
-    shown_subset = subset.head(st.session_state.card_limit_tab5)
+    shown_subset = subset.head(st.session_state.card_limit_tab6)
 
-    # ============================================================
-    # 5) Produktkacheln anzeigen
-    # ============================================================
     cols = st.columns(cols_per_row)
 
+    # Kachelrendering (unverändert)
     for i, (_, row) in enumerate(shown_subset.iterrows()):
         with cols[i % cols_per_row]:
             st.markdown("<div class='product-card'>", unsafe_allow_html=True)
 
-            # === Bildanzeige ===
+            # Bild
             csv_image = row.get("Bildpfad")
             if isinstance(csv_image, str) and csv_image.strip():
                 img_candidate = Path(csv_image)
@@ -1041,7 +1094,7 @@ with tab5:
             else:
                 st.image(get_image_for_product(row["Produkt"]), use_container_width=True)
 
-            # === Text / Infos ===
+            # Text usw.
             full_name = str(row.get("Produkt", ""))
             short_name = short_text(full_name, 60)
 
@@ -1085,8 +1138,8 @@ with tab5:
                 st.markdown("<span style='color:gray'>🏷️ Aktion / Kein Rabatt</span>", unsafe_allow_html=True)
 
             # Warenkorb
-            widget_key = f"add_btn_tab5_{row.name}_{i}"
-            state_key = f"add_state_tab5_{row.name}_{i}"
+            widget_key = f"add_btn_tab6_{row.name}_{i}"
+            state_key = f"add_state_tab6_{row.name}_{i}"
             if state_key not in st.session_state:
                 st.session_state[state_key] = False
 
@@ -1106,85 +1159,13 @@ with tab5:
 
             st.markdown("</div>", unsafe_allow_html=True)
 
-    # ============================================================
-    # Mehr/Weniger anzeigen
-    # ============================================================
-    if len(subset) > st.session_state.card_limit_tab5:
-        if st.button("🔽 Mehr anzeigen", key="more_tab5"):
-            st.session_state.card_limit_tab5 += 40
+    # Pagination
+    if len(subset) > st.session_state.card_limit_tab6:
+        if st.button("🔽 Mehr anzeigen", key="more_tab6"):
+            st.session_state.card_limit_tab6 += 40
             st.rerun()
     elif len(subset) > 12:
-        if st.button("🔼 Weniger anzeigen", key="less_tab5"):
-            st.session_state.card_limit_tab5 = 40
-            st.rerun()
-
-# ---------------------------------------------------
-# Tab 6 – Einkaufszettel → personal_weights.json
-# ---------------------------------------------------
-with tab6:
-    st.header("📝 Einkaufszettel → Persönliche Gewichtungen")
-
-    st.markdown("""
-    Gib hier deinen Einkaufszettel ein.  
-    Die App erzeugt daraus gewichtete Token, die später im Tab „Empfehlungen“
-    verwendet werden können.  
-    """)
-
-    # ================================
-    # 1) Einkaufliste eingeben
-    # ================================
-    input_text = st.text_area(
-        "Einkaufszettel eingeben:",
-        height=200,
-        placeholder="Beispiel:\nProteinriegel\nMilch 3,5%\nEhrmann High Protein Pudding\nÄpfel\nHackfleisch\nSchokolade\n..."
-    )
-
-    if st.button("🔍 Gewichtungen berechnen"):
-        if not input_text.strip():
-            st.warning("Bitte gib zuerst deinen Einkaufszettel ein.")
-            st.stop()
-
-        # ----------------------------------------------------------
-        # TOKENIZER (deiner aus dem bestehenden Skript!)
-        # ----------------------------------------------------------
-        def tokenize(text):
-            text = str(text).lower()
-            text = re.sub(r"[^a-z0-9äöüß ]", " ", text)
-            return [t for t in text.split() if t.strip()]
-
-        from collections import Counter
-        tokens = tokenize(input_text)
-        weights = Counter(tokens)
-
-        if not weights:
-            st.warning("Es konnten keine Tokens erzeugt werden.")
-            st.stop()
-
-        # Sortiert für Übersichtlichkeit
-        weights_sorted = dict(sorted(weights.items(), key=lambda x: -x[1]))
-
-        st.success(f"✔ {len(weights_sorted)} gewichtete Tokens erzeugt!")
-        st.json(weights_sorted)
-
-        # ----------------------------------------------------------
-        # 2) JSON als Download anbieten
-        # ----------------------------------------------------------
-        json_bytes = json.dumps(
-            weights_sorted,
-            indent=2,
-            ensure_ascii=False
-        ).encode("utf-8")
-
-        st.download_button(
-            label="⬇ personal_weights.json herunterladen",
-            data=json_bytes,
-            file_name="personal_weights.json",
-            mime="application/json"
-        )
-
-        st.info("""
-        Danach kannst du diese JSON im Tab **„Empfehlungen“** wieder hochladen,
-        und du erhältst personalisierte Produkt-Sortierungen für die aktuelle Woche.
-        """)
-
+        if st.button("🔼 Weniger anzeigen", key="less_tab6"):
+            st.session_state.card_limit_tab6 = 40
+            st.re
 
