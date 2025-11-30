@@ -931,26 +931,62 @@ with tab5:
             st.warning("Bitte gib zuerst deinen Einkaufszettel ein.")
             st.stop()
 
-        # TOKENIZER (identisch zu deinem System)
-        def tokenize(text):
-            text = str(text).lower()
-            text = re.sub(r"[^a-z0-9äöüß ]", " ", text)
-            return [t for t in text.split() if t.strip()]
-
+        # ----------------------------------------------------------
+        # 🔥 VERBESSERTER LINE-BASED TOKENIZER
+        # ----------------------------------------------------------
+        import re
         from collections import Counter
-        tokens = tokenize(input_text)
+
+        STOPWORDS = {
+            "preisvorteil", "rabatt", "pfand", "a", "b", "m"
+        }
+
+
+        def tokenize_line_based(text):
+            tokens = []
+
+            for raw in text.splitlines():
+                line = raw.strip().lower()
+                if not line:
+                    continue
+
+                # 1. Zahlen entfernen
+                line = re.sub(r"\d+[.,]?\d*", "", line)
+
+                # 2. Nur Buchstaben + Leerzeichen
+                line = re.sub(r"[^a-zäöüß ]", " ", line)
+                line = line.strip()
+
+                # 3. zu kurze Zeilen ignorieren
+                if len(line) < 3:
+                    continue
+
+                # 4. Stopwords rausfiltern (Rabatt, Pfand etc.)
+                if any(sw in line for sw in STOPWORDS):
+                    continue
+
+                tokens.append(line)
+
+            return tokens
+
+
+        # Tokens extrahieren
+        tokens = tokenize_line_based(input_text)
         weights = Counter(tokens)
 
         if not weights:
-            st.warning("Es konnten keine Tokens erzeugt werden.")
+            st.warning("Es konnten keine Produkt-Tokens erzeugt werden.")
             st.stop()
 
+        # Sortiert für Übersicht
         weights_sorted = dict(sorted(weights.items(), key=lambda x: -x[1]))
 
         st.success(f"✔ {len(weights_sorted)} gewichtete Tokens erzeugt!")
         st.json(weights_sorted)
 
+        # ----------------------------------------------------------
         # JSON Download
+        # ----------------------------------------------------------
         json_bytes = json.dumps(
             weights_sorted,
             indent=2,
@@ -968,6 +1004,7 @@ with tab5:
         Danach kannst du diese Datei im Tab **„Empfehlungen“** hochladen,
         um personalisierte Wochen-Empfehlungen zu erhalten.
         """)
+
 # ---------------------------------------------------
 # Tab 6 – Empfehlungen (aus gespeicherten CSVs)
 # ---------------------------------------------------
