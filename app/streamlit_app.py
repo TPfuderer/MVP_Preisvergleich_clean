@@ -932,18 +932,22 @@ with tab5:
             st.stop()
 
         import re
-        import unicodedata
         from collections import Counter
 
         # -----------------------------------------------
-        # ROBUSTER TOKENIZER → PRO LEERZEILE EIN TOKEN
+        # 🔥 DEIN TOKENIZER – 1:1 übernommen
         # -----------------------------------------------
         STOPWORDS = {
-            "preisvorteil", "rabatt", "pfand"
+            "rabatt", "aktion", "pfand", "preisvorteil",
+            "a", "b", "m", "kg", "g", "stk", "st"
         }
 
         def tokenize_by_empty_lines(text):
-            # 1) strikt splitten nach Leerzeilen (Produktblöcke)
+            """
+            1) Split nach Leerzeilen → jede Produktposition separat.
+            2) Preise/Zahlen/Prozente raus.
+            3) Marken- & Produkttext normalisieren.
+            """
             blocks = re.split(r"\n\s*\n", text.strip(), flags=re.MULTILINE)
             tokens = []
 
@@ -952,30 +956,29 @@ with tab5:
                 if not line:
                     continue
 
-                # Umlaute normalisieren
-                line = unicodedata.normalize("NFKD", line)
-                line = "".join(c for c in line if not unicodedata.combining(c))
-
-                # Preise wie 1,29 –0,50 0.99 B → entfernen
+                # Entfernt Preise wie "1,29", "-0,50", "20%", "0,99 B"
                 line = re.sub(r"\d+[.,]?\d*\s*[abm]?", " ", line)
                 line = re.sub(r"\d+%?", " ", line)
 
-                # Sonderzeichen entfernen
-                line = re.sub(r"[^a-z0-9 ]", " ", line)
+                # Sonderzeichen raus, Punkte/Komma/Minus entfernen
+                line = re.sub(r"[^a-zäöüß ]", " ", line)
 
                 # Whitespace normalisieren
                 line = re.sub(r"\s+", " ", line).strip()
 
-                # Stopwords überspringen
+                # Stopwords → skip
                 if any(sw in line for sw in STOPWORDS):
                     continue
 
+                # Jede Produktbezeichnung exakt 1 Token
                 if len(line) >= 3:
                     tokens.append(line)
 
             return tokens
 
-        # Token extrahieren
+        # -----------------------------------------------
+        # Tokens extrahieren
+        # -----------------------------------------------
         raw_tokens = tokenize_by_empty_lines(input_text)
         weights = Counter(raw_tokens)
 
@@ -1008,6 +1011,7 @@ with tab5:
         Danach kannst du diese Datei im Tab **„Empfehlungen“** hochladen,
         um personalisierte Angebote sortiert nach deinen Vorlieben zu sehen.
         """)
+
 
 
 # ---------------------------------------------------
@@ -1231,5 +1235,3 @@ with tab6:
         if st.button("🔼 Weniger anzeigen", key="less_tab6"):
             st.session_state.card_limit_tab6 = 40
             st.rerun()
-
-
