@@ -937,8 +937,10 @@ with tab5:
         import re
         from collections import Counter
 
-        STOPWORDS = {"preisvorteil", "rabatt", "pfand", "a", "b", "m"}
-
+        STOPWORDS = {
+            "preisvorteil", "rabatt", "pfand"
+            # KEIN "a", "b", "m" mehr!
+        }
 
         def tokenize_line_based(text):
             tokens = []
