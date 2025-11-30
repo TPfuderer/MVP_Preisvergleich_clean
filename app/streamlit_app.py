@@ -1079,25 +1079,33 @@ with tab6:
 
 
     # ============================================================
-    # 3) SCORING – Marke + Produkt kombiniert
+    # 3) SCORING – Marke + Produkt kombiniert & simples Matching
     # ============================================================
-    def normalize_for_matching(text):
-        import unicodedata
+
+    def normalize(text):
+        """Nur kleinschreibung + simple Reinigung, keine Umlaut-Entfernung."""
         text = str(text).lower()
-        text = unicodedata.normalize("NFKD", text)
-        text = "".join(c for c in text if not unicodedata.combining(c))
-        text = re.sub(r"[^a-z0-9 ]", " ", text)
+        text = re.sub(r"[^a-z0-9äöüß ]", " ", text)
         text = re.sub(r"\s+", " ", text)
         return text.strip()
 
-    def tokenize_simple(text):
-        text = normalize_for_matching(text)
+
+    def tokenize_prod(text):
+        """Tokenisiert Marke+Produkt in echte Wörter."""
+        text = normalize(text)
         return text.split()
 
+
     def score_product(row, weights):
-        combined = f"{row.get('Marke','')} {row.get('Produkt','')}"
-        prod_tokens = tokenize_simple(combined)
-        return sum(weights.get(t, 0) for t in prod_tokens)
+        combined = f"{row.get('Marke', '')} {row.get('Produkt', '')}"
+        prod_tokens = tokenize_prod(combined)
+
+        score = 0
+        for tok in prod_tokens:
+            if tok in weights:  # nur EXAKT, kein substring!
+                score += weights[tok]
+        return score
+
 
     subset["score"] = subset.apply(lambda row: score_product(row, personal_weights), axis=1)
 
@@ -1106,7 +1114,6 @@ with tab6:
         st.stop()
 
     subset = subset.sort_values("score", ascending=False)
-
 
     # ============================================================
     # 4) Optionale Suche
@@ -1119,11 +1126,27 @@ with tab6:
         key="search_tab6"
     ).strip().lower()
 
+    # ============================================================
+    # 4) Optionale Suche (ultrasimpel auf Marke+Produkt)
+    # ============================================================
+
+    st.markdown("### 🔥 Deine personalisierten Top-Angebote")
+
+    search_term = st.text_input(
+        "Produkte durchsuchen (optional)",
+        placeholder="z. B. quark, skyr, cola",
+        key="search_tab6"
+    ).strip().lower()
+
     if search_term:
         subset = subset[
-            subset["Produkt"].str.lower().str.contains(search_term, na=False)
-            | subset["Marke"].str.lower().str.contains(search_term, na=False)
+            (subset["Marke"].fillna("").str.lower() + " " + subset["Produkt"].fillna("").str.lower())
+            .str.contains(search_term, na=False)
         ]
+
+    if subset.empty:
+        st.warning("Keine Produkte nach Filterung übrig.")
+        st.stop()
 
     if subset.empty:
         st.warning("Keine Produkte nach Filterung übrig.")
