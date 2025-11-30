@@ -946,11 +946,10 @@ with tab5:
             """
             1) Split by whitespace → jedes Wort ein Token
             2) Preise/Zahlen/Sonderfälle entfernen
-            3) Normalisieren
-            4) Nur valide Produkt-Tokens behalten
+            3) Original deutsche Umlaute bleiben erhalten
+            4) Nicht-Produktwörter filtern
             """
             import re
-            import unicodedata
 
             # 1) Word split
             raw_tokens = re.split(r"\s+", text.lower())
@@ -961,26 +960,23 @@ with tab5:
                 if not tok:
                     continue
 
-                # Umlaute normalisieren
-                tok = unicodedata.normalize("NFKD", tok)
-                tok = "".join(c for c in tok if not unicodedata.combining(c))
+                # --- Preise entfernen (1,29 0.99 -0,50 20%) ---
+                if re.fullmatch(r"\d+[.,]?\d*", tok):
+                    continue
+                if re.fullmatch(r"\d+%?", tok):
+                    continue
 
-                # Preise entfernen (1,29 0.99 -0,50)
-                tok = re.sub(r"^\d+[.,]?\d*$", "", tok)  # reine Preis-Zahlen
-                tok = re.sub(r"\d+%$", "", tok)  # "20%" → ""
+                # --- Buchstaben, aber Umlaute behalten ---
+                tok = re.sub(r"[^a-z0-9äöüß]", "", tok)
 
-                # Müll entfernen
-                tok = re.sub(r"[^a-z0-9]", "", tok)
-
-                # Nach Clean leer?
                 if not tok:
                     continue
 
-                # Stopwords entfernen
+                # Stopwords raus
                 if tok in STOPWORDS:
                     continue
 
-                # Zu kurz?
+                # Einzelbuchstaben / zu kurz ignorieren
                 if len(tok) < 2:
                     continue
 
