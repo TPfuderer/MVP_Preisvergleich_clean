@@ -1167,5 +1167,5 @@ with tab6:
     elif len(subset) > 12:
         if st.button("🔼 Weniger anzeigen", key="less_tab6"):
             st.session_state.card_limit_tab6 = 40
-            st.re
+            st.rerun()
 
