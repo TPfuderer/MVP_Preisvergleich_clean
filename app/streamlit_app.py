@@ -909,51 +909,138 @@ with tab4:
 with tab5:
     st.header("🔮 Week 1 Empfehlungen")
 
-    # Ordner mit deinen Recommendation-CSVs
-    reco_folder = DATA_DIR / "user_recommendations" / "week1"
+    # ============================================================
+    # 1) JSON UPLOAD - personal_weights.json
+    # ============================================================
+    uploaded = st.file_uploader(
+        "📤 Lade deine personal_weights.json hoch (aus deinem Einkaufszettel)",
+        type=["json"],
+        accept_multiple_files=False
+    )
 
-    reco_files = list(reco_folder.glob("*.csv"))
-
-    if not reco_files:
-        st.warning("Keine Empfehlungsdateien in week1 gefunden.")
+    if not uploaded:
+        st.info("Bitte eine personal_weights.json hochladen, um personalisierte Empfehlungen zu sehen.")
         st.stop()
 
-    # Alle CSVs laden und zusammenführen
-    reco_dfs = []
-    for f in reco_files:
-        try:
-            df = pd.read_csv(f)
-            df["Quelle"] = f.name
-            reco_dfs.append(df)
-        except Exception as e:
-            st.error(f"Fehler beim Laden von {f.name}: {e}")
-
-    if not reco_dfs:
-        st.warning("Konnte keine Empfehlungstabellen laden.")
+    # JSON lesen
+    try:
+        personal_weights = json.load(uploaded)
+    except Exception as e:
+        st.error(f"❌ Fehler beim Lesen der JSON: {e}")
         st.stop()
 
-    reco = pd.concat(reco_dfs, ignore_index=True)
-
-    # Score vorhanden → sortieren
-    if "Score" in reco.columns:
-        reco = reco.sort_values("Score", ascending=False).reset_index(drop=True)
-    else:
-        st.error("Score fehlt in den gespeicherten week1-Empfehlungen!")
+    if not isinstance(personal_weights, dict) or len(personal_weights) == 0:
+        st.warning("⚠️ Die hochgeladene JSON ist leer oder ungültig.")
         st.stop()
 
-    st.success(f"📦 {len(reco)} Empfehlungen geladen (Week 1)")
+    st.success(f"✔ JSON geladen – {len(personal_weights)} gewichtete Tokens gefunden.")
 
-    # ---- Anzeige wie in Tab 1 ----
+    # ============================================================
+    # 2) Nur aktuelle Angebote nutzen (Tab-1-Style Toggle)
+    # ============================================================
+    use_current = st.toggle(
+        "Nur aktuelle Angebote anzeigen",
+        value=True,
+        key="use_current_tab5"
+    )
+
+    subset = filtered_data_current.copy() if use_current else filtered_data.copy()
+
+    # Wenn subset leer ist:
+    if subset.empty:
+        st.info("Keine Produkte im gewählten Zeitraum.")
+        st.stop()
+
+    # ============================================================
+    # 3) Scoring-Funktion – Matching wie beim Tokenizer
+    # ============================================================
+    def score_product(row, weights):
+        name = str(row.get("Produkt", "")).lower()
+        brand = str(row.get("Marke", "")).lower()
+
+        score = 0
+        for token, w in weights.items():
+            if token in name or token in brand:
+                score += w
+        return score
+
+    # Score zuweisen
+    subset["score"] = subset.apply(lambda row: score_product(row, personal_weights), axis=1)
+
+    # Falls keine Übereinstimmungen gefunden wurden
+    if subset["score"].max() <= 0:
+        st.warning("❗ Keine Übereinstimmung zwischen deinen Tokens und den Angeboten dieser Woche gefunden.")
+        st.stop()
+
+    # Nach score sortieren
+    subset = subset.sort_values("score", ascending=False)
+
+    # ============================================================
+    # 4) KACHEL-ANSICHT (1:1 wie Tab 1)
+    # ============================================================
+
+    st.markdown("### 🔥 Deine personalisierten Top-Angebote")
+
+    # Produktsuche (optional wie Tab1)
+    search_term = st.text_input(
+        "Produkte durchsuchen (optional)",
+        placeholder="Produktname eingeben …",
+        key="search_tab5"
+    ).strip().lower()
+
+    if search_term:
+        subset = subset[
+            subset["Produkt"].str.lower().str.contains(search_term, na=False)
+            | subset["Marke"].str.lower().str.contains(search_term, na=False)
+        ]
+
+    if subset.empty:
+        st.warning("Keine Produkte nach Suche/Filter übrig.")
+        st.stop()
+
+    # Anzahl Spalten
+    cols_per_row = st.sidebar.select_slider(
+        "Produkte pro Zeile (Empfehlungen)",
+        options=[1, 2, 3, 4, 5, 6],
+        value=4,
+        key="cols_tab5"
+    )
+
+    # Pagination
+    if "card_limit_tab5" not in st.session_state:
+        st.session_state.card_limit_tab5 = 40
+
+    shown_subset = subset.head(st.session_state.card_limit_tab5)
+
+    # ============================================================
+    # 5) Produktkacheln anzeigen
+    # ============================================================
     cols = st.columns(cols_per_row)
 
-    for i, (_, row) in enumerate(reco.iterrows()):
+    for i, (_, row) in enumerate(shown_subset.iterrows()):
         with cols[i % cols_per_row]:
             st.markdown("<div class='product-card'>", unsafe_allow_html=True)
 
-            # === Bild ===
-            st.image(get_image_for_product(row.get("Produkt", "")), use_container_width=True)
+            # === Bildanzeige ===
+            csv_image = row.get("Bildpfad")
+            if isinstance(csv_image, str) and csv_image.strip():
+                img_candidate = Path(csv_image)
+                if img_candidate.exists():
+                    st.image(img_candidate.as_posix(), use_container_width=True)
+                else:
+                    found = False
+                    for img_dir in ALL_CSV_IMG_DIRS:
+                        candidate_path = img_dir / img_candidate.name
+                        if candidate_path.exists():
+                            st.image(candidate_path.as_posix(), use_container_width=True)
+                            found = True
+                            break
+                    if not found:
+                        st.image(get_image_for_product(row["Produkt"]), use_container_width=True)
+            else:
+                st.image(get_image_for_product(row["Produkt"]), use_container_width=True)
 
-            # === Produktname ===
+            # === Text / Infos ===
             full_name = str(row.get("Produkt", ""))
             short_name = short_text(full_name, 60)
 
@@ -962,28 +1049,72 @@ with tab5:
                 unsafe_allow_html=True
             )
 
-            # Optional Volltext
             if len(full_name) > 60:
                 with st.expander("Vollständiger Produktname"):
                     st.write(full_name)
 
-            # Marke + Händler
-            brand_line = f"{row.get('Marke', '')} – {row.get('Retailer', 'Unbekannt')}"
-            st.markdown(f"<div class='product-brand'>{brand_line}</div>", unsafe_allow_html=True)
-
-            # Preis
             st.markdown(
-                f"<div class='product-price'><b>{row.get('Preis', '')}</b></div>",
+                f"<div class='product-brand'>{row.get('Marke', '')} – {row['Retailer']}</div>",
                 unsafe_allow_html=True
             )
 
-            # Score anzeigen
-            st.caption(f"🔢 Score: {row.get('Score', 0)}")
+            st.markdown(
+                f"<div class='product-price'>💶 <b>{row['Preis']}</b></div>",
+                unsafe_allow_html=True
+            )
 
-            # === Datum (falls vorhanden) ===
-            von = pd.to_datetime(row.get("Gueltig_von"), errors="coerce")
-            bis = pd.to_datetime(row.get("Gueltig_bis"), errors="coerce")
+            if row.get("Preis_kg"):
+                st.markdown(
+                    f"<div class='product-ppkg'>{row['Preis_kg']}</div>",
+                    unsafe_allow_html=True
+                )
+
+            von, bis = row.get("Gueltig_von"), row.get("Gueltig_bis")
             if pd.notna(von) and pd.notna(bis):
                 st.write(f"🗓️ {von:%d.%m.%Y} – {bis:%d.%m.%Y}")
 
+            # Rabatt
+            r = row.get("Rabatt_vs_prev")
+            if pd.notna(r) and r > 0:
+                st.markdown(
+                    f"<span style='color:green'>💸 Rabatt: {(r * 100):.1f}%</span>",
+                    unsafe_allow_html=True
+                )
+            else:
+                st.markdown("<span style='color:gray'>🏷️ Aktion / Kein Rabatt</span>", unsafe_allow_html=True)
+
+            # Warenkorb
+            widget_key = f"add_btn_tab5_{row.name}_{i}"
+            state_key = f"add_state_tab5_{row.name}_{i}"
+            if state_key not in st.session_state:
+                st.session_state[state_key] = False
+
+            btn_label = "➖ Entfernen" if st.session_state[state_key] else "➕ Hinzufügen"
+
+            if st.button(btn_label, key=widget_key):
+                if st.session_state[state_key]:
+                    st.session_state.cart = [
+                        itm for itm in st.session_state.cart
+                        if not (itm["Produkt"] == row["Produkt"] and itm["Retailer"] == row["Retailer"])
+                    ]
+                    st.session_state[state_key] = False
+                else:
+                    st.session_state.cart.append(row.to_dict())
+                    st.session_state[state_key] = True
+                st.rerun()
+
             st.markdown("</div>", unsafe_allow_html=True)
+
+    # ============================================================
+    # Mehr/Weniger anzeigen
+    # ============================================================
+    if len(subset) > st.session_state.card_limit_tab5:
+        if st.button("🔽 Mehr anzeigen", key="more_tab5"):
+            st.session_state.card_limit_tab5 += 40
+            st.rerun()
+    elif len(subset) > 12:
+        if st.button("🔼 Weniger anzeigen", key="less_tab5"):
+            st.session_state.card_limit_tab5 = 40
+            st.rerun()
+
+
