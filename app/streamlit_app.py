@@ -1016,22 +1016,22 @@ with tab5:
         """)
 
 # ---------------------------------------------------
-# Tab 6 – Empfehlungen (aus gespeicherten CSVs)
+# Tab 6 – Empfehlungen (aus Einkaufszettel-JSON)
 # ---------------------------------------------------
 with tab6:
-    st.header("🔮 Week 1 Empfehlungen")
+    st.header("🔮 Persönliche Empfehlungen (Einkaufszettel → JSON)")
 
     # ============================================================
-    # 1) JSON Upload
+    # 1) JSON upload
     # ============================================================
     uploaded = st.file_uploader(
-        "📤 Lade deine personal_weights.json hoch (aus deinem Einkaufszettel)",
+        "📤 Lade deine personal_weights.json hoch",
         type=["json"],
         accept_multiple_files=False
     )
 
     if not uploaded:
-        st.info("Bitte eine personal_weights.json hochladen, um personalisierte Empfehlungen zu sehen.")
+        st.info("Bitte personal_weights.json hochladen, um Empfehlungen zu erhalten.")
         st.stop()
 
     try:
@@ -1041,32 +1041,43 @@ with tab6:
         st.stop()
 
     if not isinstance(personal_weights, dict) or len(personal_weights) == 0:
-        st.warning("⚠️ Die hochgeladene JSON ist leer oder ungültig.")
+        st.warning("⚠️ JSON ist leer oder ungültig.")
         st.stop()
 
-    st.success(f"✔ JSON geladen – {len(personal_weights)} gewichtete Tokens gefunden.")
+    st.success(f"✔ JSON geladen – {len(personal_weights)} Tokens erkannt.")
+
 
     # ============================================================
-    # 2) Nur aktuelle Angebote (wie Tab1)
+    # 2) Datenbasis wie Tab 1
     # ============================================================
     use_current = st.toggle(
         "Nur aktuelle Angebote anzeigen",
         value=True,
         key="use_current_tab6"
     )
-
     subset = filtered_data_current.copy() if use_current else filtered_data.copy()
 
     if subset.empty:
         st.info("Keine Produkte im gewählten Zeitraum.")
         st.stop()
 
+
     # ============================================================
-    # 3) Scoring
+    # 3) Scoring + Normalisierung
     # ============================================================
+
+    def normalize_for_matching(text):
+        """Wie Tokenizer: klein, Umlaute → ae, Sonderzeichen raus."""
+        text = str(text).lower()
+        text = unicodedata.normalize("NFKD", text)
+        text = "".join(c for c in text if not unicodedata.combining(c))
+        text = re.sub(r"[^a-z0-9 ]", " ", text)
+        text = re.sub(r"\s+", " ", text).strip()
+        return text
+
     def score_product(row, weights):
-        name = str(row.get("Produkt", "")).lower()
-        brand = str(row.get("Marke", "")).lower()
+        name = normalize_for_matching(row.get("Produkt", ""))
+        brand = normalize_for_matching(row.get("Marke", ""))
 
         score = 0
         for token, w in weights.items():
@@ -1077,17 +1088,20 @@ with tab6:
     subset["score"] = subset.apply(lambda row: score_product(row, personal_weights), axis=1)
 
     if subset["score"].max() <= 0:
-        st.warning("❗ Keine Übereinstimmung zwischen deinen Tokens und den Angeboten dieser Woche gefunden.")
+        st.warning("❗ Keine Übereinstimmungen zwischen deinen Tokens und den Angeboten.")
         st.stop()
 
     subset = subset.sort_values("score", ascending=False)
 
+
+    # ============================================================
+    # 4) Optional: Suche
+    # ============================================================
     st.markdown("### 🔥 Deine personalisierten Top-Angebote")
 
-    # Produktsuche
     search_term = st.text_input(
         "Produkte durchsuchen (optional)",
-        placeholder="Produktname eingeben …",
+        placeholder="z. B. Quark, Spätzle, Cola",
         key="search_tab6"
     ).strip().lower()
 
@@ -1098,10 +1112,13 @@ with tab6:
         ]
 
     if subset.empty:
-        st.warning("Keine Produkte nach Suche/Filter übrig.")
+        st.warning("Keine Produkte nach Filterung übrig.")
         st.stop()
 
-    # Spaltenanzahl
+
+    # ============================================================
+    # 5) Spaltenlayout
+    # ============================================================
     cols_per_row = st.sidebar.select_slider(
         "Produkte pro Zeile (Empfehlungen)",
         options=[1, 2, 3, 4, 5, 6],
@@ -1109,20 +1126,26 @@ with tab6:
         key="cols_tab6"
     )
 
-    # Pagination
+
+    # ============================================================
+    # 6) Pagination
+    # ============================================================
     if "card_limit_tab6" not in st.session_state:
         st.session_state.card_limit_tab6 = 40
 
     shown_subset = subset.head(st.session_state.card_limit_tab6)
 
+
+    # ============================================================
+    # 7) Produktkacheln (1:1 wie Tab 1)
+    # ============================================================
     cols = st.columns(cols_per_row)
 
-    # Kachelrendering (unverändert)
     for i, (_, row) in enumerate(shown_subset.iterrows()):
         with cols[i % cols_per_row]:
             st.markdown("<div class='product-card'>", unsafe_allow_html=True)
 
-            # Bild
+            # === Bild ===
             csv_image = row.get("Bildpfad")
             if isinstance(csv_image, str) and csv_image.strip():
                 img_candidate = Path(csv_image)
@@ -1141,14 +1164,12 @@ with tab6:
             else:
                 st.image(get_image_for_product(row["Produkt"]), use_container_width=True)
 
-            # Text usw.
+            # === Produktinfo ===
             full_name = str(row.get("Produkt", ""))
             short_name = short_text(full_name, 60)
 
-            st.markdown(
-                f"<div class='product-title' title='{full_name}'>{short_name}</div>",
-                unsafe_allow_html=True
-            )
+            st.markdown(f"<div class='product-title' title='{full_name}'>{short_name}</div>",
+                        unsafe_allow_html=True)
 
             if len(full_name) > 60:
                 with st.expander("Vollständiger Produktname"):
@@ -1174,19 +1195,18 @@ with tab6:
             if pd.notna(von) and pd.notna(bis):
                 st.write(f"🗓️ {von:%d.%m.%Y} – {bis:%d.%m.%Y}")
 
-            # Rabatt
             r = row.get("Rabatt_vs_prev")
             if pd.notna(r) and r > 0:
-                st.markdown(
-                    f"<span style='color:green'>💸 Rabatt: {(r * 100):.1f}%</span>",
-                    unsafe_allow_html=True
-                )
+                st.markdown(f"<span style='color:green'>💸 Rabatt: {(r * 100):.1f}%</span>",
+                            unsafe_allow_html=True)
             else:
-                st.markdown("<span style='color:gray'>🏷️ Aktion / Kein Rabatt</span>", unsafe_allow_html=True)
+                st.markdown("<span style='color:gray'>🏷️ Aktion / Kein Rabatt</span>",
+                            unsafe_allow_html=True)
 
-            # Warenkorb
+            # === Warenkorb ===
             widget_key = f"add_btn_tab6_{row.name}_{i}"
             state_key = f"add_state_tab6_{row.name}_{i}"
+
             if state_key not in st.session_state:
                 st.session_state[state_key] = False
 
@@ -1206,7 +1226,11 @@ with tab6:
 
             st.markdown("</div>", unsafe_allow_html=True)
 
-    # Pagination
+
+
+    # ============================================================
+    # Pagination buttons
+    # ============================================================
     if len(subset) > st.session_state.card_limit_tab6:
         if st.button("🔽 Mehr anzeigen", key="more_tab6"):
             st.session_state.card_limit_tab6 += 40
