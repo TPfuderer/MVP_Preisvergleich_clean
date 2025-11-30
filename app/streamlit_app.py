@@ -937,32 +937,37 @@ with tab5:
         import re
         from collections import Counter
 
-        STOPWORDS = {
-            "preisvorteil", "rabatt", "pfand", "a", "b", "m"
-        }
+        STOPWORDS = {"preisvorteil", "rabatt", "pfand", "a", "b", "m"}
 
 
         def tokenize_line_based(text):
             tokens = []
 
-            for raw in text.splitlines():
+            # Falls alles in einer Zeile kam
+            raw_lines = text.splitlines()
+            if len(raw_lines) <= 1:
+                raw_lines = re.split(r"[–\-•;]+|\s{2,}", text)
+
+            for raw in raw_lines:
                 line = raw.strip().lower()
                 if not line:
                     continue
 
-                # 1. Zahlen entfernen
+                # 1) Preise & Zahlen komplett entfernen
                 line = re.sub(r"\d+[.,]?\d*", "", line)
 
-                # 2. Nur Buchstaben + Leerzeichen
+                # 2) Sonderzeichen entfernen
                 line = re.sub(r"[^a-zäöüß ]", " ", line)
-                line = line.strip()
 
-                # 3. zu kurze Zeilen ignorieren
-                if len(line) < 3:
+                # 3) Whitespace normalisieren
+                line = re.sub(r"\s+", " ", line).strip()
+
+                # 4) Stopwords/Rabatt/Pfand löschen
+                if any(sw in line for sw in STOPWORDS):
                     continue
 
-                # 4. Stopwords rausfiltern (Rabatt, Pfand etc.)
-                if any(sw in line for sw in STOPWORDS):
+                # 5) Zeilen wie "kg", "g", "a", "b" rausfiltern
+                if len(line) < 3:
                     continue
 
                 tokens.append(line)
@@ -971,8 +976,8 @@ with tab5:
 
 
         # Tokens extrahieren
-        tokens = tokenize_line_based(input_text)
-        weights = Counter(tokens)
+        raw_tokens = tokenize_line_based(input_text)
+        weights = Counter(raw_tokens)
 
         if not weights:
             st.warning("Es konnten keine Produkt-Tokens erzeugt werden.")
