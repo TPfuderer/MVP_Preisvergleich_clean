@@ -1126,27 +1126,11 @@ with tab6:
         key="search_tab6"
     ).strip().lower()
 
-    # ============================================================
-    # 4) Optionale Suche (ultrasimpel auf Marke+Produkt)
-    # ============================================================
-
-    st.markdown("### 🔥 Deine personalisierten Top-Angebote")
-
-    search_term = st.text_input(
-        "Produkte durchsuchen (optional)",
-        placeholder="z. B. quark, skyr, cola",
-        key="search_tab6"
-    ).strip().lower()
-
     if search_term:
         subset = subset[
-            (subset["Marke"].fillna("").str.lower() + " " + subset["Produkt"].fillna("").str.lower())
-            .str.contains(search_term, na=False)
+            subset["Produkt"].str.lower().str.contains(search_term, na=False)
+            | subset["Marke"].str.lower().str.contains(search_term, na=False)
         ]
-
-    if subset.empty:
-        st.warning("Keine Produkte nach Filterung übrig.")
-        st.stop()
 
     if subset.empty:
         st.warning("Keine Produkte nach Filterung übrig.")
