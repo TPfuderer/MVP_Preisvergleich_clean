@@ -938,8 +938,7 @@ with tab5:
         # 🔥 DEIN TOKENIZER – 1:1 übernommen
         # -----------------------------------------------
         STOPWORDS = {
-            "rabatt", "aktion", "pfand", "preisvorteil",
-            "a", "b", "m", "kg", "g", "stk", "st"
+            "rabatt", "aktion", "pfand", "preisvorteil"
         }
 
         def tokenize_by_empty_lines(text):
