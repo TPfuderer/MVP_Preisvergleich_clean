@@ -964,6 +964,9 @@ with tab5:
                 # 3) Whitespace normalisieren
                 line = re.sub(r"\s+", " ", line).strip()
 
+                # 4) Einzelbuchstaben entfernen (A, B, M aus Prospekten)
+                line = re.sub(r"\b[a-z]\b", " ", line)
+
                 # 4) Stopwords/Rabatt/Pfand löschen
                 if any(sw in line for sw in STOPWORDS):
                     continue
