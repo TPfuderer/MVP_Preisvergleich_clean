@@ -1,4 +1,4 @@
-Produkt,Marke,Preis,Vorheriger Preis,Preis_kg,Hinweis,Nur_online,Gueltig_raw,Gueltig_von,Gueltig_bis
+﻿Produkt,Marke,Preis,Vorheriger Preis,Preis_kg,Hinweis,Nur_online,Gueltig_raw,Gueltig_von,Gueltig_bis
 Frische Bayrische Bauernmilch,Milbona,"€ 1,19","€ 1,35","€ 1,19 / l -","3,8% Fett. Je 1 l",Nein,08.12. - 31.12.,2025-12-08,2025-12-31
 Laktosefrei H-­Vollmilch,Milbona,"€ 1,15","€ 1,29","€ 1,15 / l -","3,5% Fett. Je 1 l",Nein,08.12. - 31.12.,2025-12-08,2025-12-31
 Kaffeesahne,Milbona,"€ 0,69","€ 0,79","€ 3,45 / kg -",12% Fett. Je 200 g,Nein,08.12. - 31.12.,2025-12-08,2025-12-31
@@ -138,7 +138,7 @@ Barbie-Puppe,Barbie,"€ 9,99",Kein vorheriger Preis,"€ 9,99 / Stk -",Details 
 Herren Thermo Jacke,Esmara,"€ 19,99",Kein vorheriger Preis,"€ 19,99 / Stk -",Details im Prospekt.,Nein,15.12. - 20.12.,2025-12-15,2025-12-20
 Beauty Haar- und Bartschneider CBBT 3.7 A1,Cien,"€ 8,99",Kein vorheriger Preis,"€ 8,99 / Stk -",Details im Prospekt,Nein,22.12. - 27.12.,2025-12-22,2025-12-27
 Belgische Pralinen,Hamlet,"€ 6,99",Kein vorheriger Preis,"€ 27,96 / kg -",Versch. Farben. Je 250 g,Nein,15.12. - 20.12.,2025-12-15,2025-12-20
-100% Direktsaft,Solevita,"€ 2,45","€ 2,65",,"Dieses Angebot ist leider nicht mehr verfügbar.
+100% Direktsaft,Solevita,"€ 2,45","€ 2,65",Kein Mengenpreis,"Dieses Angebot ist leider nicht mehr verfügbar.
 Aktuelle Angebote:Softdrinks,ALDI SÜD,PENNY",Nein,08.12. - 13.12.,2025-12-08,2025-12-13
 Herren Steppjacke,Livergy,"€ 12,99",Kein vorheriger Preis,"€ 12,99 / Stk -",Details im Prospekt.,Nein,15.12. - 20.12.,2025-12-15,2025-12-20
 Dessertgläser,Deluxe,"€ 2,29",Kein vorheriger Preis,"€ 19,08 / kg -",Versch. Sorten. Enthält Alkohol. Gekühlt. Je 2x 60 g,Nein,15.12. - 20.12.,2025-12-15,2025-12-20
