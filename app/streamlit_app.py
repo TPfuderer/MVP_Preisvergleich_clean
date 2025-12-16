@@ -598,19 +598,22 @@ with tab1:
                 # === Bildanzeige ===
                 csv_image = row.get("Bildpfad")
                 if isinstance(csv_image, str) and csv_image.strip():
-                    img_candidate = Path(csv_image)
+
+                    img_candidate = DATA_DIR / "images" / csv_image  # 🔧 FIX
+
                     if img_candidate.exists():
                         st.image(img_candidate.as_posix(), use_container_width=True)
                     else:
                         else_found = False
                         for img_dir in ALL_CSV_IMG_DIRS:
-                            candidate_path = img_dir / img_candidate.name
+                            candidate_path = img_dir / Path(csv_image).name
                             if candidate_path.exists():
                                 st.image(candidate_path.as_posix(), use_container_width=True)
                                 else_found = True
                                 break
-                        if not else_found and (IMAGE_DIR / img_candidate.name).exists():
-                            st.image((IMAGE_DIR / img_candidate.name).as_posix(), use_container_width=True)
+
+                        if not else_found and (IMAGE_DIR / Path(csv_image).name).exists():
+                            st.image((IMAGE_DIR / Path(csv_image).name).as_posix(), use_container_width=True)
                         elif not else_found:
                             st.image(get_image_for_product(row["Produkt"]), use_container_width=True)
                 else:
