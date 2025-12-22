@@ -782,12 +782,7 @@ with tab2:
                     full_name = str(row.get("Produkt", "")).strip()
 
                     st.markdown(
-                        f"""
-                        <div style="display:flex;gap:6px;align-items:center;">
-                            <div class="product-title">{full_name}</div>
-                            <span title="{full_name}" style="cursor:help;flex-shrink:0;">ℹ️</span>
-                        </div>
-                        """,
+                        f"<div class='product-title' title='{full_name}'>{full_name}</div>",
                         unsafe_allow_html=True
                     )
 
