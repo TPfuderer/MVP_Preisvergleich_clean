@@ -628,11 +628,6 @@ with tab1:
                     unsafe_allow_html=True
                 )
 
-                # 🔽 GENAU HIER EINFÜGEN
-                if len(full_name) > 60:
-                    with st.expander("Vollständiger Produktname"):
-                        st.write(full_name)
-                # 🔼 GENAU HIER
 
                 brand_line = f"{row.get('Marke', '')} – {row['Retailer']}"
 
@@ -784,8 +779,12 @@ with tab2:
             for i, (_, row) in enumerate(subset_cats.iterrows()):
                 with cols_c[i % 3]:
                     st.image(get_image_for_product(row["Produkt"]), use_container_width=True)
-                    full_name = str(row.get("Produkt", ""))
-                    short_name = short_text(full_name, 60)
+                    full_name = str(row.get("Produkt", "")).strip()
+
+                    st.markdown(
+                        f"<div class='product-title' title='{full_name}'>{full_name}</div>",
+                        unsafe_allow_html=True
+                    )
 
                     if len(full_name) > 60:
                         with st.expander(short_name):
