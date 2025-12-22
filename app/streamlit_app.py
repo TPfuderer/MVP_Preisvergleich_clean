@@ -77,16 +77,6 @@ div[data-testid="stImageContainer"] {
     justify-content: center;
 }
 
-/* 🔒 FIX: Bild bekommt echte Höhe */
-div[data-testid="stImageContainer"] img {
-    max-height: 100%;
-    width: auto;
-    height: auto;
-
-    object-fit: contain;
-    display: block;
-    margin: auto;
-}
 
 
 </style>
