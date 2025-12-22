@@ -476,14 +476,41 @@ with tab1:
         width: 100%;
     }
     
-    .product-title {
-    white-space: nowrap;
+.product-title {
+    position: relative;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;          /* 👈 max. 2 Zeilen sichtbar */
+    -webkit-box-orient: vertical;
     overflow: hidden;
-    text-overflow: ellipsis;
-    display: block;
-    max-width: 100%;
-    cursor: pointer;
+
+    font-size: 0.95rem;
+    line-height: 1.2;
+    cursor: help;
 }
+
+/* Tooltip mit vollem Text */
+.product-title:hover::after {
+    content: attr(data-fulltext);
+
+    position: absolute;
+    left: 0;
+    top: 110%;
+    z-index: 9999;
+
+    background: rgba(20,20,20,0.95);
+    color: #fff;
+
+    padding: 6px 8px;
+    border-radius: 6px;
+
+    font-size: 0.85rem;
+    line-height: 1.25;
+    white-space: normal;
+    max-width: 260px;
+
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
 
 .product-price {
     white-space: nowrap;
@@ -629,9 +656,17 @@ with tab1:
                 )
 
                 # 🔽 GENAU HIER EINFÜGEN
-                if len(full_name) > 60:
-                    with st.expander("Vollständiger Produktname"):
-                        st.write(full_name)
+                full_name = str(row.get("Produkt", "")).strip()
+
+                st.markdown(
+                    f"""
+                    <div class="product-title" data-fulltext="{full_name}">
+                        {full_name}
+                    </div>
+                    """,
+                    unsafe_allow_html=True
+                )
+
                 # 🔼 GENAU HIER
 
                 brand_line = f"{row.get('Marke', '')} – {row['Retailer']}"
