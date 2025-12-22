@@ -476,13 +476,50 @@ with tab1:
         width: 100%;
     }
     
-    .product-title {
+.product-title-wrapper {
+    position: relative;
+}
+
+.product-title {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    display: block;
-    max-width: 100%;
+    font-size: 0.95rem;
     cursor: pointer;
+}
+
+/* Overlay mit vollem Text */
+.product-title-overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+
+    width: 100%;
+    max-height: 160px;
+
+    background: rgba(20,20,20,0.95);
+    color: white;
+
+    padding: 8px 10px;
+    border-radius: 8px;
+
+    font-size: 0.9rem;
+    line-height: 1.3;
+
+    overflow-y: auto;
+
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-4px);
+    transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+/* Hover triggert Overlay */
+.product-title-wrapper:hover .product-title-overlay {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
 }
 
 .product-price {
@@ -629,9 +666,17 @@ with tab1:
                 )
 
                 # 🔽 GENAU HIER EINFÜGEN
-                if len(full_name) > 60:
-                    with st.expander("Vollständiger Produktname"):
-                        st.write(full_name)
+                full_name = str(row.get("Produkt", "")).strip()
+
+                st.markdown(
+                    f"""
+                    <div class="product-title" data-fulltext="{full_name}">
+                        {full_name}
+                    </div>
+                    """,
+                    unsafe_allow_html=True
+                )
+
                 # 🔼 GENAU HIER
 
                 brand_line = f"{row.get('Marke', '')} – {row['Retailer']}"
