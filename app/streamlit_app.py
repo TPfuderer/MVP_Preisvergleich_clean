@@ -66,19 +66,29 @@ div[data-testid="stImage"] {
     margin-bottom: 0.5rem !important;
 }
 
-/* Bild selbst: immer komplett sichtbar, skaliert in Box */
-div[data-testid="stImage"] img {
-    object-fit: contain !important;
-    width: 100% !important;
-    height: 100% !important;
-    max-width: 80% !important;
-    max-height: 80% !important;
-    border-radius: 0 !important;
-    background-color: white !important;
-    margin: auto !important;
-    display: block !important;
-    transform: none !important;
+/* 🔒 FIX: stImageContainer darf nicht kollabieren */
+div[data-testid="stImageContainer"] {
+    height: 100%;
+    min-height: 200px;
+    max-height: 320px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
+/* 🔒 FIX: Bild bekommt echte Höhe */
+div[data-testid="stImageContainer"] img {
+    max-height: 100%;
+    width: auto;
+    height: auto;
+
+    object-fit: contain;
+    display: block;
+    margin: auto;
+}
+
+
 </style>
 """, unsafe_allow_html=True)
 
