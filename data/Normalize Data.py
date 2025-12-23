@@ -2,9 +2,30 @@ import pandas as pd
 from pathlib import Path
 import re
 
-DATA_DIR = Path(r"C:\Users\pfudi\PycharmProjects\MVP_Preisvergleich_clean\data")
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+DATA_DIR = PROJECT_ROOT / "data"
 
 csv_files = list(DATA_DIR.glob("*.csv"))
+
+def normalize_text_field(s):
+    if pd.isna(s):
+        return s
+
+    s = str(s)
+
+    # REMOVE superscripts completely
+    s = s.replace("²", "")
+    s = s.replace("³", "")
+    s = s.replace("¹", "")
+
+    # Remove other weird symbols, keep German chars
+    s = re.sub(r"[^a-zA-Z0-9äöüÄÖÜß\s\-]", " ", s)
+
+    # Collapse whitespace
+    s = re.sub(r"\s+", " ", s).strip()
+
+    return s
+
 
 def normalize_price(value):
     if pd.isna(value):
@@ -38,6 +59,14 @@ for file in csv_files:
     print(f"📄 Normalisiere: {file.name}")
 
     df = pd.read_csv(file)
+
+    # --- Regel X: Produkt + Marke Text normalisieren ---
+    if "Produkt" in df.columns:
+        df["Produkt"] = df["Produkt"].apply(normalize_text_field)
+
+    if "Marke" in df.columns:
+        df["Marke"] = df["Marke"].apply(normalize_text_field)
+
 
     # --- Regel 1: Marke ---
     if "Marke" in df.columns:
