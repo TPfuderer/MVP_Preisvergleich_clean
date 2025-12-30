@@ -66,19 +66,19 @@ div[data-testid="stImage"] {
     margin-bottom: 0.5rem !important;
 }
 
-/* Bild selbst: immer komplett sichtbar, skaliert in Box */
-div[data-testid="stImage"] img {
-    object-fit: contain !important;
-    width: 100% !important;
-    height: 100% !important;
-    max-width: 80% !important;
-    max-height: 80% !important;
-    border-radius: 0 !important;
-    background-color: white !important;
-    margin: auto !important;
-    display: block !important;
-    transform: none !important;
+/* 🔒 FIX: stImageContainer darf nicht kollabieren */
+div[data-testid="stImageContainer"] {
+    height: 100%;
+    min-height: 200px;
+    max-height: 320px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
+
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -628,11 +628,6 @@ with tab1:
                     unsafe_allow_html=True
                 )
 
-                # 🔽 GENAU HIER EINFÜGEN
-                if len(full_name) > 60:
-                    with st.expander("Vollständiger Produktname"):
-                        st.write(full_name)
-                # 🔼 GENAU HIER
 
                 brand_line = f"{row.get('Marke', '')} – {row['Retailer']}"
 
@@ -784,8 +779,12 @@ with tab2:
             for i, (_, row) in enumerate(subset_cats.iterrows()):
                 with cols_c[i % 3]:
                     st.image(get_image_for_product(row["Produkt"]), use_container_width=True)
-                    full_name = str(row.get("Produkt", ""))
-                    short_name = short_text(full_name, 60)
+                    full_name = str(row.get("Produkt", "")).strip()
+
+                    st.markdown(
+                        f"<div class='product-title' title='{full_name}'>{full_name}</div>",
+                        unsafe_allow_html=True
+                    )
 
                     if len(full_name) > 60:
                         with st.expander(short_name):
