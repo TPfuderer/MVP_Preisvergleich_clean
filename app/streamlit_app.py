@@ -552,7 +552,8 @@ with tab1:
         retailers,
         default=[r for r in retailers if r in ["Rewe", "Edeka", "Kaufland"]]
     )
-    use_current = st.toggle("Nur aktuelle Angebote anzeigen", value=True, key="filter_current_tab5")
+    use_current = st.toggle("Nur aktuelle Angebote anzeigen", value=False, key="filter_current_tab5")
+
 
     subset = data[data["Retailer"].isin(selected_retailers)].copy()
     if use_current:
