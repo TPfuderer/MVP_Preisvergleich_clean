@@ -36,7 +36,6 @@ st.caption(
 
 st.caption(
     "Daten extrahiert über eine automatisierte Web-Scraping- und OCR-Pipeline. "
-    "Fokus der Anwendung ist eine stabile, reproduzierbare Demo ohne Debugtexte."
 )
 
 
@@ -349,7 +348,7 @@ def get_base_data(tab_key: str, default_current: bool = True) -> pd.DataFrame:
     """
     use_current = st.toggle(
         "Nur aktuelle Angebote anzeigen",
-        value=default_current,
+        value=False,
         key=f"use_current_{tab_key}"
     )
 
