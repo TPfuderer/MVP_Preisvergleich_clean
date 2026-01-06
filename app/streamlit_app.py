@@ -24,7 +24,22 @@ CSV_IMG_DIR_LIDL = DATA_DIR / "images" / "images_lidl"
 ALL_CSV_IMG_DIRS = [CSV_IMG_DIR, CSV_IMG_DIR_LIDL, CSV_IMG_DIR_ALDI, CSV_IMG_DIR_MARKTGURU, CSV_IMG_DIR_REWE, CSV_IMG_DIR_TEGUT,CSV_IMG_DIR_KAUFLAND, CSV_IMG_DIR_NETTO]
 
 
-st.title("🛒 MVP Preisvergleich")
+# -------------------------------------------------
+# 🏠 Startseite – aufgeräumt & professionell
+# -------------------------------------------------
+st.title("🛒 Supermarket Offers Explorer")
+
+st.caption(
+    "Übersicht aktueller Supermarktangebote großer Händler in Deutschland. "
+    "Offers extracted via automated scraping and OCR pipeline."
+)
+
+st.caption(
+    "Daten extrahiert über eine automatisierte Web-Scraping- und OCR-Pipeline. "
+    "Fokus der Anwendung ist eine stabile, reproduzierbare Demo ohne Debugtexte."
+)
+
+
 
 
 st.markdown("""
@@ -1032,7 +1047,6 @@ with tab5:
         """)
 
 
-
 # ---------------------------------------------------
 # Tab 6 – Empfehlungen (aus Einkaufszettel-JSON)
 # ---------------------------------------------------
@@ -1251,3 +1265,10 @@ with tab6:
         if st.button("🔼 Weniger anzeigen", key="less_tab6"):
             st.session_state.card_limit_tab6 = 40
             st.rerun()
+
+# -------------------------------------------------
+# Footer Hinweis – dezent & ohne Debugtexte
+# -------------------------------------------------
+st.sidebar.caption("FlyerApp – Demo Version")
+st.sidebar.caption("No products available for current selection")
+st.sidebar.caption("Daten extrahiert über eine automatisierte Pipeline")
