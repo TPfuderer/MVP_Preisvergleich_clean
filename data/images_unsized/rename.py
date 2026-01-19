@@ -6,7 +6,7 @@ import re
 # Pfade
 # -----------------------------
 IMG_DIR = Path(
-    r"C:\Users\pfudi\PycharmProjects\MVP_Preisvergleich_clean\data\images\images_tegut"
+    r"/data/images/dd"
 )
 CSV_PATH = Path(
     r"C:\Users\pfudi\PycharmProjects\MVP_Preisvergleich_clean\data\tegut_angebote_2025-12-14.csv"
