@@ -1,0 +1,175 @@
+Produkt,Marke,Preis,Vorheriger Preis,Preis_kg,Hinweis,Nur_online,Gueltig_raw,Gueltig_von,Gueltig_bis,Bildpfad,assigned_labels
+Blätter Krokant,Oster Plantation,"€ 1,59",,"2,49 €",,Nein,,,,images_aldi/aldi_offer_001.jpg,"cat_knabbern_naschen,tag_ultra_processed"
+Frühlingsgelee,Frühlingsgelee,"€ 0,59",,"0,99 €",,Nein,,,,images_aldi/aldi_offer_002.jpg,cat_non_food
+Gartenstuhl,Gartenstuhl,"€ 8,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_003.jpg,cat_non_food
+Trainingsjacke,ALDIMANIA,"€ 6,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_004.jpg,cat_non_food
+Äpfel rot,Äpfel rot,"€ 1,79",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_005.jpg,"cat_obst_gemuese,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_frisches_obst,tag_whole_food"
+Mandarinen kernlos,Mandarinen kernlos,"€ 1,79",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_006.jpg,"cat_obst_gemuese,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_frisches_obst,tag_whole_food"
+Mini-Romana-Salatherzen,Mini-Romana-Salatherzen,"€ 1,79",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_007.jpg,"cat_obst_gemuese,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_frisches_gemuese,sub_salate,tag_whole_food"
+Trauben hell kernlos,Trauben hell kernlos,"€ 1,69",,kg-Preis 3.38,,Nein,,,,images_aldi/aldi_offer_008.jpg,"cat_obst_gemuese,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_frisches_obst,tag_whole_food"
+Mango,Mango,"€ 0,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_009.jpg,"cat_obst_gemuese,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_exoten,sub_frisches_obst,tag_whole_food"
+Spargel grün,Spargel grün,"€ 3,19",,"3,99 €",,Nein,,,,images_aldi/aldi_offer_010.jpg,"cat_obst_gemuese,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,tag_whole_food"
+Hamburger,MEINE METZGEREI,"€ 4,69",,"5,79 €",,Nein,,,,images_aldi/aldi_offer_011.jpg,cat_fleisch_wurst
+Rumpsteak,Meine Metzgerei,"€ 6,99",,"8,58 €",,Nein,,,,images_aldi/aldi_offer_012.jpg,cat_fleisch_wurst
+Hähnchen-Schenkel,Meine Metzgerei,"€ 6,99",,kg-Preis 3.50,,Nein,,,,images_aldi/aldi_offer_013.jpg,cat_fleisch_wurst
+Bio-Lachsfiletportion,Bio,"€ 4,99",,"6,49 €",,Nein,,,,images_aldi/aldi_offer_014.jpg,"cat_fisch_meeresfruechte,diet_gluten_free,diet_lactose_free,tag_high_protein,tag_proteinreich,tag_whole_food"
+Bio-Gulasch,Bio-Gulasch,"€ 5,89",,"7,99 €",,Nein,,,,images_aldi/aldi_offer_015.jpg,"cat_grundnahrung,diet_vegetarian,tag_whole_food"
+Große Bio-Bratwurst,Große Bio-Bratwurst,"€ 2,59",,kg-Preis 10.79,,Nein,,,,images_aldi/aldi_offer_016.jpg,"cat_fleisch_wurst,sub_wurst,tag_ultra_processed"
+Hähnchen-Ministeaks,Meine Metzgerei,"€ 6,99",,kg-Preis 8.74,,Nein,,,,images_aldi/aldi_offer_017.jpg,cat_fleisch_wurst
+Minutensteaks,Meine Metzgerei,"€ 3,29",,"3,89 €",,Nein,,,,images_aldi/aldi_offer_018.jpg,cat_fleisch_wurst
+Bifensis Adult,Purina One,"€ 2,89",,"3,95 €",,Nein,,,,images_aldi/aldi_offer_019.jpg,cat_non_food
+Peanut,m m s,"€ 1,69",,"2,89 €",,Nein,,,,images_aldi/aldi_offer_020.jpg,"cat_knabbern_naschen,diet_vegetarian,tag_ultra_processed"
+Feta- oder Hirtenkäse,Patros,"€ 1,99",,"3,29 €",,Nein,,,,images_aldi/aldi_offer_021.jpg,"cat_molkerei_kaese,sub_kaese,sub_milchprodukte"
+Lust auf Kuchen Erdbeer Cheesecake,Coppenrath Wiese,"€ 3,49",,"4,99 €",,Nein,,,,images_aldi/aldi_offer_022.jpg,"cat_grundnahrung,diet_vegetarian,tag_ultra_processed"
+Almighurt Erdbeere,Ehrmann,"€ 0,39",,"0,89 €",,Nein,,,,images_aldi/aldi_offer_023.jpg,"cat_molkerei_kaese,diet_vegetarian,sub_joghurt_skyr_quark,sub_milchprodukte"
+Coca-Cola Fanta mezzo mix Sprite,Coca-Cola Fanta mezzo mix Sprite,"€ 1,19",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_024.jpg,"cat_getraenke,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,tag_ultra_processed"
+Tafelschokolade,Milka,"€ 2,69",,"4,99 €",,Nein,,,,images_aldi/aldi_offer_025.jpg,"cat_knabbern_naschen,diet_vegetarian,tag_ultra_processed"
+Gefüllte weiße Eier,Oster Phantasie,"€ 1,69",,"2,49 €",,Nein,,,,images_aldi/aldi_offer_026.jpg,cat_getraenke
+Blätterkrokant-Eier,Oster Phantasie,"€ 1,59",,"1,99 €",,Nein,,,,images_aldi/aldi_offer_027.jpg,"cat_knabbern_naschen,tag_ultra_processed"
+Frühlingsgelee,Oster Phantasie,"€ 0,59",,"0,99 €",,Nein,,,,images_aldi/aldi_offer_028.jpg,cat_non_food
+Eierlikör-Eier,Oster Phantasie,"€ 1,69",,"2,29 €",,Nein,,,,images_aldi/aldi_offer_029.jpg,"cat_getraenke,tag_ultra_processed"
+Jamaica-Rum-Eier,Oster Phantasie,"€ 0,89",,"1,29 €",,Nein,,,,images_aldi/aldi_offer_030.jpg,"cat_getraenke,tag_ultra_processed"
+Mini-Ostereier,Moser Roth,"€ 2,19",,"2,99 €",,Nein,,,,images_aldi/aldi_offer_031.jpg,"cat_knabbern_naschen,diet_vegetarian,tag_ultra_processed"
+Schoko-Häschen Vollmilchschokolade,Oster Phantasie,"€ 0,99",,"1,49 €",,Nein,,,,images_aldi/aldi_offer_032.jpg,"cat_knabbern_naschen,diet_vegetarian,tag_ultra_processed"
+Gefüllte Eier,Oster Phantasie,"€ 1,11",,"1,49 €",,Nein,,,,images_aldi/aldi_offer_033.jpg,"cat_getraenke,tag_ultra_processed"
+Osterhase Edel-Vollmilch Schokolade,Moser Roth,"€ 1,99",,13.27 €/kg,,Nein,,,,images_aldi/aldi_offer_034.jpg,"cat_knabbern_naschen,diet_vegetarian,tag_ultra_processed"
+Schoko-Küken,Oster Phantasie,"€ 1,49",,"2,29 €",,Nein,,,,images_aldi/aldi_offer_035.jpg,"cat_knabbern_naschen,diet_vegetarian,tag_ultra_processed"
+Edelmarzipan-Pasteten-Ei Rum-Trüffel,Edelmarzipan-Pasteten-Ei Rum-Trüffel,"€ 1,11",,"1,49 €",,Nein,,,,images_aldi/aldi_offer_036.jpg,"cat_knabbern_naschen,diet_lactose_free,diet_vegan,diet_vegetarian,tag_ultra_processed"
+Mini-Osterhase,Moser Roth,"€ 0,69",,"0,99 €",,Nein,,,,images_aldi/aldi_offer_037.jpg,"cat_knabbern_naschen,diet_vegetarian,tag_ultra_processed"
+Fein gefüllte Waffel-Eier,Oster Phantasie,"€ 1,59",,"1,99 €",,Nein,,,,images_aldi/aldi_offer_038.jpg,"cat_knabbern_naschen,diet_vegetarian,tag_ultra_processed"
+Choco-Lollys,Oster Phantasie,"€ 1,49",,"1,99 €",,Nein,,,,images_aldi/aldi_offer_039.jpg,"cat_knabbern_naschen,tag_ultra_processed"
+Gefüllte Ostereier Mix,Oster Phantasie,"€ 1,69",,"2,29 €",,Nein,,,,images_aldi/aldi_offer_040.jpg,"cat_getraenke,tag_ultra_processed"
+Glückskäfer,Oster Phantasie,"€ 1,79",,"2,49 €",,Nein,,,,images_aldi/aldi_offer_041.jpg,cat_getraenke
+Knusper-Eier Mandel-Creme,Oster Phantasie,"€ 1,59",,"2,49 €",,Nein,,,,images_aldi/aldi_offer_042.jpg,"cat_knabbern_naschen,tag_ultra_processed"
+Baumkuchen-Spitzen,Oster Phantasie,"€ 2,29",,"2,99 €",,Nein,,,,images_aldi/aldi_offer_043.jpg,cat_non_food
+Gebäckhäschen,Oster Phantasie,"€ 1,39",,"1,99 €",,Nein,,,,images_aldi/aldi_offer_044.jpg,"cat_knabbern_naschen,tag_ultra_processed"
+Mini-Häschen,Mini-Häschen,"€ 1,39",,"1,79 €",,Nein,,,,images_aldi/aldi_offer_045.jpg,"cat_knabbern_naschen,diet_vegetarian,tag_ultra_processed"
+Osterhase,Osterhase,"€ 1,11",,"1,49 €",,Nein,,,,images_aldi/aldi_offer_046.jpg,"cat_knabbern_naschen,tag_ultra_processed"
+Erdbeer-Creme große Eier,Oster Phantasie,"€ 1,49",,"2,29 €",,Nein,,,,images_aldi/aldi_offer_047.jpg,cat_drogerie
+Oster-Fruchtgummi Süßer Mix,Oster Phantasie,"€ 0,69",,kg-Preis 4.31,,Nein,,,,images_aldi/aldi_offer_048.jpg,"cat_knabbern_naschen,tag_ultra_processed"
+Milchmäuse-Ostereier,Choceur,"€ 1,69",,"1,99 €",,Nein,,,,images_aldi/aldi_offer_049.jpg,"cat_knabbern_naschen,diet_vegetarian,sub_milchprodukte,tag_ultra_processed"
+Peanut Butter Eier,Oster Phantasie,"€ 1,15",,"1,69 €",,Nein,,,,images_aldi/aldi_offer_050.jpg,"cat_molkerei_kaese,diet_vegetarian,sub_butter_margarine,sub_milchprodukte,tag_ultra_processed"
+Sitzkissen,BELAVI,"€ 1,79",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_051.jpg,cat_non_food
+Outdoor-Teppich,HOME CREATION,"€ 3,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_052.jpg,cat_non_food
+Kinderstuhl,Belavi,"€ 2,79",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_053.jpg,"cat_knabbern_naschen,tag_ultra_processed"
+Gartenstuhl,Belavi,"€ 8,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_054.jpg,cat_non_food
+Holzfliesen,Belavi,"€ 6,99",,19.42 €/m²,,Nein,,,,images_aldi/aldi_offer_055.jpg,cat_non_food
+Esstisch,Belavi,"€ 16,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_056.jpg,cat_non_food
+Riesen-Dahlie,Gärtners Schätze,"€ 1,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_057.jpg,cat_non_food
+Bunter Frühling,Bunter Frühling,"€ 1,49",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_058.jpg,"cat_knabbern_naschen,diet_vegetarian,tag_ultra_processed"
+Aufbewahrungsbox,BELAVI,"€ 19,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_059.jpg,cat_non_food
+Pflanzgefäß,Belavi,"€ 3,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_060.jpg,cat_non_food
+Faltbarer Eimer,HOME CREATION,"€ 5,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_061.jpg,cat_non_food
+Struktur-Fußmatte,HOME CREATION,"€ 7,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_062.jpg,cat_non_food
+Klett-Sneaker,Lily Dan,"€ 12,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_063.jpg,cat_non_food
+Regenstiefel,LILY DAN,"€ 9,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_064.jpg,cat_non_food
+Sneaker-Pflege,Power Force,"€ 1,49",,1-Preis 19.87,,Nein,,,,images_aldi/aldi_offer_065.jpg,cat_non_food
+Tüll-Rock mit Leggings,LILY DAN,"€ 4,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_066.jpg,cat_non_food
+Strumpfhosen,Lily Dan,"€ 6,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_067.jpg,cat_non_food
+Outdoor-Jeans,Lily Dan,"€ 5,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_068.jpg,cat_non_food
+Strickjacke,LILY DAN,"€ 7,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_069.jpg,cat_non_food
+Stickerbuch,Stickerbuch,"€ 1,79",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_070.jpg,cat_non_food
+Schlafsack,Lily Dan,"€ 8,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_071.jpg,cat_non_food
+Vollwaschmittel Flowers,Tandil,"€ 7,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_072.jpg,cat_drogerie
+Traktor Bagger Laster,Traktor Bagger Laster,"€ 2,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_073.jpg,cat_non_food
+Wäscheduftperlen Rosa Blütenmeer,TANDIL,"€ 3,99",,kg-Preis 8.31,,Nein,,,,images_aldi/aldi_offer_074.jpg,cat_non_food
+Meereswelt,Schlaubär,"€ 4,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_075.jpg,"cat_grundnahrung,diet_vegetarian"
+Sensible-Bettdecke,Irisette,"€ 29,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_076.jpg,cat_non_food
+Feinperkal-Bettwäsche,IRISETTE,"€ 29,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_077.jpg,cat_drogerie
+Sensible-Kopfkissen,Irisette,"€ 19,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_078.jpg,cat_non_food
+Akku-Tischleuchte,CASALUX,"€ 7,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_079.jpg,cat_non_food
+Sensible-Relax-Kissen,IRISETTE,"€ 24,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_080.jpg,cat_non_food
+Jersey-Spannbetttuch,Novitesse,"€ 4,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_081.jpg,cat_non_food
+Retro-Sneaker,ALDIMANIA,"€ 9,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_082.jpg,cat_non_food
+Einkaufstasche,ALDIMANIA,"€ 5,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_083.jpg,cat_non_food
+Trainingsjacke,Aldimania,"€ 6,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_084.jpg,cat_non_food
+Pullover Damen,Aldimania,"€ 6,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_085.jpg,cat_non_food
+ALDImaniac Schlüsselanhänger,ALDImaniac,"€ 5,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_086.jpg,cat_non_food
+Basic-Shirts,UP2FASHION,"€ 7,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_087.jpg,cat_non_food
+Socken,UP2FASHION,"€ 3,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_088.jpg,cat_non_food
+Retropants,Retropants,"€ 7,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_089.jpg,cat_non_food
+Kapuzenpullover oder Sweatshirt,UP2FASHION,"€ 9,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_090.jpg,cat_non_food
+Laufschuhe,CRANE,"€ 16,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_091.jpg,cat_non_food
+Unterhemden,UP2FASHION,"€ 6,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_092.jpg,cat_non_food
+Frühlingsbeetpflanzen,Gardenline,"€ 1,89",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_093.jpg,cat_non_food
+Pullover,UP2FASHION,"€ 9,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_094.jpg,cat_non_food
+Jeans,UP2FASHION,"€ 12,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_095.jpg,cat_non_food
+Frühjahrsblüher-Ample,Frühjahrsblüher-Ample,"€ 1,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_096.jpg,cat_non_food
+2-in-1-Pullover,UP2FASHION,"€ 7,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_097.jpg,cat_non_food
+Kalanchoe,Kalanchoe,"€ 4,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_098.jpg,"cat_fleisch_wurst,tag_ultra_processed"
+Mikrofaser-Geschirrtücher,Crofton,"€ 3,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_099.jpg,cat_non_food
+Aluguss-Topf,Crofton,"€ 17,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_100.jpg,cat_non_food
+Allzweck- Gefrierbeutel,Power Force,"€ 2,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_101.jpg,cat_non_food
+Aluguss-Pfanne,Crofton,"€ 14,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_102.jpg,cat_non_food
+Bambus-Pfandflaschen-Sammelbehälter,HOME CREATION,"€ 19,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_103.jpg,cat_non_food
+Wokpfanne,Crofton,"€ 4,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_104.jpg,cat_non_food
+Profi-Müllsäcke,Power Force,"€ 7,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_105.jpg,cat_non_food
+Fettarmer Joghurt,Milsani,"€ 0,79",,1.58 €/kg,,Nein,,,,images_aldi/aldi_offer_106.jpg,cat_molkerei_kaese
+BiACtiv fettarmer Joghurt Vanille,Milsani,"€ 0,39",,kg-Preis 1.95,,Nein,,,,images_aldi/aldi_offer_107.jpg,cat_molkerei_kaese
+Premium-Joghurt,Milsani,"€ 0,49",,kg-Preis 2.45,,Nein,,,,images_aldi/aldi_offer_108.jpg,cat_molkerei_kaese
+Sahnejoghurt,Milsani,"€ 0,39",,2.60 €/kg,,Nein,,,,images_aldi/aldi_offer_109.jpg,cat_molkerei_kaese
+High-Protein-Pudding Schoko,Milsani,"€ 0,89",,kg-Preis 4.45,,Nein,,,,images_aldi/aldi_offer_110.jpg,cat_molkerei_kaese
+Cr me la Cuisine,Milsani,"€ 0,89",,1 l = 3.56,,Nein,,,,images_aldi/aldi_offer_111.jpg,cat_molkerei_kaese
+Joghurt 3 5 Fett,Milsani,"€ 0,89",,kg-Preis 1.78,,Nein,,,,images_aldi/aldi_offer_112.jpg,cat_molkerei_kaese
+Pfirsich-Maracuja-Milchschnitte,Ferrero,"€ 1,49",,10.64 €/kg,,Nein,,,,images_aldi/aldi_offer_113.jpg,"cat_knabbern_naschen,diet_vegetarian,tag_ultra_processed"
+Knacker Mix,Wiesbauer,"€ 1,99",,9.95 €/kg,,Nein,,,,images_aldi/aldi_offer_114.jpg,"cat_knabbern_naschen,diet_vegetarian,sub_wurst,tag_ultra_processed"
+Home Barista Caff Crema Dolce,Dallmayr,"€ 13,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_115.jpg,"cat_getraenke,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian"
+Feine Butter,MEGGLE,"€ 1,39",,kg-Preis 5.56,,Nein,,,,images_aldi/aldi_offer_116.jpg,"cat_molkerei_kaese,diet_gluten_free,diet_vegetarian,sub_butter_margarine,sub_milchprodukte"
+Cr me fra che Classic,Dr Oetker,"€ 0,99",,6.60 €/kg,,Nein,,,,images_aldi/aldi_offer_117.jpg,"cat_tiefkuehl,tag_ultra_processed"
+Salami-Aufschnitt,Gut Drei Eichen,"€ 1,49",,kg-Preis 6.21,,Nein,,,,images_aldi/aldi_offer_118.jpg,"cat_fleisch_wurst,sub_gefluegel,sub_wurst,tag_ultra_processed"
+Back-Camembert,Alpenhain,"€ 1,99",,kg-Preis 9.95,,Nein,,,,images_aldi/aldi_offer_119.jpg,"cat_molkerei_kaese,sub_kaese,sub_milchprodukte"
+Sahnejoghurt Amarena Kirsche,Zott,"€ 0,49",,1 kg = 3.50,,Nein,,,,images_aldi/aldi_offer_120.jpg,"cat_molkerei_kaese,diet_vegetarian,sub_joghurt_skyr_quark,sub_milchprodukte,sub_sahne_creme"
+Anti-Schuppen-Shampoo Classic Clean,Head Shoulders,"€ 9,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_121.jpg,cat_drogerie
+Lufterfrischer Duopack,Febreze,"€ 2,29",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_122.jpg,cat_drogerie
+Blütenfrisch Kraft Aktiv,WC Frisch,"€ 4,79",,23.95 €/kg,,Nein,,,,images_aldi/aldi_offer_123.jpg,cat_drogerie
+Mini Original,TUC,"€ 1,49",,12.42 €/kg,,Nein,,,,images_aldi/aldi_offer_124.jpg,"cat_knabbern_naschen,diet_gluten_free,diet_lactose_free,diet_vegan,tag_high_protein,tag_ultra_processed"
+All in 1 Extra Tabs,Somat,"€ 1,99",,l-Preis 7.96,,Nein,,,,images_aldi/aldi_offer_125.jpg,"cat_getraenke,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian"
+Nutella,Ferrero,"€ 6,49",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_126.jpg,"cat_knabbern_naschen,diet_vegetarian,tag_ultra_processed"
+Knoppers Black White,Storck,"€ 1,59",,7.95 €/kg,,Nein,,,,images_aldi/aldi_offer_127.jpg,"cat_knabbern_naschen,tag_ultra_processed"
+Russisch Brot,Biscotto,"€ 0,99",,7.92 €/kg,,Nein,,,,images_aldi/aldi_offer_128.jpg,"cat_knabbern_naschen,diet_vegetarian,tag_ultra_processed"
+Duplo-Choco-Duo,Ferrero,"€ 2,99",,kg-Preis 16.43,,Nein,,,,images_aldi/aldi_offer_129.jpg,"cat_knabbern_naschen,diet_vegetarian,tag_ultra_processed"
+Alpenmilch Alpine Milk Lait,Milka,"€ 1,59",,kg-Preis 31.80,,Nein,,,,images_aldi/aldi_offer_130.jpg,"cat_molkerei_kaese,diet_vegetarian,sub_kaese,sub_milchprodukte,tag_ultra_processed"
+Mints,Choceur,"€ 1,79",,kg-Preis 8.95,,Nein,,,,images_aldi/aldi_offer_131.jpg,"cat_knabbern_naschen,diet_vegetarian,tag_ultra_processed"
+Irisches Ochsenbäckchen,Käfer,"€ 6,99",,kg-Preis 16.64,,Nein,,,,images_aldi/aldi_offer_132.jpg,"cat_fleisch_wurst,sub_rind,tag_whole_food"
+Cheddar Würzig,Kerrygold,"€ 1,49",,12.42 €/kg,,Nein,,,,images_aldi/aldi_offer_133.jpg,"cat_molkerei_kaese,sub_fleischersatz,sub_kaese,sub_milchprodukte,tag_high_protein,tag_ultra_processed"
+Lachsforellenfiletseite,Golden Seafood,"€ 7,99",,kg-Preis 15.99,,Nein,,,,images_aldi/aldi_offer_134.jpg,"cat_fisch_meeresfruechte,diet_lactose_free,tag_proteinreich"
+Irischer Steaknacken,Irischer Steaknacken,"€ 14,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_135.jpg,"cat_fleisch_wurst,sub_gefluegel,sub_schwein"
+Wine Gums,Taste of British Isles,"€ 0,89",,3.87 €/kg,,Nein,,,,images_aldi/aldi_offer_136.jpg,"cat_getraenke,diet_vegetarian,tag_ultra_processed"
+Crunchy Fries,Speise Zeit,"€ 1,69",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_137.jpg,"cat_knabbern_naschen,diet_gluten_free,diet_vegetarian,sub_kartoffeln,tag_ultra_processed"
+Scones,Taste of British Isles,"€ 1,49",,kg-Preis 6.21,,Nein,,,,images_aldi/aldi_offer_138.jpg,"cat_getraenke,tag_ultra_processed"
+Kalinka-Kefir,Müller,"€ 0,79",,1.58 €/kg bzw. l,,Nein,,,,images_aldi/aldi_offer_139.jpg,"cat_molkerei_kaese,diet_vegetarian,sub_joghurt_skyr_quark,sub_milchprodukte,tag_ultra_processed"
+Hähnchen-Geschnetzeltes,Meine Metzgerei,"€ 6,99",,kg-Preis 8.74,,Nein,,,,images_aldi/aldi_offer_140.jpg,cat_fleisch_wurst
+Arrabbiata Pastasauce,Barilla,"€ 1,79",,4.48 €/kg,,Nein,,,,images_aldi/aldi_offer_141.jpg,"cat_grundnahrung,diet_lactose_free,diet_vegan,diet_vegetarian,sub_hackfleisch,sub_nudeln"
+Tomaten Stückig mit Basilikum,ORO DI PARMA,"€ 1,19",,2.98 €/kg,,Nein,,,,images_aldi/aldi_offer_142.jpg,"cat_grundnahrung,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_frisches_gemuese,tag_whole_food"
+Butter Chicken,YOUCOOK,"€ 3,79",,9.02 €/kg,,Nein,,,,images_aldi/aldi_offer_143.jpg,"cat_fleisch_wurst,diet_gluten_free,sub_butter_margarine,sub_gefluegel,sub_milchprodukte,tag_high_protein,tag_proteinreich,tag_ultra_processed"
+Orientalisches Flatbread Classic,Schätze des Orients,"€ 1,89",,kg-Preis 6.30,,Nein,,,,images_aldi/aldi_offer_144.jpg,"cat_fleisch_wurst,tag_ultra_processed"
+Pizza Tradizionale Margherita,Dr Oetker,"€ 1,99",,"kg-Preis 5.69, 4.85 bzw. 4.80",,Nein,,,,images_aldi/aldi_offer_145.jpg,"cat_tiefkuehl,sub_tk_pizza,tag_ultra_processed"
+Auflaufkäse,Landliebe,"€ 1,49",,kg-Preis 9.93,,Nein,,,,images_aldi/aldi_offer_146.jpg,"cat_molkerei_kaese,sub_kaese,sub_milchprodukte,sub_sahne_creme,tag_ultra_processed"
+Jersey-Set,LILY DAN,"€ 3,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_147.jpg,cat_non_food
+Sweatshirt,Lily Dan,"€ 2,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_148.jpg,cat_non_food
+Bodies,Lily Dan,"€ 3,49",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_149.jpg,cat_non_food
+Flüssigseife Sanfte Pflege,Lacura,"€ 0,65",,1 l = 1.30,,Nein,,,,images_aldi/aldi_offer_150.jpg,cat_drogerie
+Abschminktücher Pflegend,Lacura,"€ 0,85",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_151.jpg,cat_drogerie
+Körpermilch Classic,Lacura,"€ 1,19",,1-Preis 2.38,,Nein,,,,images_aldi/aldi_offer_152.jpg,"cat_molkerei_kaese,diet_lactose_free,diet_vegetarian,sub_milchprodukte,tag_ultra_processed"
+Duschgel Zitrone,LACURA,"€ 0,69",,1 l = 1.73,,Nein,,,,images_aldi/aldi_offer_153.jpg,"cat_drogerie,tag_whole_food"
+Cremedusche,Lacura,"€ 0,69",,1 l = 1.73,,Nein,,,,images_aldi/aldi_offer_154.jpg,cat_drogerie
+Waschlotion Sensitiv,Lacura,"€ 1,25",,"2,50 €",,Nein,,,,images_aldi/aldi_offer_155.jpg,cat_drogerie
+Körperlotion Feuchtigkeit,Lacura,"€ 2,79",,9.30 / 1 l,,Nein,,,,images_aldi/aldi_offer_156.jpg,cat_non_food
+Kosmetiktücher,Lacura,"€ 0,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_157.jpg,cat_non_food
+Tuchmaske Aqua Complete,Lacura,"€ 0,75",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_158.jpg,cat_drogerie
+Fußbalsam Oliven- Rosmarinöl,Lacura,"€ 1,39",,9.27,,Nein,,,,images_aldi/aldi_offer_159.jpg,"cat_grundnahrung,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian"
+Deo-Spray Pure Basic,LACURA,"€ 0,85",,1-Preis 4.25,,Nein,,,,images_aldi/aldi_offer_160.jpg,cat_drogerie
+Gesichtspflege Vital Multi-Intensiv-Serum,Lacura,"€ 1,95",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_161.jpg,cat_non_food
+Wattepads,LACURA,"€ 0,95",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_162.jpg,cat_non_food
+Deo-Spray Cool Fresh,Lacura,"€ 0,85",,1 l = 4.25,,Nein,,,,images_aldi/aldi_offer_163.jpg,cat_drogerie
+Handcreme Kamille,Lacura,"€ 0,85",,11.33 bzw. 6.80,,Nein,,,,images_aldi/aldi_offer_164.jpg,cat_drogerie
+Schlagsahne,Milsani,"€ 0,89",,4.45 €/kg,,Nein,,,,images_aldi/aldi_offer_165.jpg,cat_molkerei_kaese
+Schmand,Milsani,"€ 0,79",,kg-Preis 3.95,,Nein,,,,images_aldi/aldi_offer_166.jpg,cat_molkerei_kaese
+Kondensmilch 10 Fett,Milsani,"€ 0,69",,kg-Preis 2.03,,Nein,,,,images_aldi/aldi_offer_167.jpg,cat_molkerei_kaese
+Saure Sahne,Milsani,"€ 0,59",,kg-Preis 2.95,,Nein,,,,images_aldi/aldi_offer_168.jpg,cat_molkerei_kaese
+Cr me fra che oder Cr me leicht,Milsani,"€ 0,99",,kg-Preis 4.95,,Nein,,,,images_aldi/aldi_offer_169.jpg,cat_molkerei_kaese
+Körniger Frischkäse,Milsani,"€ 1,19",,5.95 €/kg,,Nein,,,,images_aldi/aldi_offer_170.jpg,cat_molkerei_kaese
+ALDI TALK App,ALDI TALK App,"€ 69,99",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_171.jpg,cat_non_food
+Kanada Mit dem Mietwagen quer durch Kanada,Kanada Mit dem Mietwagen quer durch Kanada,"€ 1,230,00",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_172.jpg,cat_non_food
+Schottland - Nordküste,Schottland - Nordküste,"€ 1,170,00",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_173.jpg,"cat_knabbern_naschen,tag_ultra_processed"
+Portugal - Portugals Schätze erleben,Portugal - Portugals Schätze erleben,"€ 910,00",,Kein Mengenpreis,,Nein,,,,images_aldi/aldi_offer_174.jpg,"cat_knabbern_naschen,tag_ultra_processed"

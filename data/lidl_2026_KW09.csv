@@ -1,0 +1,496 @@
+Produkt,Marke,Preis,Vorheriger Preis,Preis_kg,Hinweis,Nur_online,Gueltig_raw,Gueltig_von,Gueltig_bis,Bildpfad,assigned_labels
+Aluminium-Klappsessel,Livarno,"€ 34,99",,"39,99 €",,Nein,,,,images_lidl/lidl_offer_001.jpg,cat_non_food
+Energy Drink XXL,Kong Strong,"€ 0,49",,1 l = 0.98,,Nein,,,,images_lidl/lidl_offer_002.jpg,"cat_getraenke,tag_ultra_processed"
+Lachsfiletportionen XXL,Ocean Sea,"€ 9,99",,1 kg = 16.65,,Nein,,,,images_lidl/lidl_offer_003.jpg,"cat_fisch_meeresfruechte,diet_lactose_free,tag_high_protein,tag_proteinreich"
+Activia XXL,Danone,"€ 2,69",,1 kg = 2.92,,Nein,,,,images_lidl/lidl_offer_004.jpg,"cat_molkerei_kaese,diet_vegetarian,sub_joghurt_skyr_quark,sub_milchprodukte,tag_ultra_processed"
+Delikatess Kochschinken Hähnchen- Putenbrust XXL,Dulano,"€ 4,49",,1 kg = 11.23,,Nein,,,,images_lidl/lidl_offer_005.jpg,"cat_fleisch_wurst,sub_gefluegel,sub_schwein,sub_wurst,tag_proteinreich,tag_ultra_processed"
+Bio Reiswaffeln,Sondey,"€ 0,52",,1 kg = 3.85,,Nein,,,,images_lidl/lidl_offer_006.jpg,"cat_grundnahrung,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,tag_whole_food"
+Baby-Reisebett,Lupilu,"€ 34,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_007.jpg,cat_non_food
+Autokindersitz Modell Musca,Osann,"€ 69,99",,"UVP
+99,95 €",,Nein,,,,images_lidl/lidl_offer_008.jpg,cat_non_food
+Treppenhochstuhl,Roba,"€ 54,99",,"UVP
+89,90 €",,Nein,,,,images_lidl/lidl_offer_009.jpg,cat_non_food
+Autokindersitz Huddle I-Size 2,Osann,"€ 89,99",,"UVP
+159,95 €",,Nein,,,,images_lidl/lidl_offer_010.jpg,cat_non_food
+Wippe,Feber,"€ 29,99",,"UVP
+154,99 €",,Nein,,,,images_lidl/lidl_offer_011.jpg,"cat_getraenke,tag_ultra_processed"
+Autorennbahn,Carrera,"€ 39,99",,"UVP
+87,99 €",,Nein,,,,images_lidl/lidl_offer_012.jpg,cat_non_food
+Quadrocopter Helikopter,Jamara,"€ 19,99",,"UVP
+37,99 €",,Nein,,,,images_lidl/lidl_offer_013.jpg,cat_non_food
+Spielhaus,Feber,"€ 29,99",,"UVP
+139,99 €",,Nein,,,,images_lidl/lidl_offer_014.jpg,cat_non_food
+Ferngesteuertes Baufahrzeug,Jamara,"€ 29,99",,"UVP
+71,99 €",,Nein,,,,images_lidl/lidl_offer_015.jpg,cat_non_food
+Bagger,Jamara,"€ 29,99",,"UVP
+71,99 €",,Nein,,,,images_lidl/lidl_offer_016.jpg,cat_non_food
+E-Bike Trekking 28,Zündapp,"€ 949,00",,"UVP
+2.399,00 €",,Nein,,,,images_lidl/lidl_offer_017.jpg,cat_non_food
+E-Bike City 28,Telefunken,"€ 949,00",,"UVP
+1.769,90 €",,Nein,,,,images_lidl/lidl_offer_018.jpg,"cat_fleisch_wurst,diet_lactose_free,tag_ultra_processed"
+Fahrradanhänger,Qeridoo,"€ 379,00",,"UVP
+650,00 €",,Nein,,,,images_lidl/lidl_offer_019.jpg,cat_non_food
+Fahrradträger,Eufab,"€ 289,00",,"UVP
+469,95 €",,Nein,,,,images_lidl/lidl_offer_020.jpg,cat_non_food
+E-Bike Mountainbike 27 5,Zündapp,"€ 1,099,00",,"UVP
+2.549,00 €",,Nein,,,,images_lidl/lidl_offer_021.jpg,cat_non_food
+Pfanne,Pfanne,"€ 17,90",,"UVP
+44,99 €",,Nein,,,,images_lidl/lidl_offer_022.jpg,cat_non_food
+Kaffeevollautomat,Melitta,"€ 569,00",,"UVP
+799,99 €",,Nein,,,,images_lidl/lidl_offer_023.jpg,"cat_getraenke,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian"
+Pfanne,Tefal,"€ 19,99",,"UVP
+49,99 €",,Nein,,,,images_lidl/lidl_offer_024.jpg,cat_non_food
+Schmor-Pfanne,Tefal,"€ 39,99",,"UVP
+64,99 €",,Nein,,,,images_lidl/lidl_offer_025.jpg,cat_non_food
+Filterkaffeemaschine,Severin,"€ 89,99",,"UVP
+169,90 €",,Nein,,,,images_lidl/lidl_offer_026.jpg,cat_non_food
+Kaffeepadmaschine Senseo,Philips,"€ 49,99",,"UVP
+84,99 €",,Nein,,,,images_lidl/lidl_offer_027.jpg,cat_non_food
+Pfannen-Set,Tefal,"€ 39,99",,"UVP
+94,99 €",,Nein,,,,images_lidl/lidl_offer_028.jpg,cat_non_food
+Wok-Pfanne,Tefal,"€ 29,99",,"UVP
+49,99 €",,Nein,,,,images_lidl/lidl_offer_029.jpg,cat_non_food
+Bio Avocado,Bio Avocado,"€ 1,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_030.jpg,"cat_obst_gemuese,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,tag_whole_food"
+Bio Basmati Reis,Golden Sun,"€ 1,27",,1 kg = 2.54,,Nein,,,,images_lidl/lidl_offer_031.jpg,"cat_grundnahrung,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_reis,tag_whole_food"
+Bio Strauchtomaten,Bio Strauchtomaten,"€ 1,59",,1 kg = 3.18,,Nein,,,,images_lidl/lidl_offer_032.jpg,"cat_obst_gemuese,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_frisches_gemuese,tag_whole_food"
+Käse,Bioland,"€ 3,51",,1 kg = 15.91,,Nein,,,,images_lidl/lidl_offer_033.jpg,"cat_molkerei_kaese,sub_kaese,sub_milchprodukte"
+Bio Brühe,Kania,"€ 1,11",,1 l = -0.16,,Nein,,,,images_lidl/lidl_offer_034.jpg,"cat_grundnahrung,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,tag_whole_food"
+Rote Bio Zwiebeln,Rote Bio Zwiebeln,"€ 1,03",,1 kg = 2.06,,Nein,,,,images_lidl/lidl_offer_035.jpg,"cat_obst_gemuese,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_frisches_gemuese,tag_whole_food"
+Dinkel Hafer Müsli Früchte,Bioland,"€ 2,63",,1 kg = 5.26,,Nein,,,,images_lidl/lidl_offer_036.jpg,"cat_grundnahrung,diet_lactose_free,diet_vegan,diet_vegetarian,tag_whole_food"
+Bio Reiswaffeln,Sondey,"€ 0,52",,1 kg = 3.85,,Nein,,,,images_lidl/lidl_offer_037.jpg,"cat_grundnahrung,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,tag_whole_food"
+Dinkel Nudeln,Bioland,"€ 1,16",,1 kg = 2.32,,Nein,,,,images_lidl/lidl_offer_038.jpg,"cat_grundnahrung,diet_lactose_free,diet_vegetarian,tag_whole_food"
+Mandarinen Clementinen,Mandarinen Clementinen,"€ 1,79",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_039.jpg,"cat_obst_gemuese,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_frisches_obst,tag_whole_food"
+Rote Äpfel,Rote Äpfel,"€ 1,69",,1 kg = -.85,,Nein,,,,images_lidl/lidl_offer_040.jpg,"cat_obst_gemuese,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_frisches_gemuese,sub_frisches_obst,tag_whole_food"
+Deglet Nour Datteln,Deglet Nour Datteln,"€ 3,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_041.jpg,cat_non_food
+Trauben Mix,Trauben Mix,"€ 1,99",,1 kg = 3.98,,Nein,,,,images_lidl/lidl_offer_042.jpg,"cat_obst_gemuese,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_frisches_obst,tag_whole_food"
+Chicoree,Chicoree,"€ 1,39",,1 kg = 2.78,,Nein,,,,images_lidl/lidl_offer_043.jpg,"cat_obst_gemuese,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_frisches_gemuese,sub_salate,tag_whole_food"
+Salat-Mix,Salat-Mix,"€ 0,99",,"1,19 €",,Nein,,,,images_lidl/lidl_offer_044.jpg,"cat_obst_gemuese,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_frisches_gemuese,sub_salate,tag_whole_food"
+Veganer Bio Haferdrink ohne Zucker,Vemondo,"€ 0,72",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_045.jpg,"cat_getraenke,diet_lactose_free,diet_vegan,diet_vegetarian,tag_ultra_processed"
+Bio Italienische Tomaten gehackt,Baresa,"€ 0,60",,1 l = 1.41,,Nein,,,,images_lidl/lidl_offer_046.jpg,"cat_grundnahrung,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_frisches_gemuese,tag_whole_food"
+Rübenzucker,Bioland,"€ 1,19",,1 kg = 1.59,,Nein,,,,images_lidl/lidl_offer_047.jpg,cat_grundnahrung
+Bio Natives Olivenöl Extra,Primadonna,"€ 5,56",,"6,95 €",,Nein,,,,images_lidl/lidl_offer_048.jpg,"cat_grundnahrung,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,tag_whole_food"
+Bio Maisstangen,Lupilu,"€ 0,68",,1 kg = 13.60,,Nein,,,,images_lidl/lidl_offer_049.jpg,"cat_grundnahrung,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_frisches_obst,tag_whole_food"
+Bioland Hirtenkäse,Milbona,"€ 1,75",,"2,19 €",,Nein,,,,images_lidl/lidl_offer_050.jpg,cat_molkerei_kaese
+Bio Hummus,Chef Select,"€ 1,19",,1 kg = 5.95,,Nein,,,,images_lidl/lidl_offer_051.jpg,"cat_sonstiges,diet_lactose_free,diet_vegan,diet_vegetarian"
+Bioland Haltbare Milch,Milbona,"€ 0,92",,"1,15 €",,Nein,,,,images_lidl/lidl_offer_052.jpg,cat_molkerei_kaese
+Käse am Stück,Bioland,"€ 1,91",,1 kg = 9.55,,Nein,,,,images_lidl/lidl_offer_053.jpg,"cat_molkerei_kaese,sub_kaese,sub_milchprodukte"
+Veganer Bio Brotaufstrich Papaya Mango Curry,Vemondo,"€ 1,00",,1 kg = 5.56,,Nein,,,,images_lidl/lidl_offer_054.jpg,"cat_obst_gemuese,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_exoten,sub_frisches_obst,tag_whole_food"
+Bio Griechischer Feta,Milbona,"€ 2,12",,1 kg = 10.60,,Nein,,,,images_lidl/lidl_offer_055.jpg,cat_molkerei_kaese
+Bio Sonnenmais,Freshona,"€ 0,84",,"1,05 €",,Nein,,,,images_lidl/lidl_offer_056.jpg,"cat_grundnahrung,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,tag_whole_food"
+Ciabatta,Ciabatta,"€ 0,59",,"0,79 €",,Nein,,,,images_lidl/lidl_offer_057.jpg,"cat_grundnahrung,diet_vegetarian"
+Käselaugenstange,Käselaugenstange,"€ 1,18",,"1,77 €",,Nein,,,,images_lidl/lidl_offer_058.jpg,"cat_grundnahrung,diet_vegetarian,sub_kaese,sub_milchprodukte"
+Brioche-Croissant mit Cremefüllung,Brioche-Croissant mit Cremefüllung,"€ 0,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_059.jpg,"cat_drogerie,tag_ultra_processed"
+Kakao Donuts XXL,Kakao Donuts XXL,"€ 2,59",,1 kg = 8.46,,Nein,,,,images_lidl/lidl_offer_060.jpg,"cat_knabbern_naschen,tag_ultra_processed"
+Apfeltasche,Apfeltasche,"€ 1,38",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_061.jpg,cat_non_food
+Marillenspitzen,Marillenspitzen,"€ 0,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_062.jpg,cat_non_food
+Chicken Nuggets,Metzgerfrisch,"€ 7,79",,1 kg = 5.99,,Nein,,,,images_lidl/lidl_offer_063.jpg,cat_fleisch_wurst
+Frisches Hähnchen-Geschnetzeltes,Metzgerfrisch,"€ 3,79",,"4,99 €",,Nein,,,,images_lidl/lidl_offer_064.jpg,cat_fleisch_wurst
+Barbarie Entenbrustfilet,Deluxe,"€ 5,40",,kg = 17.99,,Nein,,,,images_lidl/lidl_offer_065.jpg,"cat_fleisch_wurst,diet_gluten_free,diet_lactose_free,sub_gefluegel,tag_high_protein,tag_proteinreich"
+Frische Hähnchen-Schenkel,Metzgerfrisch,"€ 3,99",,1 kg = 3.63,,Nein,,,,images_lidl/lidl_offer_066.jpg,cat_fleisch_wurst
+ASC Frisches Lachsforellenfilet,Fischerstolz,"€ 2,79",,1 kg = 15.50,,Nein,,,,images_lidl/lidl_offer_067.jpg,"cat_fisch_meeresfruechte,tag_high_protein,tag_proteinreich"
+Frisches Hackfleisch gemischt,Metzgerfrisch,"€ 6,99",,1 kg = 5.83,,Nein,,,,images_lidl/lidl_offer_068.jpg,cat_fleisch_wurst
+Metzgerfrisch Frische Rinder-Rouladen,Metzgerfrisch Frische Rinder-Rouladen,"€ 8,49",,1 kg = 16.98,,Nein,,,,images_lidl/lidl_offer_069.jpg,"cat_fleisch_wurst,sub_hackfleisch,sub_rind,sub_schwein,tag_proteinreich"
+Bio Lachsseite,Fischerstolz,"€ 18,00",,19.99 €/kg,,Nein,,,,images_lidl/lidl_offer_070.jpg,cat_fisch_meeresfruechte
+Coca-Cola Fanta Sprite Mezzo Mix,Coca-Cola,"€ 0,99",,"UVP
+1,59 €",,Nein,,,,images_lidl/lidl_offer_071.jpg,cat_getraenke
+Kaergarden Butter,Arla,"€ 1,29",,"UVP
+2,99 €",,Nein,,,,images_lidl/lidl_offer_072.jpg,"cat_molkerei_kaese,diet_vegetarian,sub_butter_margarine,sub_milchprodukte"
+Pasta Sauce,Barilla,"€ 1,69",,"UVP
+3,39 €",,Nein,,,,images_lidl/lidl_offer_073.jpg,"cat_grundnahrung,diet_lactose_free,diet_vegan,diet_vegetarian,sub_hackfleisch,sub_nudeln"
+Pesto,Barilla,"€ 1,79",,"UVP
+3,79 €",,Nein,,,,images_lidl/lidl_offer_074.jpg,"cat_grundnahrung,diet_lactose_free,diet_vegan,diet_vegetarian,sub_nudeln,tag_ultra_processed"
+Body Balsam,Mixa,"€ 2,79",,"UVP
+4,99 €",,Nein,,,,images_lidl/lidl_offer_075.jpg,"cat_grundnahrung,diet_vegetarian"
+Tafelschokolade,Milka,"€ 1,11",,"UVP
+1,99 €",,Nein,,,,images_lidl/lidl_offer_076.jpg,"cat_knabbern_naschen,diet_vegetarian,tag_ultra_processed"
+Überraschung Riesen-Ei,Kinder,"€ 9,99",,1 kg = 45.41,,Nein,,,,images_lidl/lidl_offer_077.jpg,cat_knabbern_naschen
+Feine Eier,Milka,"€ 3,29",,1 kg = 36.56,,Nein,,,,images_lidl/lidl_offer_078.jpg,"cat_knabbern_naschen,diet_vegetarian,sub_milchprodukte,tag_ultra_processed"
+Schmunzelhase,Milka,"€ 1,49",,"UVP
+1,89 €",,Nein,,,,images_lidl/lidl_offer_079.jpg,"cat_knabbern_naschen,diet_vegetarian,sub_milchprodukte,tag_ultra_processed"
+Kaffee,Melitta,"€ 7,49",,1 kg = 14.98,,Nein,,,,images_lidl/lidl_offer_080.jpg,"cat_getraenke,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian"
+Duo,Kinder,"€ 2,39",,"UVP
+2,99 €",,Nein,,,,images_lidl/lidl_offer_081.jpg,cat_knabbern_naschen
+Pants Baby Dry Premium Protection XXL,Pampers,"€ 33,99",,"UVP
+40,99 €",,Nein,,,,images_lidl/lidl_offer_082.jpg,"cat_getraenke,tag_high_protein,tag_proteinreich"
+Bueno,Kinder,"€ 2,49",,"UVP
+3,29 €",,Nein,,,,images_lidl/lidl_offer_083.jpg,cat_knabbern_naschen
+Pasta,Barilla,"€ 1,99",,"UVP
+3,99 €",,Nein,,,,images_lidl/lidl_offer_084.jpg,"cat_grundnahrung,diet_lactose_free,diet_vegan,diet_vegetarian,sub_hackfleisch,sub_nudeln"
+Red Label Blended Scotch Whisky,Johnnie Walker,"€ 10,99",,1 l = 15.70,,Nein,,,,images_lidl/lidl_offer_085.jpg,cat_getraenke
+Suprema,Dr Oetker,"€ 3,99",,"UVP
+5,49 €",,Nein,,,,images_lidl/lidl_offer_086.jpg,"cat_grundnahrung,tag_ultra_processed"
+KitKat,Nestl,"€ 1,99",,"2,99 €",,Nein,,,,images_lidl/lidl_offer_087.jpg,"cat_knabbern_naschen,diet_vegetarian,tag_ultra_processed"
+Ostermischung,Milka,"€ 4,99",,"UVP
+6,59 €",,Nein,,,,images_lidl/lidl_offer_088.jpg,"cat_knabbern_naschen,tag_ultra_processed"
+Müllermilch Shake,Müller,"€ 0,79",,"UVP
+1,49 €",,Nein,,,,images_lidl/lidl_offer_089.jpg,"cat_molkerei_kaese,diet_vegetarian,sub_milchprodukte,tag_ultra_processed"
+Tafelschokolade,Fin Carr,"€ 1,09",,1 kg = 10.90,,Nein,,,,images_lidl/lidl_offer_090.jpg,"cat_knabbern_naschen,diet_vegetarian,tag_ultra_processed"
+Milch Freunde Schokoladenbonbons,Mister Choc,"€ 2,19",,"2,49 €",,Nein,,,,images_lidl/lidl_offer_091.jpg,"cat_knabbern_naschen,diet_vegetarian,sub_milchprodukte,tag_ultra_processed"
+Mini Friends,Kinder,"€ 3,39",,1 kg = 27.79,,Nein,,,,images_lidl/lidl_offer_092.jpg,cat_knabbern_naschen
+Löffel Ei,Milka,"€ 3,79",,"UVP
+4,99 €",,Nein,,,,images_lidl/lidl_offer_093.jpg,"cat_knabbern_naschen,diet_vegetarian,tag_ultra_processed"
+Mini Eggs,Kinder,"€ 2,49",,1 kg = 29.29,,Nein,,,,images_lidl/lidl_offer_094.jpg,cat_knabbern_naschen
+Tafelschokolade,Fin Carr,"€ 0,85",,1 kg = 8.50,,Nein,,,,images_lidl/lidl_offer_095.jpg,"cat_knabbern_naschen,diet_vegetarian,tag_ultra_processed"
+Maxi Mix,Kinder,"€ 5,79",,1 kg = 36.88,,Nein,,,,images_lidl/lidl_offer_096.jpg,cat_knabbern_naschen
+Weichspüler Aromatherapie,Vernel,"€ 1,85",,"UVP
+2,99 €",,Nein,,,,images_lidl/lidl_offer_097.jpg,cat_drogerie
+Riegel,Hanuta,"€ 2,79",,"3,19 €",,Nein,,,,images_lidl/lidl_offer_098.jpg,"cat_knabbern_naschen,diet_vegetarian,tag_ultra_processed"
+Weichkäse Mini,G ramont,"€ 2,29",,"3,49 €",,Nein,,,,images_lidl/lidl_offer_099.jpg,"cat_molkerei_kaese,sub_kaese,sub_milchprodukte,tag_ultra_processed"
+Bodyspray XXL,Axe,"€ 4,49",,"UVP
+5,99 €",,Nein,,,,images_lidl/lidl_offer_100.jpg,cat_drogerie
+Skyr- Joghurt-Alternative,Alpro,"€ 1,69",,"UVP
+2,19 €",,Nein,,,,images_lidl/lidl_offer_101.jpg,"cat_molkerei_kaese,diet_lactose_free,diet_vegan,diet_vegetarian,sub_joghurt_skyr_quark,sub_milchprodukte"
+Chianti Riserva DOCG Rotwein trocken,Corte alle Mura,"€ 3,99",,"4,99 €",,Nein,,,,images_lidl/lidl_offer_102.jpg,cat_getraenke
+Shots,Hitchcock,"€ 3,79",,"UVP
+3,99 €",,Nein,,,,images_lidl/lidl_offer_103.jpg,cat_knabbern_naschen
+Vodka,Three Sixty,"€ 9,99",,"UVP
+13,99 €",,Nein,,,,images_lidl/lidl_offer_104.jpg,cat_getraenke
+Brot-Aufstrich,Popp,"€ 1,79",,1 kg = 7.16,,Nein,,,,images_lidl/lidl_offer_105.jpg,"cat_grundnahrung,diet_vegan,diet_vegetarian,sub_huelsenfruechte"
+Käsescheiben,Fol Epi,"€ 1,59",,"2,69 €",,Nein,,,,images_lidl/lidl_offer_106.jpg,"cat_molkerei_kaese,sub_kaese,sub_milchprodukte"
+Celebration Mix,Dovgan,"€ 7,77",,"UVP
+9,99 €",,Nein,,,,images_lidl/lidl_offer_107.jpg,"cat_knabbern_naschen,tag_ultra_processed"
+Floristenstrauß Exklusiv,Floristenstrauß Exklusiv,"€ 9,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_108.jpg,cat_non_food
+Einzelrose mit Phönixblatt,Einzelrose mit Phönixblatt,"€ 1,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_109.jpg,cat_non_food
+Rosen Exklusiv,Rosen Exklusiv,"€ 8,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_110.jpg,cat_non_food
+Exklusiver Blumenstrauß,Exklusiver Blumenstrauß,"€ 14,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_111.jpg,cat_non_food
+Rosenstrauß bunt,Rosenstrauß bunt,"€ 5,79",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_112.jpg,cat_non_food
+Schmetterlingsorchideen in Keramik,Schmetterlingsorchideen in Keramik,"€ 9,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_113.jpg,cat_non_food
+Happy Calla,Happy Calla,"€ 7,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_114.jpg,cat_non_food
+Orchideengesteck,Orchideengesteck,"€ 9,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_115.jpg,cat_non_food
+Blumenzwiebeln im bunten Kulturtopf,Blumenzwiebeln im bunten Kulturtopf,"€ 1,69",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_116.jpg,cat_non_food
+Anthurium andraeanum,Anthurium andraeanum,"€ 4,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_117.jpg,"cat_getraenke,diet_vegetarian"
+Hochbeet- und Gewächshauserde,Parkside,"€ 4,99",,1 l = 0.12,,Nein,,,,images_lidl/lidl_offer_118.jpg,cat_non_food
+Erdbeerpflanzen,Erdbeerpflanzen,"€ 3,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_119.jpg,cat_non_food
+Gartenkompost,Parkside,"€ 3,99",,1 l = 0.10,,Nein,,,,images_lidl/lidl_offer_120.jpg,cat_non_food
+Obstbaum,Obstbaum,"€ 4,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_121.jpg,cat_non_food
+Rosenstamm in Faltschachtel,Rosenstamm in Faltschachtel,"€ 4,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_122.jpg,cat_non_food
+Frühlingsblüher im 10er-Tray,Frühlingsblüher im 10er-Tray,"€ 1,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_123.jpg,cat_non_food
+Narzissen T te T te,Narzissen T te T te,"€ 1,69",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_124.jpg,"cat_grundnahrung,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian"
+Oster-Gelee Mischung,Favorina,"€ 0,69",,"0,99 €",,Nein,,,,images_lidl/lidl_offer_125.jpg,"cat_knabbern_naschen,tag_ultra_processed"
+Schoko-Lolly,Favorina,"€ 1,39",,"1,99 €",,Nein,,,,images_lidl/lidl_offer_126.jpg,"cat_knabbern_naschen,diet_vegetarian,tag_ultra_processed"
+Mini Osterfiguren,Favorina,"€ 1,79",,"2,29 €",,Nein,,,,images_lidl/lidl_offer_127.jpg,"cat_knabbern_naschen,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,tag_ultra_processed,tag_whole_food"
+Kleine Schokoladenkäfer,Favorina,"€ 1,89",,"2,49 €",,Nein,,,,images_lidl/lidl_offer_128.jpg,"cat_knabbern_naschen,diet_vegetarian,tag_ultra_processed"
+Karamell Edel Nougat Eier,Favorina,"€ 1,79",,"2,49 €",,Nein,,,,images_lidl/lidl_offer_129.jpg,"cat_knabbern_naschen,tag_ultra_processed"
+Gefüllte Eierlikör-Eier,Favorina,"€ 1,59",,"2,29 €",,Nein,,,,images_lidl/lidl_offer_130.jpg,"cat_getraenke,tag_ultra_processed"
+Edel-Marzipan Baumstamm,Favorina,"€ 0,99",,"1,29 €",,Nein,,,,images_lidl/lidl_offer_131.jpg,"cat_knabbern_naschen,tag_ultra_processed"
+Edel-Marzipan Eier,Favorina,"€ 1,39",,"1,99 €",,Nein,,,,images_lidl/lidl_offer_132.jpg,"cat_knabbern_naschen,diet_vegetarian,tag_ultra_processed"
+Ostereier,Favorina,"€ 2,79",,"3,99 €",,Nein,,,,images_lidl/lidl_offer_133.jpg,cat_getraenke
+Schokoladen Eier,Favorina,"€ 2,29",,"2,99 €",,Nein,,,,images_lidl/lidl_offer_134.jpg,"cat_knabbern_naschen,diet_vegetarian,tag_ultra_processed"
+Edel Marzipan Ei,Favorina,"€ 1,09",,"1,49 €",,Nein,,,,images_lidl/lidl_offer_135.jpg,"cat_knabbern_naschen,diet_lactose_free,diet_vegan,tag_ultra_processed"
+Edel Nougat-Eier,Favorina,"€ 1,79",,"2,49 €",,Nein,,,,images_lidl/lidl_offer_136.jpg,"cat_knabbern_naschen,tag_ultra_processed"
+Blätterkrokant Eier,Favorina,"€ 1,59",,"1,99 €",,Nein,,,,images_lidl/lidl_offer_137.jpg,"cat_knabbern_naschen,tag_ultra_processed"
+Trüffel-Eier,Favorina,"€ 1,99",,"2,49 €",,Nein,,,,images_lidl/lidl_offer_138.jpg,"cat_getraenke,diet_vegetarian,tag_ultra_processed"
+Körniger Frischkäse,Milbona,"€ 1,49",,"1,79 €",,Nein,,,,images_lidl/lidl_offer_139.jpg,cat_molkerei_kaese
+Emmentaler,Milbona,"€ 2,99",,"3,79 €",,Nein,,,,images_lidl/lidl_offer_140.jpg,cat_molkerei_kaese
+Cr me Fra che,Bioland,"€ 0,87",,"1,09 €",,Nein,,,,images_lidl/lidl_offer_141.jpg,cat_molkerei_kaese
+Käse für den Ofen,Milbona,"€ 1,79",,1 kg = 9.94,,Nein,,,,images_lidl/lidl_offer_142.jpg,cat_molkerei_kaese
+Food in a Bottle,Tasty,"€ 1,59",,"1,99 €",,Nein,,,,images_lidl/lidl_offer_143.jpg,"cat_getraenke,tag_ultra_processed"
+Haltbare Schlagsahne,Milbona,"€ 0,75",,"0,89 €",,Nein,,,,images_lidl/lidl_offer_144.jpg,cat_molkerei_kaese
+Fettarmer Kefir,Milbona,"€ 0,65",,"0,79 €",,Nein,,,,images_lidl/lidl_offer_145.jpg,cat_molkerei_kaese
+Käsescheiben,Bioland,"€ 1,59",,1 kg = 7.95,,Nein,,,,images_lidl/lidl_offer_146.jpg,"cat_molkerei_kaese,sub_kaese,sub_milchprodukte"
+Schmelzkäsescheiben,Milbona,"€ 1,69",,"1,99 €",,Nein,,,,images_lidl/lidl_offer_147.jpg,cat_molkerei_kaese
+Cheddar,Milbona,"€ 2,39",,1 kg = 13.66,,Nein,,,,images_lidl/lidl_offer_148.jpg,cat_molkerei_kaese
+Maasdamer,Milbona,"€ 1,59",,1 kg = 7.95,,Nein,,,,images_lidl/lidl_offer_149.jpg,cat_molkerei_kaese
+Kräuter Quark,Milbona,"€ 0,95",,1 kg = 3.17,,Nein,,,,images_lidl/lidl_offer_150.jpg,cat_molkerei_kaese
+Schmelzkäse,Milbona,"€ 1,59",,1 kg = 7.95,,Nein,,,,images_lidl/lidl_offer_151.jpg,cat_molkerei_kaese
+Käsescheiben,Milbona,"€ 0,99",,1 kg = 6.60,,Nein,,,,images_lidl/lidl_offer_152.jpg,cat_molkerei_kaese
+Reine Buttermilch,Milbona,"€ 0,59",,1 kg = 1.18,,Nein,,,,images_lidl/lidl_offer_153.jpg,cat_molkerei_kaese
+Laktosefreie Schlagsahne,Milbona,"€ 0,99",,1 kg = 4.95,,Nein,,,,images_lidl/lidl_offer_154.jpg,cat_molkerei_kaese
+Parmigiano Reggiano,Milbona,"€ 3,29",,1 kg = 26.32,,Nein,,,,images_lidl/lidl_offer_155.jpg,cat_molkerei_kaese
+Kräuter- Knoblauchbutter,Milbona,"€ 1,19",,1 kg = 11.90,,Nein,,,,images_lidl/lidl_offer_156.jpg,cat_molkerei_kaese
+Single Malt Irish Whiskey 10 Jahre,Bushmills,"€ 24,99",,"UVP
+32,99 €",,Nein,,,,images_lidl/lidl_offer_157.jpg,cat_getraenke
+Single Malt Scotch Whisky 12 Jahre,Highland Park,"€ 33,33",,"UVP
+52,99 €",,Nein,,,,images_lidl/lidl_offer_158.jpg,cat_getraenke
+Double Cask Highland Single Malt Scotch Whisky 12 Jahre,The Macallan,"€ 69,99",,"UVP
+79,90 €",,Nein,,,,images_lidl/lidl_offer_159.jpg,cat_getraenke
+Islay Single Malt Scotch Whisky 30 Jahre,Ben Bracken,"€ 119,00",,"169,00 €",,Nein,,,,images_lidl/lidl_offer_160.jpg,"cat_getraenke,diet_vegetarian"
+Portwein Late Bottled Vintage 2020,Armilar,"€ 11,99",,"14,99 €",,Nein,,,,images_lidl/lidl_offer_161.jpg,cat_getraenke
+Reserva Exclusiva Rum,Botucal,"€ 29,99",,"UVP
+39,99 €",,Nein,,,,images_lidl/lidl_offer_162.jpg,cat_getraenke
+Riccardi Chianti Classico DOCG Riserva Rotwein trocken,Casato dei Medici,"€ 7,99",,"9,99 €",,Nein,,,,images_lidl/lidl_offer_163.jpg,"cat_getraenke,diet_vegetarian,tag_ultra_processed"
+Syrah Garnacha Rotwein,Sansibar Deluxe,"€ 6,99",,"9,99 €",,Nein,,,,images_lidl/lidl_offer_164.jpg,cat_fisch_meeresfruechte
+Riesling QbA Weißwein trocken,Maybach,"€ 9,99",,"UVP
+15,99 €",,Nein,,,,images_lidl/lidl_offer_165.jpg,cat_getraenke
+Prestige Ros Champagner brut,Taittinger,"€ 49,99",,"UVP
+64,99 €",,Nein,,,,images_lidl/lidl_offer_166.jpg,cat_getraenke
+Cr mant de Loire ros AOP Schaumwein,Blanc Foussy,"€ 8,99",,1 l = 11.99,,Nein,,,,images_lidl/lidl_offer_167.jpg,cat_getraenke
+Vernaccia di San Gimignano DOCG Weißwein trocken,Corte alle Mura,"€ 29,99",,"41,94 €",,Nein,,,,images_lidl/lidl_offer_168.jpg,cat_getraenke
+Lachsfiletportionen XXL,Ocean Sea,"€ 9,99",,1 kg = 16.65,,Nein,,,,images_lidl/lidl_offer_169.jpg,"cat_fisch_meeresfruechte,diet_lactose_free,tag_high_protein,tag_proteinreich"
+Norwegischer Räucherlachs XXL,Nautica,"€ 4,29",,1 kg = 19.50,,Nein,,,,images_lidl/lidl_offer_170.jpg,"cat_fisch_meeresfruechte,tag_high_protein,tag_proteinreich"
+MSC Fischstäbchen XXL,Ocean Sea,"€ 3,99",,1 kg = 4.43,,Nein,,,,images_lidl/lidl_offer_171.jpg,"cat_fisch_meeresfruechte,sub_tk_fertiggerichte,tag_ultra_processed"
+MSC Alaska-Seelachs Portionsfilets XXL,Ocean Sea,"€ 4,79",,1 kg = 4.99,,Nein,,,,images_lidl/lidl_offer_172.jpg,"cat_fisch_meeresfruechte,tag_proteinreich,tag_ultra_processed"
+Taschki Pelmeni Vareniki,Dovgan,"€ 6,66",,1 kg = 4.44,,Nein,,,,images_lidl/lidl_offer_173.jpg,"cat_tiefkuehl,sub_tk_fertiggerichte"
+Chicken Nuggets XXL,Chef Select,"€ 4,49",,1 kg = 6.91,,Nein,,,,images_lidl/lidl_offer_174.jpg,"cat_fleisch_wurst,diet_lactose_free,sub_gefluegel,sub_tk_fertiggerichte,tag_ultra_processed"
+Kashkaval XXL,Milbona,"€ 8,79",,1 kg = 5.86,,Nein,,,,images_lidl/lidl_offer_175.jpg,cat_molkerei_kaese
+Delikatess Kochschinken,Dulano,"€ 4,49",,1 kg = 11.23,,Nein,,,,images_lidl/lidl_offer_176.jpg,"cat_fleisch_wurst,sub_schwein,sub_wurst,tag_ultra_processed"
+Tortilla Wraps XXL,Grafschafter,"€ 1,89",,1 kg = 2.55,,Nein,,,,images_lidl/lidl_offer_177.jpg,"cat_drogerie,tag_ultra_processed"
+Gouda Jung XXL,Milbona,"€ 5,49",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_178.jpg,cat_molkerei_kaese
+Delikatess Schinkenwürfel XXL,Dulano,"€ 2,09",,1 kg = 7.46/11.61,,Nein,,,,images_lidl/lidl_offer_179.jpg,"cat_fleisch_wurst,sub_schwein,sub_wurst,tag_proteinreich,tag_ultra_processed"
+Delikatess Edelsalami XXL,Dulano,"€ 1,49",,1 kg = 8.76,,Nein,,,,images_lidl/lidl_offer_180.jpg,"cat_fleisch_wurst,sub_wurst,tag_ultra_processed"
+Mozzarella XXL,Milbona,"€ 1,49",,1 kg = 5.96,,Nein,,,,images_lidl/lidl_offer_181.jpg,cat_molkerei_kaese
+Flips XXL,Snack Day,"€ 0,99",,1 kg = 3.96/6.60,,Nein,,,,images_lidl/lidl_offer_182.jpg,"cat_knabbern_naschen,tag_ultra_processed"
+Prinzenrolle Schoko,DeBeukelaer,"€ 1,69",,1 kg = 3.76,,Nein,,,,images_lidl/lidl_offer_183.jpg,"cat_knabbern_naschen,diet_vegetarian,tag_ultra_processed"
+Kong Strong Energy Drink XXL,Kong Strong Energy Drink XXL,"€ 0,49",,1 l = 0.98,,Nein,,,,images_lidl/lidl_offer_184.jpg,"cat_getraenke,tag_ultra_processed"
+Duplo,Duplo,"€ 3,29",,1 kg = 16.43,,Nein,,,,images_lidl/lidl_offer_185.jpg,cat_non_food
+Haltbare Vollmilch,Milbona,"€ 9,50",,"11,40 €",,Nein,,,,images_lidl/lidl_offer_186.jpg,cat_molkerei_kaese
+Schoko-Bons XXL,Kinder,"€ 6,99",,1 kg = 13.98,,Nein,,,,images_lidl/lidl_offer_187.jpg,cat_knabbern_naschen
+Frischkäse,Petrella,"€ 1,49",,"UVP
+2,19 €",,Nein,,,,images_lidl/lidl_offer_188.jpg,"cat_molkerei_kaese,sub_kaese,sub_milchprodukte,sub_wurst,tag_ultra_processed"
+Tortilla Chips XXL,Snack Day,"€ 1,49",,1 kg = 3.97,,Nein,,,,images_lidl/lidl_offer_189.jpg,"cat_knabbern_naschen,tag_ultra_processed"
+Nussmix XXL,Alesto,"€ 3,99",,1 kg = 13.30,,Nein,,,,images_lidl/lidl_offer_190.jpg,"cat_knabbern_naschen,diet_vegetarian,tag_ultra_processed"
+Erdnüsse im Teigmantel XXL,Alesto,"€ 1,29",,1 kg = 5.16,,Nein,,,,images_lidl/lidl_offer_191.jpg,"cat_knabbern_naschen,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_huelsenfruechte,tag_high_protein,tag_proteinreich,tag_ultra_processed"
+Waschmittel flüssig XXL,Formil,"€ 8,99",,1 WL = 0.09,,Nein,,,,images_lidl/lidl_offer_192.jpg,cat_drogerie
+Discreet Hygiene-Einlagen,Always,"€ 7,99",,"UVP
+8,95 €",,Nein,,,,images_lidl/lidl_offer_193.jpg,cat_drogerie
+Taft Haarlack,Schwarzkopf,"€ 4,45",,"UVP
+5,99 €",,Nein,,,,images_lidl/lidl_offer_194.jpg,cat_drogerie
+Supersoft Premium Toilettenpapier XXL,Floraly s,"€ 5,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_195.jpg,cat_drogerie
+Slipeinlagen,Always,"€ 3,29",,"3,85 €",,Nein,,,,images_lidl/lidl_offer_196.jpg,cat_drogerie
+Katzenstreu XXL,Coshida,"€ 3,95",,0.49 €/l,,Nein,,,,images_lidl/lidl_offer_197.jpg,"cat_tiernahrung,tag_ultra_processed"
+Bierfass mit Zapfhahn,Desperados,"€ 15,99",,"UVP
+18,99 €",,Nein,,,,images_lidl/lidl_offer_198.jpg,"cat_getraenke,diet_vegetarian"
+Premium Pils Bierfass mit Zapfhahn,Bitburger,"€ 8,99",,"UVP
+11,49 €",,Nein,,,,images_lidl/lidl_offer_199.jpg,cat_getraenke
+Feuchte Allzwecktücher XXL,W5,"€ 4,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_200.jpg,cat_non_food
+Spaghettitops,Esmara,"€ 9,99",,"12,99 €",,Nein,,,,images_lidl/lidl_offer_201.jpg,cat_non_food
+Men Sneakersocken,Esmara Esmara Men,"€ 3,99",,"4,99 €",,Nein,,,,images_lidl/lidl_offer_202.jpg,cat_non_food
+Esmara Esmara Men Socken,Esmara,"€ 14,99",,"19,99 €",,Nein,,,,images_lidl/lidl_offer_203.jpg,cat_non_food
+Slips,Esmara,"€ 8,99",,"11,99 €",,Nein,,,,images_lidl/lidl_offer_204.jpg,cat_non_food
+Men T-Shirts,Esmara,"€ 13,49",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_205.jpg,cat_non_food
+Webboxer,Esmara Men,"€ 12,99",,"16,99 €",,Nein,,,,images_lidl/lidl_offer_206.jpg,cat_non_food
+Men Achselhemden,Esmara,"€ 12,99",,"16,99 €",,Nein,,,,images_lidl/lidl_offer_207.jpg,cat_non_food
+Kinder-Boxer,Lupilu,"€ 9,99",,"12,99 €",,Nein,,,,images_lidl/lidl_offer_208.jpg,cat_non_food
+Men Boxer,Esmara,"€ 14,99",,"22,99 €",,Nein,,,,images_lidl/lidl_offer_209.jpg,cat_non_food
+Partygschirr Becher,Silvercrest,"€ 4,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_210.jpg,cat_non_food
+Geschirrtücher,W5,"€ 5,99",,"7,99 €",,Nein,,,,images_lidl/lidl_offer_211.jpg,cat_drogerie
+Folienrollen für Vakuumierer,Silvercrest,"€ 6,99",,"9,99 €",,Nein,,,,images_lidl/lidl_offer_212.jpg,cat_non_food
+Microfibre Colours-Allzwecktücher XXL,Vileda,"€ 3,99",,"UVP
+9,95 €",,Nein,,,,images_lidl/lidl_offer_213.jpg,cat_drogerie
+Frischhaltedosen-Set,Livarno Home,"€ 2,99",,"4,99 €",,Nein,,,,images_lidl/lidl_offer_214.jpg,cat_non_food
+Knopfzellen,Tronic,"€ 3,99",,"9,99 €",,Nein,,,,images_lidl/lidl_offer_215.jpg,cat_non_food
+Universal-Wandfarbe,Alpina,"€ 24,99",,"UVP
+49,99 €",,Nein,,,,images_lidl/lidl_offer_216.jpg,cat_drogerie
+Akkus,Tronic,"€ 6,99",,"12,99 €",,Nein,,,,images_lidl/lidl_offer_217.jpg,cat_non_food
+Schrumpfschlauch-Sortiment XXL,PARKSIDE,"€ 7,99",,"9,99 €",,Nein,,,,images_lidl/lidl_offer_218.jpg,cat_non_food
+Wärmegürtel Wärmepflaster XXL Regelschmerz-Wärmepflaster,Sensiplast,"€ 3,49",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_219.jpg,cat_non_food
+Pinsel-Set,PARKSIDE,"€ 9,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_220.jpg,cat_non_food
+Aluminium-Gartentisch,Livarno Home,"€ 139,00",,"169,00 €",,Nein,,,,images_lidl/lidl_offer_221.jpg,cat_non_food
+Aluminium-Stapelsessel,Livarno,"€ 29,99",,"34,99 €",,Nein,,,,images_lidl/lidl_offer_222.jpg,cat_non_food
+Aluminium-Klappsessel,Livarno,"€ 34,99",,"39,99 €",,Nein,,,,images_lidl/lidl_offer_223.jpg,cat_non_food
+Aluminium-Relaxsessel,Livarno,"€ 44,99",,"59,99 €",,Nein,,,,images_lidl/lidl_offer_224.jpg,cat_non_food
+Aluminium-Hocker,Livarno,"€ 19,99",,"24,99 €",,Nein,,,,images_lidl/lidl_offer_225.jpg,cat_non_food
+Niedriglehner- Polsterauflage,Livarno,"€ 7,99",,"11,99 €",,Nein,,,,images_lidl/lidl_offer_226.jpg,cat_non_food
+Aluminium-Klapptisch,Livarno,"€ 44,99",,"54,99 €",,Nein,,,,images_lidl/lidl_offer_227.jpg,cat_non_food
+Aluminium-Sonnenliege,Livarno,"€ 49,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_228.jpg,cat_non_food
+Sonnenschirm,Livarno,"€ 19,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_229.jpg,cat_non_food
+Schutzhülle,Livarno,"€ 3,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_230.jpg,cat_non_food
+Gartenmöbel-Schutzhülle,Livarno Home,"€ 12,99",,"17,99 €",,Nein,,,,images_lidl/lidl_offer_231.jpg,cat_non_food
+Gartenbox,Livarno Home,"€ 129,00",,"139,00 €",,Nein,,,,images_lidl/lidl_offer_232.jpg,cat_non_food
+Aluminium-Liegestuhl,Livarno Home,"€ 69,99",,"79,99 €",,Nein,,,,images_lidl/lidl_offer_233.jpg,cat_non_food
+Aluminium-Gartenmöbelset 5-teilig,Livarno Home,"€ 99,00",,"278,96 €",,Nein,,,,images_lidl/lidl_offer_234.jpg,cat_non_food
+Sonnenschirm,Livarno Home,"€ 39,99",,"49,99 €",,Nein,,,,images_lidl/lidl_offer_235.jpg,cat_non_food
+Teleskop-Pflanzenroller,Parkside,"€ 14,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_236.jpg,cat_non_food
+Messing-2-Wege-Verteiler -Stecksystem -Wasserhahn -Gartenspritze,PARKSIDE,"€ 3,49",,"7,99 €",,Nein,,,,images_lidl/lidl_offer_237.jpg,cat_non_food
+Klarwasser- Schmutzwasser-Tauchpumpe,PARKSIDE,"€ 39,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_238.jpg,cat_non_food
+Sprinkler-Set,PARKSIDE,"€ 9,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_239.jpg,cat_non_food
+Drucksprüher,PARKSIDE,"€ 3,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_240.jpg,cat_non_food
+Akku-Drucksprüher,PARKSIDE,"€ 19,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_241.jpg,cat_non_food
+Gartenclogs,PARKSIDE,"€ 4,99",,"6,99 €",,Nein,,,,images_lidl/lidl_offer_242.jpg,cat_non_food
+Blumenkasten,PARKSIDE,"€ 3,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_243.jpg,cat_non_food
+Hochbeet o Pflanztisch,Parkside,"€ 29,99",,"34,99 €",,Nein,,,,images_lidl/lidl_offer_244.jpg,cat_non_food
+Hochbeet Pflanztisch,PARKSIDE,"€ 29,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_245.jpg,cat_non_food
+Gartenhandschuhe,PARKSIDE,"€ 2,49",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_246.jpg,cat_non_food
+Elektro-Rasenmäher,PARKSIDE,"€ 79,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_247.jpg,cat_non_food
+Teleskop-Astschere,Fiskars,"€ 19,99",,"UVP
+39,99 €",,Nein,,,,images_lidl/lidl_offer_248.jpg,cat_non_food
+Bypass-Gartenschere,Fiskars,"€ 9,99",,"UVP
+24,99 €",,Nein,,,,images_lidl/lidl_offer_249.jpg,cat_non_food
+Tomaten-Pflanzgefäß,PARKSIDE,"€ 9,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_250.jpg,cat_non_food
+Bindesortiment,PARKSIDE,"€ 1,49",,1m=ab.01/-.01/-.05/,,Nein,,,,images_lidl/lidl_offer_251.jpg,cat_non_food
+Hochbeet,PARKSIDE,"€ 19,99",,"24,99 €",,Nein,,,,images_lidl/lidl_offer_252.jpg,cat_non_food
+Bewässerungshelfer,Scheurich,"€ 3,99",,"UVP
+6,79 €",,Nein,,,,images_lidl/lidl_offer_253.jpg,cat_non_food
+Multifunktionsbrause Gartenspritze,Multifunktionsbrause Gartenspritze,"€ 7,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_254.jpg,cat_non_food
+Schlauch-Verbinder -Reparaturstück,PARKSIDE PERFORMANCE,"€ 1,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_255.jpg,cat_non_food
+PERFORMANCE Akku-Bohrschrauber 20 V,PARKSIDE,"€ 79,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_256.jpg,cat_non_food
+Hahnanschluss Zubehöradapter Verlängerungsstu ck,PARKSIDE PERFORMANCE,"€ 1,49",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_257.jpg,cat_non_food
+Gartenschlauch,PARKSIDE PERFORMANCE,"€ 14,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_258.jpg,cat_non_food
+Kompakt- Viereckregner,PARKSIDE PERFORMANCE,"€ 14,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_259.jpg,cat_non_food
+Gravierstift,Crelando,"€ 4,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_260.jpg,cat_non_food
+Kritzel-Kratzel-Buch,NGV,"€ 4,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_261.jpg,cat_non_food
+Kreativ-Set Steckblumen,Playtive,"€ 7,99",,"14,99 €",,Nein,,,,images_lidl/lidl_offer_262.jpg,cat_non_food
+Kreativ-Set,Lena,"€ 4,99",,"UVP
+6,99 €",,Nein,,,,images_lidl/lidl_offer_263.jpg,cat_non_food
+XXL-Mal- und Bastelblock,XXL-Mal- und Bastelblock,"€ 4,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_264.jpg,cat_non_food
+Öl- Aquarellfarben,Crelando,"€ 4,99",,1 l = 11.55,,Nein,,,,images_lidl/lidl_offer_265.jpg,"cat_molkerei_kaese,sub_milchprodukte"
+Malkoffer,Crelando,"€ 11,99",,"19,99 €",,Nein,,,,images_lidl/lidl_offer_266.jpg,cat_non_food
+Leinwand -Set,Crelando,"€ 3,49",,"4,99 €",,Nein,,,,images_lidl/lidl_offer_267.jpg,cat_non_food
+Creabox Strukturpasten-Kreativset,Marabu,"€ 8,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_268.jpg,cat_non_food
+Acrylfarben,Crelando,"€ 2,99",,1 l = 4.98/5.98,,Nein,,,,images_lidl/lidl_offer_269.jpg,cat_non_food
+Koffer-Tischstaffelei,Crelando,"€ 19,99",,"29,99 €",,Nein,,,,images_lidl/lidl_offer_270.jpg,cat_non_food
+Creabox Stiftset,Marabu,"€ 3,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_271.jpg,cat_non_food
+Permanentmarker,Crelando,"€ 2,69",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_272.jpg,"cat_getraenke,diet_lactose_free,diet_vegetarian"
+Klebestift,UHU,"€ 2,49",,1 kg = 24.90/62.25,,Nein,,,,images_lidl/lidl_offer_273.jpg,cat_non_food
+LED-Lightpad,Crelando,"€ 17,99",,"24,99 €",,Nein,,,,images_lidl/lidl_offer_274.jpg,cat_non_food
+Aquarell-Filzstifte,Crelando,"€ 1,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_275.jpg,cat_non_food
+Schreib-Sortiment,Bic,"€ 3,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_276.jpg,"cat_fleisch_wurst,sub_wurst,tag_ultra_processed"
+Zeichenblock,Crelando,"€ 1,49",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_277.jpg,cat_fleisch_wurst
+Buntstifte,Crelando,"€ 6,99",,"9,99 €",,Nein,,,,images_lidl/lidl_offer_278.jpg,cat_non_food
+Satin-Bettwäsche,Michalsky,"€ 24,99",,"UVP
+79,95 €",,Nein,,,,images_lidl/lidl_offer_279.jpg,cat_non_food
+7-Zonen-Taschenfederkern-Matratze Support,Livarno,"€ 79,99",,"109,00 €",,Nein,,,,images_lidl/lidl_offer_280.jpg,cat_non_food
+Hn8 Schlafsysteme Topper,Hn8 Schlafsysteme Topper,"€ 99,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_281.jpg,cat_non_food
+7-Zonen-Taschenfederkern-Matratze,f a n,"€ 199,00",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_282.jpg,cat_non_food
+deLuxe Gänsefeder Daunen Kopfkissen,Balette,"€ 29,99",,"UVP
+49,95 €",,Nein,,,,images_lidl/lidl_offer_283.jpg,"cat_knabbern_naschen,diet_vegan,diet_vegetarian"
+deLuxe Gänsedaunen Kassettenbettdecke,Balette,"€ 129,00",,"UVP
+349,00 €",,Nein,,,,images_lidl/lidl_offer_284.jpg,"cat_knabbern_naschen,diet_vegetarian"
+7-Zonen-Kaltschaummatratze Modell Sweet Dream XXL,f a n,"€ 199,00",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_285.jpg,cat_non_food
+Kissen Modell Royal,John Cotton,"€ 12,99",,"UVP
+29,00 €",,Nein,,,,images_lidl/lidl_offer_286.jpg,cat_non_food
+Matratze,Irisette,"€ 129,00",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_287.jpg,cat_non_food
+Ganzjahres-Steppbett Modell Royal,John Cotton,"€ 24,99",,"UVP
+99,00 €",,Nein,,,,images_lidl/lidl_offer_288.jpg,cat_non_food
+Matratzentopper,Livarno,"€ 59,99",,"79,99 €",,Nein,,,,images_lidl/lidl_offer_289.jpg,cat_non_food
+Men Feinstrickpullover,Esmara,"€ 9,99",,"12,99 €",,Nein,,,,images_lidl/lidl_offer_290.jpg,cat_non_food
+Overshirt,Esmara,"€ 9,99",,"14,99 €",,Nein,,,,images_lidl/lidl_offer_291.jpg,cat_non_food
+Palazzohose,Esmara,"€ 12,99",,"14,99 €",,Nein,,,,images_lidl/lidl_offer_292.jpg,cat_non_food
+Bomberjacke,Esmara,"€ 14,99",,"19,99 €",,Nein,,,,images_lidl/lidl_offer_293.jpg,cat_non_food
+Men Sweatdenim-Jeans,Esmara,"€ 12,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_294.jpg,cat_non_food
+Men Cargohose,Esmara,"€ 12,99",,"14,99 €",,Nein,,,,images_lidl/lidl_offer_295.jpg,cat_non_food
+Men Businesshemd,Esmara,"€ 12,99",,"14,99 €",,Nein,,,,images_lidl/lidl_offer_296.jpg,cat_non_food
+Wasserfilter-Starterset,Silvercrest,"€ 9,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_297.jpg,cat_non_food
+Kitchen Tools Heißluftfritteuse mit Grillfunktion,Silvercrest,"€ 69,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_298.jpg,cat_non_food
+Wasserfilter-Kartuschen 3er-Pack,Silvercrest,"€ 6,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_299.jpg,cat_non_food
+Espressomaschine,Silvercrest,"€ 49,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_300.jpg,cat_non_food
+Mikrowelle,Silvercrest,"€ 115,00",,"149,00 €",,Nein,,,,images_lidl/lidl_offer_301.jpg,cat_non_food
+Elektrische Saftpresse,Genius,"€ 29,99",,"UVP
+49,99 €",,Nein,,,,images_lidl/lidl_offer_302.jpg,cat_getraenke
+Saug- und Wischroboter,Ecovacs,"€ 159,00",,"UVP
+299,00 €",,Nein,,,,images_lidl/lidl_offer_303.jpg,cat_non_food
+Dampfreiniger,Silvercrest,"€ 69,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_304.jpg,cat_non_food
+Teppich- und Polsterreiniger,Bissell,"€ 139,00",,"UVP
+249,99 €",,Nein,,,,images_lidl/lidl_offer_305.jpg,cat_drogerie
+Akku-Hartbodenreiniger,Silvercrest,"€ 129,00",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_306.jpg,cat_non_food
+Milbensauger,Cleanmaxx,"€ 26,99",,"36,99 €",,Nein,,,,images_lidl/lidl_offer_307.jpg,"cat_molkerei_kaese,diet_vegetarian,sub_milchprodukte"
+Akku-Reinigungsbürste,Silvercrest,"€ 14,99",,"19,99 €",,Nein,,,,images_lidl/lidl_offer_308.jpg,cat_non_food
+Akku-Schraubendreher 4 V,PARKSIDE,"€ 19,99",,"27,99 €",,Nein,,,,images_lidl/lidl_offer_309.jpg,cat_non_food
+Exzenterschleifer,Parkside,"€ 19,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_310.jpg,cat_non_food
+Werkstatt-Rollsitz,PARKSIDE,"€ 17,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_311.jpg,cat_non_food
+Schwingschleifer,PARKSIDE,"€ 19,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_312.jpg,cat_non_food
+Akku-Ratsche 4 V,PARKSIDE,"€ 24,99",,"29,99 €",,Nein,,,,images_lidl/lidl_offer_313.jpg,cat_non_food
+Multifunktionstisch 3-teilig,PARKSIDE,"€ 39,99",,"49,99 €",,Nein,,,,images_lidl/lidl_offer_314.jpg,cat_non_food
+Multischleifer PMS220 A1,PARKSIDE,"€ 19,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_315.jpg,cat_non_food
+Performance Akku-LED-Strahler 20 V,Parkside,"€ 59,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_316.jpg,cat_non_food
+Performance Arbeitshandschuhe,Parkside,"€ 7,99",,"9,99 €",,Nein,,,,images_lidl/lidl_offer_317.jpg,cat_non_food
+Herren-Overshirt,PARKSIDE,"€ 12,99",,"19,99 €",,Nein,,,,images_lidl/lidl_offer_318.jpg,cat_non_food
+Herren-Weste,PARKSIDE,"€ 9,99",,"11,99 €",,Nein,,,,images_lidl/lidl_offer_319.jpg,cat_non_food
+Herren-Arbeitsjacke gefüttert,PARKSIDE PERFORMANCE,"€ 19,99",,"29,99 €",,Nein,,,,images_lidl/lidl_offer_320.jpg,cat_non_food
+Herren-Boxershorts,Caterpillar,"€ 6,99",,"UVP
+20,00 €",,Nein,,,,images_lidl/lidl_offer_321.jpg,cat_non_food
+Herren-Cargojogger,Parkside,"€ 17,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_322.jpg,cat_non_food
+Spanien Mallorca,SPICA TRAVEL AG,"€ 555,00",,"599,00 €",,Nein,,,,images_lidl/lidl_offer_323.jpg,cat_non_food
+Bayerischer Wald Viechtach,Bayerischer Wald Viechtach,"€ 149,00",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_324.jpg,cat_non_food
+Rhön Hausen-Roth,Rhön Hausen-Roth,"€ 169,00",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_325.jpg,cat_non_food
+Türkei Ägypten Kreuzfahrt Baden,Türkei Ägypten Kreuzfahrt Baden,"€ 999,00",,"1.599,00 €",,Nein,,,,images_lidl/lidl_offer_326.jpg,cat_non_food
+Ägypten Nilkreuzfahrt Baden,Neon Reisen GmbH,"€ 777,00",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_327.jpg,cat_non_food
+Polnische Ostsee Henkenhagen,Polnische Ostsee Henkenhagen,"€ 149,00",,"246,00 €",,Nein,,,,images_lidl/lidl_offer_328.jpg,cat_fleisch_wurst
+Österreich Salzburger Land,Österreich Salzburger Land,"€ 379,00",,"419,00 €",,Nein,,,,images_lidl/lidl_offer_329.jpg,cat_molkerei_kaese
+Indischer Ozean Malediven,Neon Reisen GmbH,"€ 2,777,00",,"3.499,00 €",,Nein,,,,images_lidl/lidl_offer_330.jpg,cat_non_food
+Nepal Rundreise,Nepal Rundreise,"€ 1,555,00",,"1.999,00 €",,Nein,,,,images_lidl/lidl_offer_331.jpg,"cat_grundnahrung,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,tag_ultra_processed"
+Hongkong Indonesien Rundreise Baden,Hongkong Indonesien Rundreise Baden,"€ 2,199,00",,"2.499,00 €",,Nein,,,,images_lidl/lidl_offer_332.jpg,cat_non_food
+Kenia Safari Baden,Kenia Safari Baden,"€ 2,599,00",,"3.599,00 €",,Nein,,,,images_lidl/lidl_offer_333.jpg,"cat_getraenke,diet_vegan,diet_vegetarian"
+USA Westen Rundreise,AtourO GmbH,"€ 1,999,00",,"2.299,00 €",,Nein,,,,images_lidl/lidl_offer_334.jpg,cat_non_food
+Japans Goldene Route Rundreise,AtourO GmbH,"€ 2,299,00",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_335.jpg,cat_non_food
+Tropical Islands Brandenburg,Lidl Reisen,"€ 49,00",,"67,00 €",,Nein,,,,images_lidl/lidl_offer_336.jpg,"cat_fleisch_wurst,sub_wurst"
+Plopsaland Deutschland in Haßloch,Plopsaland Deutschland in Haßloch,"€ 69,00",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_337.jpg,cat_fleisch_wurst
+Tropical Islands Brandenburg,Lidl Reisen,"€ 49,00",,"67,00 €",,Nein,,,,images_lidl/lidl_offer_338.jpg,"cat_fleisch_wurst,sub_wurst"
+Movie Park Germany in Bottrop,Movie Park Germany in Bottrop,"€ 49,00",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_339.jpg,cat_non_food
+Titanic Die Ausstellung in Potsdam,Titanic Die Ausstellung in Potsdam,"€ 69,00",,"85,00 €",,Nein,,,,images_lidl/lidl_offer_340.jpg,cat_non_food
+Romatomaten,Romatomaten,"€ 1,29",,1 kg = 1.72,,Nein,,,,images_lidl/lidl_offer_341.jpg,"cat_obst_gemuese,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_frisches_gemuese,tag_whole_food"
+Birnen lose,Birnen lose,"€ 1,49",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_342.jpg,"cat_obst_gemuese,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_frisches_gemuese,sub_frisches_obst,tag_whole_food"
+Helle kernlose Trauben lose,Helle kernlose Trauben lose,"€ 3,49",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_343.jpg,"cat_obst_gemuese,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_frisches_gemuese,sub_frisches_obst,tag_whole_food"
+Möhren,Möhren,"€ 1,69",,1 kg = 0.56,,Nein,,,,images_lidl/lidl_offer_344.jpg,"cat_obst_gemuese,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_frisches_gemuese,tag_whole_food"
+Schweine-Sommersteaks,Grillmeister,"€ 6,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_345.jpg,"cat_fleisch_wurst,sub_schwein"
+Frische Hähnchenflügel,Metzgerfrisch,"€ 6,49",,1 kg = 4.33,,Nein,,,,images_lidl/lidl_offer_346.jpg,cat_fleisch_wurst
+Frische Schweine-Nackenkoteletts,Metzgerfrisch,"€ 11,99",,1 kg = 5.71,,Nein,,,,images_lidl/lidl_offer_347.jpg,cat_fleisch_wurst
+MSC Knusper-Backfisch,Fischerstolz,"€ 5,49",,1 kg = 9.80,,Nein,,,,images_lidl/lidl_offer_348.jpg,"cat_fisch_meeresfruechte,tag_ultra_processed"
+MSC Pazifisches Schollenfilet,Fischerstolz,"€ 4,25",,16.99 € / kg,,Nein,,,,images_lidl/lidl_offer_349.jpg,"cat_fisch_meeresfruechte,tag_ultra_processed"
+Premium US Chuck-Eye-Steak,Metzgerfrisch,"€ 8,00",,19.99 €/kg,,Nein,,,,images_lidl/lidl_offer_350.jpg,cat_fleisch_wurst
+Rindergulasch,Metzgerfrisch,"€ 14,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_351.jpg,cat_fleisch_wurst
+Rinder-Keulensteaks,Metzgerfrisch,"€ 12,99",,1 kg = 16.24,,Nein,,,,images_lidl/lidl_offer_352.jpg,cat_fleisch_wurst
+Mozzarella Sticks XXL,Chef Select,"€ 4,99",,1 kg = 6.65,,Nein,,,,images_lidl/lidl_offer_353.jpg,"cat_molkerei_kaese,sub_kaese,sub_milchprodukte,tag_ultra_processed"
+Pommes Frites XXL,Harvest Basket,"€ 3,99",,1 kg = 1.14,,Nein,,,,images_lidl/lidl_offer_354.jpg,"cat_drogerie,tag_ultra_processed"
+Chicken Nuggets XXL,Chef Select,"€ 7,49",,1 kg = 6.24,,Nein,,,,images_lidl/lidl_offer_355.jpg,"cat_fleisch_wurst,diet_lactose_free,sub_gefluegel,sub_tk_fertiggerichte,tag_ultra_processed"
+Chicken Wings XXL,Chef Select,"€ 4,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_356.jpg,"cat_fleisch_wurst,diet_gluten_free,diet_lactose_free,sub_gefluegel,tag_high_protein,tag_proteinreich,tag_ultra_processed"
+Selection Nuts Royal XXL,Alesto,"€ 5,99",,1 kg = 11.98,,Nein,,,,images_lidl/lidl_offer_357.jpg,"cat_getraenke,tag_ultra_processed"
+Selection Cashewkerne XXL,Alesto,"€ 5,79",,1 kg = 11.58,,Nein,,,,images_lidl/lidl_offer_358.jpg,"cat_knabbern_naschen,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,tag_whole_food"
+Natives Olivenöl Extra XXL,Primadonna,"€ 9,99",,1 l = 6.66,,Nein,,,,images_lidl/lidl_offer_359.jpg,"cat_grundnahrung,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian"
+Orangensaft XXL,Solevita,"€ 2,99",,1 l = 1.50,,Nein,,,,images_lidl/lidl_offer_360.jpg,"cat_getraenke,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,tag_whole_food"
+Selection Walnusskerne XXL,Alesto,"€ 5,99",,1 kg = 11.98,,Nein,,,,images_lidl/lidl_offer_361.jpg,"cat_knabbern_naschen,diet_lactose_free,diet_vegan,diet_vegetarian,tag_ultra_processed"
+Basmati Reis XXL,Golden Sun,"€ 9,99",,1 kg = 2.22,,Nein,,,,images_lidl/lidl_offer_362.jpg,"cat_grundnahrung,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_reis"
+Kondensmilch XXL,Milbona,"€ 0,79",,1 kg = 1.58,,Nein,,,,images_lidl/lidl_offer_363.jpg,cat_molkerei_kaese
+Erdnusskerne XXL,Alesto,"€ 3,49",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_364.jpg,"cat_knabbern_naschen,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,tag_ultra_processed,tag_whole_food"
+Selection Kalifornische Pistazien XXL,Alesto,"€ 5,99",,1 kg = 11.98,,Nein,,,,images_lidl/lidl_offer_365.jpg,"cat_knabbern_naschen,tag_ultra_processed"
+Weizenmehl Type 405 XXL,Rosenmehl,"€ 2,39",,"UVP
+3,69 €",,Nein,,,,images_lidl/lidl_offer_366.jpg,"cat_grundnahrung,diet_vegetarian"
+Tiefkühlobst XXL,Freshona,"€ 3,99",,1 kg = 5.32/3.99,,Nein,,,,images_lidl/lidl_offer_367.jpg,cat_drogerie
+Mozzarella XXL,Milbona,"€ 3,15",,1 kg = 6.30,,Nein,,,,images_lidl/lidl_offer_368.jpg,cat_molkerei_kaese
+Bayerischer Leberkäse XXL,Dulano,"€ 3,49",,1 kg = 6.98/7.76,,Nein,,,,images_lidl/lidl_offer_369.jpg,"cat_fleisch_wurst,sub_kaese,sub_milchprodukte,sub_schwein,sub_wurst,tag_ultra_processed"
+Joghurt Griechischer Art XXL,Milbona,"€ 2,19",,1 kg = 1.99,,Nein,,,,images_lidl/lidl_offer_370.jpg,cat_molkerei_kaese
+XXL Schnitzel,Chef Select,"€ 3,99",,1 kg = 7.98,,Nein,,,,images_lidl/lidl_offer_371.jpg,"cat_fleisch_wurst,sub_schwein,tag_ultra_processed"
+Weißkäse in Salzlake XXL,Milbona,"€ 8,49",,1 kg = 7.08,,Nein,,,,images_lidl/lidl_offer_372.jpg,cat_molkerei_kaese
+Kuchenzauber Muffins XXL,Kuchenzauber Muffins XXL,"€ 2,59",,1 kg = 4.80,,Nein,,,,images_lidl/lidl_offer_373.jpg,"cat_knabbern_naschen,tag_ultra_processed"
+Snackis XXL,Dulano,"€ 3,99",,1 kg = 5.70,,Nein,,,,images_lidl/lidl_offer_374.jpg,"cat_knabbern_naschen,sub_schwein,tag_ultra_processed"
+Edle Tropfen in Nuss,Trumpf,"€ 2,79",,"UVP
+4,49 €",,Nein,,,,images_lidl/lidl_offer_375.jpg,"cat_knabbern_naschen,diet_vegetarian,tag_ultra_processed"
+Waschmittel,Weißer Riese oder Spee,"€ 11,99",,"UVP
+15,79 €",,Nein,,,,images_lidl/lidl_offer_376.jpg,cat_drogerie
+Mineralwasser,Gerolsteiner,"€ 0,67",,"UVP
+0,99 €",,Nein,,,,images_lidl/lidl_offer_377.jpg,"cat_getraenke,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian"
+Actimel Drink XXXL,Danone,"€ 2,44",,1 kg = 2.46,,Nein,,,,images_lidl/lidl_offer_378.jpg,"cat_molkerei_kaese,diet_vegetarian,sub_joghurt_skyr_quark,sub_milchprodukte,tag_ultra_processed"
+Sauce XL,Werder,"€ 1,39",,"UVP
+1,79 €",,Nein,,,,images_lidl/lidl_offer_379.jpg,"cat_grundnahrung,diet_vegan"
+Sahne Heringsfilets,Nadler,"€ 1,99",,"UVP
+3,89 €",,Nein,,,,images_lidl/lidl_offer_380.jpg,"cat_fisch_meeresfruechte,sub_sahne_creme"
+Muffin,Nutella,"€ 3,99",,"UVP
+4,69 €",,Nein,,,,images_lidl/lidl_offer_381.jpg,"cat_knabbern_naschen,diet_vegetarian,tag_ultra_processed"
+Fruity Limonade,Freeway,"€ 0,79",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_382.jpg,"cat_getraenke,tag_ultra_processed"
+Sahnejoghurt,Zott,"€ 0,49",,"UVP
+0,99 €",,Nein,,,,images_lidl/lidl_offer_383.jpg,"cat_molkerei_kaese,diet_vegetarian,sub_joghurt_skyr_quark,sub_milchprodukte,sub_sahne_creme,tag_ultra_processed"
+Oxi Action Pulver,Vanish,"€ 8,79",,"UVP
+11,49 €",,Nein,,,,images_lidl/lidl_offer_384.jpg,cat_drogerie
+Rama mit Butter XXL,Rama mit Butter XXL,"€ 1,99",,"UVP
+3,19 €",,Nein,,,,images_lidl/lidl_offer_385.jpg,"cat_molkerei_kaese,diet_vegetarian,sub_butter_margarine,sub_milchprodukte,tag_ultra_processed"
+Strudel,Schmid,"€ 1,49",,"UVP
+1,79 €",,Nein,,,,images_lidl/lidl_offer_386.jpg,"cat_drogerie,tag_ultra_processed"
+Bistro Baguette,Dr Oetker,"€ 2,99",,"4,38 €",,Nein,,,,images_lidl/lidl_offer_387.jpg,"cat_grundnahrung,sub_tk_fertiggerichte,tag_ultra_processed"
+Saft,Amecke,"€ 1,99",,"UVP
+2,79 €",,Nein,,,,images_lidl/lidl_offer_388.jpg,"cat_getraenke,diet_vegan"
+Wassereis,Sun Lolly,"€ 1,99",,1 kg = 3.83,,Nein,,,,images_lidl/lidl_offer_389.jpg,"cat_grundnahrung,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_reis"
+Trinkbrause,Freeway,"€ 0,59",,1 l = 0.39,,Nein,,,,images_lidl/lidl_offer_390.jpg,cat_getraenke
+Veganes Vegetarisches Sortiment,Rügenwalder Mühle,"€ 2,49",,"3,29 €",,Nein,,,,images_lidl/lidl_offer_391.jpg,"cat_fleisch_wurst,diet_lactose_free,sub_fleischersatz,sub_wurst,tag_ultra_processed"
+B-ready,Nutella,"€ 3,25",,1 kg = 14.77,,Nein,,,,images_lidl/lidl_offer_392.jpg,"cat_knabbern_naschen,tag_ultra_processed"
+Brotaufstrich,Brunch,"€ 1,29",,"1,89 €",,Nein,,,,images_lidl/lidl_offer_393.jpg,"cat_sonstiges,diet_vegan,diet_vegetarian"
+Spülmittel Lemon,Fit,"€ 1,19",,"UVP
+1,59 €",,Nein,,,,images_lidl/lidl_offer_394.jpg,cat_drogerie
+Schafkäse,Salakis,"€ 2,19",,"UVP
+3,99 €",,Nein,,,,images_lidl/lidl_offer_395.jpg,"cat_molkerei_kaese,sub_kaese,sub_milchprodukte,sub_wurst,tag_ultra_processed"
+Croissant,Nutella,"€ 3,99",,1 kg = 11.74,,Nein,,,,images_lidl/lidl_offer_396.jpg,"cat_knabbern_naschen,diet_vegetarian,tag_ultra_processed"
+Crema e Gusto Classico,Lavazza,"€ 4,44",,"5,99 €",,Nein,,,,images_lidl/lidl_offer_397.jpg,"cat_grundnahrung,diet_vegetarian,tag_ultra_processed"
+Ravioli Vegane Ravioli,Maggi,"€ 1,99",,"2,99 €",,Nein,,,,images_lidl/lidl_offer_398.jpg,"cat_grundnahrung,diet_lactose_free,diet_vegan,diet_vegetarian,sub_nudeln,tag_ultra_processed"
+Plombir,Dovgan,"€ 1,49",,1 kg = 12.42,,Nein,,,,images_lidl/lidl_offer_399.jpg,cat_non_food
+Gourmet Perle Erlesene Streifen in Sauce,Purina,"€ 9,99",,"UVP
+14,49 €",,Nein,,,,images_lidl/lidl_offer_400.jpg,cat_fleisch_wurst
+Fruchtsecco,Rotkäppchen,"€ 2,69",,"UVP
+4,99 €",,Nein,,,,images_lidl/lidl_offer_401.jpg,"cat_getraenke,diet_vegetarian,tag_ultra_processed"
+Frottier-Bademantel Unisex,Michalsky,"€ 29,99",,"UVP
+79,95 €",,Nein,,,,images_lidl/lidl_offer_402.jpg,cat_non_food
+Fruchtgummi,Haribo,"€ 0,77",,"1,19 €",,Nein,,,,images_lidl/lidl_offer_403.jpg,"cat_knabbern_naschen,diet_vegetarian,tag_ultra_processed"
+-15,Milbona,"€ 1,99",,Kein Mengenpreis,,Nein,,,,images_lidl/lidl_offer_404.jpg,cat_molkerei_kaese
+Hähnchen-Hacksteaks,Metzgerfrisch,"€ 4,49",,1 kg = 8.02,,Nein,,,,images_lidl/lidl_offer_405.jpg,cat_fleisch_wurst
+7-Zonen-Taschenfederkern-Matratze Support,Livarno,"€ 79,99",,"109,00 €",,Nein,,,,images_lidl/lidl_offer_406.jpg,cat_non_food
+Katzentrocken-nahrung Adult,Perfect Fit,"€ 9,49",,"UVP
+12,69 €",,Nein,,,,images_lidl/lidl_offer_407.jpg,"cat_tiernahrung,tag_ultra_processed"
+Reines Rapsöl,Vita D or,"€ 1,29",,"1,49 €",,Nein,,,,images_lidl/lidl_offer_408.jpg,"cat_grundnahrung,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian"

@@ -1,0 +1,230 @@
+Produkt,Marke,Preis,Vorheriger Preis,Preis_kg,Hinweis,Nur_online,Gueltig_raw,Gueltig_von,Gueltig_bis,Bildpfad,assigned_labels
+Nutella,Ferrero,"€ 3,99",,"5,29 €",,Nein,,,,images_tegut/tegut_offer_001.jpg,"cat_knabbern_naschen,diet_vegetarian,tag_ultra_processed"
+Mineralwasser,tegut,"€ 4,44",,"1 l = 0,25 €",,Nein,,,,images_tegut/tegut_offer_002.jpg,cat_getraenke
+Bio-Laugenstange,Herzberger,"€ 1,79",,"1 kg = 6,49 €",,Nein,,,,images_tegut/tegut_offer_003.jpg,"cat_grundnahrung,diet_vegetarian"
+Kalbsrücken,Kalbsrücken,"€ 3,99",,Kein Mengenpreis,,Nein,,,,images_tegut/tegut_offer_004.jpg,"cat_fleisch_wurst,diet_gluten_free,diet_lactose_free,sub_rind,tag_high_protein,tag_proteinreich,tag_whole_food"
+Kamillen-Toilettenpapier,Regina,"€ 4,44",,"6,99 €",,Nein,,,,images_tegut/tegut_offer_005.jpg,cat_drogerie
+Skrei-Winterkabeljaufilet,Skrei-Winterkabeljaufilet,"€ 2,99",,Kein Mengenpreis,,Nein,,,,images_tegut/tegut_offer_006.jpg,cat_fisch_meeresfruechte
+Bavaria blu,Bergader,"€ 1,99",,"2,99 €",,Nein,,,,images_tegut/tegut_offer_007.jpg,"cat_getraenke,tag_ultra_processed"
+Eis,Magnum,"€ 2,79",,1 l = 10.94/8.45,,Nein,,,,images_tegut/tegut_offer_008.jpg,"cat_tiefkuehl,sub_tk_eis,tag_ultra_processed"
+Arrabbiata Bio-Nudelsauce,PPURA,"€ 2,49",,"1 kg = 7,32 €",,Nein,,,,images_tegut/tegut_offer_009.jpg,"cat_grundnahrung,diet_lactose_free,diet_vegan,diet_vegetarian"
+Bio-Mozzarella,Alnatura,"€ 1,39",,"1 kg = 11,12 €",,Nein,,,,images_tegut/tegut_offer_010.jpg,"cat_molkerei_kaese,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_kaese,sub_milchprodukte,tag_whole_food"
+Ravioli,Rana,"€ 2,79",,"3,79 €",,Nein,,,,images_tegut/tegut_offer_011.jpg,"cat_grundnahrung,diet_vegetarian,sub_nudeln"
+geriebener Käse Cheddar,Kerrygold,"€ 1,79",,"1 kg = 11,93 €",,Nein,,,,images_tegut/tegut_offer_012.jpg,"cat_molkerei_kaese,sub_kaese,sub_milchprodukte,tag_ultra_processed"
+Pizza Prosciutto,Lentini,"€ 4,99",,"1 kg = 11,09/12,48 €",,Nein,,,,images_tegut/tegut_offer_013.jpg,"cat_fleisch_wurst,sub_schwein,sub_wurst,tag_high_protein,tag_proteinreich,tag_ultra_processed"
+Pasta,De Cecco,"€ 1,49",,"1 kg = 2,98 €",,Nein,,,,images_tegut/tegut_offer_014.jpg,"cat_grundnahrung,diet_lactose_free,diet_vegan,diet_vegetarian,sub_nudeln"
+Olivenöl Delicato,Monini,"€ 6,99",,"1 l = 13,98 €",,Nein,,,,images_tegut/tegut_offer_015.jpg,"cat_grundnahrung,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,tag_whole_food"
+Cannelloni Spinat Ricotta,tegut,"€ 2,79",,"3,29 €",,Nein,,,,images_tegut/tegut_offer_016.jpg,cat_grundnahrung
+Tomatenmark,Oro Di Parma,"€ 1,49",,"1,99 €",,Nein,,,,images_tegut/tegut_offer_017.jpg,"cat_obst_gemuese,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_frisches_gemuese,tag_whole_food"
+Semola Nudelmehl,De Cecco,"€ 2,79",,"3,29 €",,Nein,,,,images_tegut/tegut_offer_018.jpg,"cat_grundnahrung,diet_vegetarian,tag_ultra_processed"
+frische Tortelloni,tegut,"€ 2,49",,"1 kg = 8,30 €",,Nein,,,,images_tegut/tegut_offer_019.jpg,cat_grundnahrung
+Pasta Collezione Cannelloni,Barilla,"€ 1,99",,"1 kg = 3,98 €",,Nein,,,,images_tegut/tegut_offer_020.jpg,"cat_grundnahrung,diet_lactose_free,diet_vegan,diet_vegetarian,sub_nudeln"
+Pecorino Romano,Granterre,"€ 4,99",,"5,99 €",,Nein,,,,images_tegut/tegut_offer_021.jpg,"cat_getraenke,diet_vegan,diet_vegetarian"
+Pesto,Barilla,"€ 1,99",,"1 kg = 10,47",,Nein,,,,images_tegut/tegut_offer_022.jpg,"cat_grundnahrung,diet_lactose_free,diet_vegan,diet_vegetarian,sub_nudeln,tag_ultra_processed"
+Passierte Tomaten,Pomito,"€ 1,29",,"1 kg = 2,58 €",,Nein,,,,images_tegut/tegut_offer_023.jpg,"cat_grundnahrung,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_frisches_gemuese,tag_whole_food"
+Äpfel,Äpfel,"€ 1,00",,"1 kg = 1,25 €",,Nein,,,,images_tegut/tegut_offer_024.jpg,"cat_obst_gemuese,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_frisches_obst,tag_whole_food"
+Auslese Klassisch,Melitta,"€ 6,99",,"1 kg = 13,98 €",,Nein,,,,images_tegut/tegut_offer_025.jpg,"cat_getraenke,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian"
+Almighurt,Ehrmann,"€ 1,09",,"1 kg = 2,18 €",,Nein,,,,images_tegut/tegut_offer_026.jpg,"cat_molkerei_kaese,diet_vegetarian,sub_joghurt_skyr_quark,sub_milchprodukte"
+Bio-Putenschnitzel,Bio-Putenschnitzel,"€ 8,99",,"1 kg = 29,97 €",,Nein,,,,images_tegut/tegut_offer_027.jpg,"cat_fleisch_wurst,sub_gefluegel,sub_schwein"
+Pilsner,Radeberger,"€ 11,99",,"16,99 €",,Nein,,,,images_tegut/tegut_offer_028.jpg,cat_getraenke
+Sylter Käse,Milram,"€ 1,49",,"2,59 €",,Nein,,,,images_tegut/tegut_offer_029.jpg,cat_molkerei_kaese
+Cocktail-Strauchtomaten,Cocktail-Strauchtomaten,"€ 1,99",,"2,49 €",,Nein,,,,images_tegut/tegut_offer_030.jpg,"cat_obst_gemuese,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_frisches_gemuese,tag_whole_food"
+Bio-Zucchini,demeter,"€ 3,99",,1 kg = 3.99,,Nein,,,,images_tegut/tegut_offer_031.jpg,"cat_obst_gemuese,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_frisches_gemuese,tag_whole_food"
+Frauentagsstrauß,Frauentagsstrauß,"€ 14,99",,Kein Mengenpreis,,Nein,,,,images_tegut/tegut_offer_032.jpg,cat_non_food
+Bio-Staudensellerie,tegut,"€ 1,99",,Kein Mengenpreis,,Nein,,,,images_tegut/tegut_offer_033.jpg,cat_obst_gemuese
+Bio-Kartoffeln,tegut,"€ 1,79",,"1 kg = 1,19 €",,Nein,,,,images_tegut/tegut_offer_034.jpg,cat_obst_gemuese
+Champignons braun,tegut,"€ 1,79",,"1 kg = 7,16 €",,Nein,,,,images_tegut/tegut_offer_035.jpg,cat_obst_gemuese
+Bio-Möhren,Bioland,"€ 1,79",,1 kg = 1.79,,Nein,,,,images_tegut/tegut_offer_036.jpg,"cat_obst_gemuese,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_frisches_gemuese,tag_whole_food"
+Orangen,Orangen,"€ 3,99",,"4,99 €",,Nein,,,,images_tegut/tegut_offer_037.jpg,"cat_obst_gemuese,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_frisches_obst,tag_whole_food"
+Zitronen,tegut,"€ 0,99",,1 kg = 1.98,,Nein,,,,images_tegut/tegut_offer_038.jpg,cat_obst_gemuese
+Santoku-Messer,Santoku-Messer,"€ 11,99",,"UVP
+49,99 €",,Nein,,,,images_tegut/tegut_offer_039.jpg,"cat_getraenke,diet_vegetarian"
+Bio-Heidelbeeren,tegut,"€ 1,99",,"1 kg = 15,92 €",,Nein,,,,images_tegut/tegut_offer_040.jpg,cat_obst_gemuese
+tegut Bio-Grapefruit,demeter,"€ 1,49",,Kein Mengenpreis,,Nein,,,,images_tegut/tegut_offer_041.jpg,"cat_obst_gemuese,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_frisches_gemuese,tag_whole_food"
+Passionsfrucht,tegut,"€ 0,99",,Kein Mengenpreis,,Nein,,,,images_tegut/tegut_offer_042.jpg,cat_grundnahrung
+Weintrauben hell kernlos,Weintrauben hell kernlos,"€ 1,99",,"1 kg = 3,98 €",,Nein,,,,images_tegut/tegut_offer_043.jpg,"cat_obst_gemuese,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_frisches_obst,tag_whole_food"
+Gemüsemesser,Gemüsemesser,"€ 6,99",,"UVP
+29,99 €",,Nein,,,,images_tegut/tegut_offer_044.jpg,"cat_tiefkuehl,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_frisches_gemuese,sub_tk_gemuese"
+Kasseler Nacken,LandPrimus,"€ 1,29",,"1,79 €",,Nein,,,,images_tegut/tegut_offer_045.jpg,"cat_fleisch_wurst,sub_schwein,tag_ultra_processed"
+Bio-Rinderbraten,Bio-Rinderbraten,"€ 2,99",,Kein Mengenpreis,,Nein,,,,images_tegut/tegut_offer_046.jpg,"cat_fleisch_wurst,diet_lactose_free,sub_rind,tag_proteinreich,tag_whole_food"
+Bio-Hähnchen ganz,Bio-Hähnchen ganz,"€ 1,49",,"1,99 €",,Nein,,,,images_tegut/tegut_offer_047.jpg,"cat_fleisch_wurst,diet_lactose_free,sub_gefluegel,tag_proteinreich,tag_whole_food"
+Bio-Hackfleisch gemischt,Bio-Hackfleisch gemischt,"€ 1,79",,Kein Mengenpreis,,Nein,,,,images_tegut/tegut_offer_048.jpg,"cat_fleisch_wurst,sub_hackfleisch,sub_rind,sub_schwein,tag_high_protein,tag_proteinreich"
+Schweinenacken,Schweinenacken,"€ 0,49",,Kein Mengenpreis,,Nein,,,,images_tegut/tegut_offer_049.jpg,"cat_fleisch_wurst,diet_lactose_free,sub_schwein,tag_whole_food"
+Schweinekrustenbraten,tegut LandPrimus,"€ 0,79",,Kein Mengenpreis,,Nein,,,,images_tegut/tegut_offer_050.jpg,"cat_fleisch_wurst,sub_schwein,tag_whole_food"
+Bio-Rindsbratwurst,tegut,"€ 5,99",,"6,99 €",,Nein,,,,images_tegut/tegut_offer_051.jpg,cat_fleisch_wurst
+LandPrimus Schweinekotelett,tegut,"€ 1,29",,"1,79 €",,Nein,,,,images_tegut/tegut_offer_052.jpg,cat_fleisch_wurst
+Spießbraten,Spießbraten,"€ 0,99",,Kein Mengenpreis,,Nein,,,,images_tegut/tegut_offer_053.jpg,"cat_fleisch_wurst,sub_schwein,tag_whole_food"
+Bio-Rinderhüftsteak,Bio-Rinderhüftsteak,"€ 2,99",,Kein Mengenpreis,,Nein,,,,images_tegut/tegut_offer_054.jpg,"cat_fleisch_wurst,sub_rind,tag_proteinreich,tag_whole_food"
+LandPrimus Hähnchenbrust,tegut,"€ 1,79",,"2,49 €",,Nein,,,,images_tegut/tegut_offer_055.jpg,cat_fleisch_wurst
+Lammlachse,Lammlachse,"€ 4,44",,Kein Mengenpreis,,Nein,,,,images_tegut/tegut_offer_056.jpg,"cat_fisch_meeresfruechte,tag_proteinreich"
+Iberische Duroc French Racks,Iberische Duroc French Racks,"€ 1,99",,"2,79 €",,Nein,,,,images_tegut/tegut_offer_057.jpg,"cat_knabbern_naschen,tag_ultra_processed"
+Fleischkäse Brötchen Leberkäse Semmel,Fleischkäse Brötchen Leberkäse Semmel,"€ 2,00",,Kein Mengenpreis,,Nein,,,,images_tegut/tegut_offer_058.jpg,"cat_fleisch_wurst,sub_kaese,sub_milchprodukte,sub_schwein,sub_wurst,tag_ultra_processed"
+Gefüllte Kirschpaprika,tegut,"€ 2,49",,"2,99 €",,Nein,,,,images_tegut/tegut_offer_059.jpg,cat_obst_gemuese
+Büsumer Heringsfilet,Büsumer Heringsfilet,"€ 2,49",,"2,99 €",,Nein,,,,images_tegut/tegut_offer_060.jpg,cat_fisch_meeresfruechte
+Heilbutt geräuchert,Heilbutt geräuchert,"€ 2,99",,Kein Mengenpreis,,Nein,,,,images_tegut/tegut_offer_061.jpg,"cat_fisch_meeresfruechte,sub_milchprodukte"
+Daily Salatschale Pasta Mozzarella,tegut,"€ 2,99",,"1 kg = 8,54 €",,Nein,,,,images_tegut/tegut_offer_062.jpg,cat_molkerei_kaese
+Pellkartoffelsalat,tegut,"€ 1,99",,"1 kg = 5,69 €",,Nein,,,,images_tegut/tegut_offer_063.jpg,cat_obst_gemuese
+Smoothie,true fruits,"€ 2,22",,1 l = 8.88,,Nein,,,,images_tegut/tegut_offer_064.jpg,"cat_getraenke,tag_ultra_processed"
+Bio-Lachs,Meine Lieblinge,"€ 3,79",,"4,79 €",,Nein,,,,images_tegut/tegut_offer_065.jpg,"cat_fisch_meeresfruechte,diet_lactose_free,tag_high_protein,tag_proteinreich"
+Saiblingsfilet,Saiblingsfilet,"€ 2,99",,Kein Mengenpreis,,Nein,,,,images_tegut/tegut_offer_066.jpg,"cat_fisch_meeresfruechte,diet_lactose_free,tag_high_protein,tag_proteinreich"
+Bio-Urkruste,Herzberger,"€ 3,79",,"4,29 €",,Nein,,,,images_tegut/tegut_offer_067.jpg,"cat_grundnahrung,diet_vegetarian"
+Blumenbrot Bio-Knusperbrot,Le Pain des fleurs,"€ 2,49",,"1 kg = 16,60 €",,Nein,,,,images_tegut/tegut_offer_068.jpg,"cat_grundnahrung,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,tag_whole_food"
+Weizenbrötchen,Weizenbrötchen,"€ 1,50",,"1 kg = 2,31 €",,Nein,,,,images_tegut/tegut_offer_069.jpg,"cat_grundnahrung,diet_vegetarian,tag_ultra_processed"
+Butter Toast,Golden Toast,"€ 1,29",,"1 kg = 2,58 €",,Nein,,,,images_tegut/tegut_offer_070.jpg,"cat_grundnahrung,diet_vegetarian,sub_butter_margarine,sub_milchprodukte,tag_ultra_processed"
+Comtess Kuchen,Bahlsen,"€ 1,99",,1 kg = 5.69,,Nein,,,,images_tegut/tegut_offer_071.jpg,"cat_grundnahrung,tag_ultra_processed"
+Bio-Familienbaguette,Herzberger,"€ 3,49",,"1 kg = 8,73 €",,Nein,,,,images_tegut/tegut_offer_072.jpg,"cat_grundnahrung,diet_vegetarian"
+Knusperstange,Knusperstange,"€ 1,29",,"2,29 €",,Nein,,,,images_tegut/tegut_offer_073.jpg,"cat_grundnahrung,diet_vegetarian,tag_ultra_processed"
+Salamiwurst-Aufschnitt,Salamiwurst-Aufschnitt,"€ 1,79",,Kein Mengenpreis,,Nein,,,,images_tegut/tegut_offer_074.jpg,"cat_fleisch_wurst,sub_wurst,tag_ultra_processed"
+Bio Steinsalzkäse,Heiderbeck,"€ 2,00",,Kein Mengenpreis,,Nein,,,,images_tegut/tegut_offer_075.jpg,"cat_molkerei_kaese,diet_vegan,diet_vegetarian,sub_kaese,sub_milchprodukte,tag_ultra_processed,tag_whole_food"
+Bio-Fleischwurst,Bio-Fleischwurst,"€ 1,79",,Kein Mengenpreis,,Nein,,,,images_tegut/tegut_offer_076.jpg,"cat_fleisch_wurst,sub_wurst,tag_proteinreich,tag_ultra_processed"
+Fleischsalat,LandPrimus,"€ 0,99",,"1,79 €",,Nein,,,,images_tegut/tegut_offer_077.jpg,"cat_fleisch_wurst,sub_frisches_gemuese,sub_rind,sub_salate,sub_schwein,sub_wurst,tag_ultra_processed"
+Farmlandschinken,Farmlandschinken,"€ 1,79",,Kein Mengenpreis,,Nein,,,,images_tegut/tegut_offer_078.jpg,"cat_fleisch_wurst,sub_schwein,sub_wurst,tag_ultra_processed"
+Pfefferbeißer,LandPrimus,"€ 1,49",,Kein Mengenpreis,,Nein,,,,images_tegut/tegut_offer_079.jpg,"cat_fleisch_wurst,diet_lactose_free,sub_wurst,tag_ultra_processed"
+Alpenspeck,Alpenspeck,"€ 1,99",,Kein Mengenpreis,,Nein,,,,images_tegut/tegut_offer_080.jpg,"cat_molkerei_kaese,sub_milchprodukte"
+Bio-Manouri,bio-verde,"€ 1,99",,"2,79 €",,Nein,,,,images_tegut/tegut_offer_081.jpg,"cat_obst_gemuese,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,tag_whole_food"
+Elsässer Winzerkäse,Elsässer Winzerkäse,"€ 1,99",,"2,99 €",,Nein,,,,images_tegut/tegut_offer_082.jpg,"cat_molkerei_kaese,sub_kaese,sub_milchprodukte,tag_ultra_processed"
+50 Rabatt,50 Rabatt,"€ 2,00",,Kein Mengenpreis,,Nein,,,,images_tegut/tegut_offer_083.jpg,cat_sonstiges
+Gouda mittelalt,Landana,"€ 0,99",,"1,69 €",,Nein,,,,images_tegut/tegut_offer_084.jpg,"cat_molkerei_kaese,sub_kaese,sub_milchprodukte"
+Bio-Blaue-Kornblume,Bio-Blaue-Kornblume,"€ 2,49",,"3,29 €",,Nein,,,,images_tegut/tegut_offer_085.jpg,"cat_grundnahrung,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,tag_whole_food"
+Ch vre d Argental,Ch vre d Argental,"€ 2,99",,"3,99 €",,Nein,,,,images_tegut/tegut_offer_086.jpg,cat_molkerei_kaese
+Bio-Steinsalzkäse,Bio-Steinsalzkäse,"€ 2,49",,"3,29 €",,Nein,,,,images_tegut/tegut_offer_087.jpg,"cat_molkerei_kaese,diet_vegan,diet_vegetarian,sub_kaese,sub_milchprodukte,tag_ultra_processed"
+Sensational Burger,Garden Gourmet,"€ 2,49",,"1 kg = 11,02 €",,Nein,,,,images_tegut/tegut_offer_088.jpg,cat_fleisch_wurst
+Monte,Zott,"€ 0,79",,"1 kg = 11,29/5,27 €",,Nein,,,,images_tegut/tegut_offer_089.jpg,"cat_molkerei_kaese,sub_milchprodukte,sub_sahne_creme,tag_ultra_processed"
+Bio-Schlagsahne,Andechser Natur,"€ 1,29",,"1,69 €",,Nein,,,,images_tegut/tegut_offer_090.jpg,"cat_molkerei_kaese,diet_vegetarian,sub_joghurt_skyr_quark,sub_milchprodukte,sub_sahne_creme,tag_proteinreich"
+Rama,Rama,"€ 1,29",,"2,19 €",,Nein,,,,images_tegut/tegut_offer_091.jpg,"cat_molkerei_kaese,diet_vegetarian,sub_butter_margarine,tag_ultra_processed"
+Bio-Weidemilch 3 8 Fett,Gläserne Molkerei,"€ 1,69",,"1,99 €",,Nein,,,,images_tegut/tegut_offer_092.jpg,"cat_molkerei_kaese,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_milchprodukte,tag_whole_food"
+Bio-Fingerfood,Soto,"€ 2,79",,"1 kg = 9,30",,Nein,,,,images_tegut/tegut_offer_093.jpg,"cat_obst_gemuese,diet_lactose_free,diet_vegan,diet_vegetarian"
+Götterspeise Waldmeister,Dr Oetker,"€ 0,49",,"0,59 €",,Nein,,,,images_tegut/tegut_offer_094.jpg,"cat_grundnahrung,diet_gluten_free,tag_ultra_processed"
+Schoko,Müllermilch,"€ 2,00",,Kein Mengenpreis,,Nein,,,,images_tegut/tegut_offer_095.jpg,"cat_molkerei_kaese,diet_vegetarian,sub_milchprodukte,tag_ultra_processed"
+Bio-Speisequarkzubereitung,Andechser Natur,"€ 1,19",,"1,59 €",,Nein,,,,images_tegut/tegut_offer_096.jpg,"cat_molkerei_kaese,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_joghurt_skyr_quark,sub_milchprodukte"
+Bio-Weidemilch-Joghurt,Alnatura,"€ 1,49",,"1,69 €",,Nein,,,,images_tegut/tegut_offer_097.jpg,"cat_molkerei_kaese,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_joghurt_skyr_quark,sub_milchprodukte,tag_whole_food"
+Bioland Andechser Natur frische Bio-Weidemilch,Andechser Natur,"€ 1,49",,"1,89 €",,Nein,,,,images_tegut/tegut_offer_098.jpg,"cat_molkerei_kaese,diet_vegetarian,sub_joghurt_skyr_quark,sub_milchprodukte,tag_proteinreich"
+Kaminwurzerl Mild,Christanell,"€ 2,99",,"3,99 €",,Nein,,,,images_tegut/tegut_offer_099.jpg,"cat_fleisch_wurst,sub_wurst,tag_ultra_processed"
+Ziegenkäse,Chavroux,"€ 2,49",,"3,49 €",,Nein,,,,images_tegut/tegut_offer_100.jpg,"cat_molkerei_kaese,sub_kaese,sub_milchprodukte"
+Bio-Wiener-Würstchen,tegut,"€ 3,99",,"1 kg = 19,95 €",,Nein,,,,images_tegut/tegut_offer_101.jpg,cat_fleisch_wurst
+Frischkäsezubereitung,Miree,"€ 1,11",,"1,89 €",,Nein,,,,images_tegut/tegut_offer_102.jpg,"cat_molkerei_kaese,diet_vegetarian,sub_kaese,sub_milchprodukte,tag_ultra_processed"
+LandPrimus Metzgerschinken,tegut,"€ 1,99",,"2,79 €",,Nein,,,,images_tegut/tegut_offer_103.jpg,cat_fleisch_wurst
+Schrozberger Milchbauern Bio-Schmand,demeter,"€ 1,99",,"2,49 €",,Nein,,,,images_tegut/tegut_offer_104.jpg,"cat_molkerei_kaese,diet_gluten_free,diet_lactose_free,diet_vegetarian,sub_milchprodukte"
+Bio-Wurstaufschnitt,BioLust,"€ 2,00",,Kein Mengenpreis,,Nein,,,,images_tegut/tegut_offer_105.jpg,"cat_fleisch_wurst,sub_wurst,tag_ultra_processed"
+Bio-Feta,tegut,"€ 2,65",,"1 kg = 13,25 €",,Nein,,,,images_tegut/tegut_offer_106.jpg,cat_obst_gemuese
+Bio-H-Milch,tegut,"€ 1,29",,Kein Mengenpreis,,Nein,,,,images_tegut/tegut_offer_107.jpg,cat_molkerei_kaese
+Mini-Frikadellen,Greenforce,"€ 2,49",,"2,99 €",,Nein,,,,images_tegut/tegut_offer_108.jpg,"cat_knabbern_naschen,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,tag_ultra_processed"
+Tress Brüder Bio-Suppe,demeter,"€ 2,99",,"1 l = 6,64 €",,Nein,,,,images_tegut/tegut_offer_109.jpg,"cat_obst_gemuese,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_frisches_gemuese,tag_whole_food"
+Maultaschen,Bürger,"€ 1,79",,"1 kg = 5,97/4,97 €",,Nein,,,,images_tegut/tegut_offer_110.jpg,cat_non_food
+15 Rabatt,tegut,"€ 2,00",,Kein Mengenpreis,,Nein,,,,images_tegut/tegut_offer_111.jpg,cat_sonstiges
+Calamares la Romana,tegut,"€ 3,99",,"1 kg = 7,98 €",,Nein,,,,images_tegut/tegut_offer_112.jpg,cat_obst_gemuese
+Pizza Margherita,Gustavo Gusto,"€ 3,49",,8.51 €/kg,,Nein,,,,images_tegut/tegut_offer_113.jpg,"cat_tiefkuehl,sub_tk_pizza,tag_ultra_processed"
+Cookie Dough,Ben Jerry s,"€ 3,99",,"6,99 €",,Nein,,,,images_tegut/tegut_offer_114.jpg,cat_non_food
+Backfisch-Stäbchen,Iglo,"€ 2,00",,Kein Mengenpreis,,Nein,,,,images_tegut/tegut_offer_115.jpg,cat_tiefkuehl
+Original Köttbullar,Dafg rds,"€ 4,44",,"5,99 €",,Nein,,,,images_tegut/tegut_offer_116.jpg,"cat_getraenke,tag_high_protein,tag_ultra_processed"
+Bio-Streichcreme,Alnatura,"€ 1,59",,"1 kg = 8,83 €",,Nein,,,,images_tegut/tegut_offer_117.jpg,"cat_grundnahrung,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_milchprodukte,tag_whole_food"
+100 pflanzlich,Bresso,"€ 1,99",,"1 kg = 14,21 €",,Nein,,,,images_tegut/tegut_offer_118.jpg,"cat_molkerei_kaese,diet_lactose_free,diet_vegan,diet_vegetarian,sub_kaese"
+bedda Hirte,bedda Hirte,"€ 2,79",,"3,29 €",,Nein,,,,images_tegut/tegut_offer_119.jpg,cat_non_food
+Mini Spargel grün,Mini Spargel grün,"€ 4,99",,"1 kg = 24,95",,Nein,,,,images_tegut/tegut_offer_120.jpg,"cat_obst_gemuese,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,tag_whole_food"
+Trinkmahlzeit,Huel,"€ 3,33",,"3,99 €",,Nein,,,,images_tegut/tegut_offer_121.jpg,"cat_getraenke,tag_ultra_processed"
+Schinken Spicker Salat,Rügenwalder Mühle,"€ 1,79",,"1 kg = 11,93 €",,Nein,,,,images_tegut/tegut_offer_122.jpg,"cat_fleisch_wurst,diet_lactose_free,sub_fleischersatz,sub_salate,sub_schwein,sub_wurst,tag_ultra_processed"
+Bruzzzler Veggie,Wiesenhof,"€ 2,49",,"2,99 €",,Nein,,,,images_tegut/tegut_offer_123.jpg,cat_fleisch_wurst
+Plant Based Filet Hähnchen Art,The Green Mountain,"€ 3,49",,"1 kg = 14,54 €",,Nein,,,,images_tegut/tegut_offer_124.jpg,"cat_fleisch_wurst,sub_gefluegel,tag_proteinreich"
+Spargel grün,Spargel grün,"€ 2,99",,"14,26 €",,Nein,,,,images_tegut/tegut_offer_125.jpg,"cat_obst_gemuese,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,tag_whole_food"
+Bio-Brotaufstrich,Vitam,"€ 1,99",,"2,29 €",,Nein,,,,images_tegut/tegut_offer_126.jpg,"cat_sonstiges,diet_lactose_free,diet_vegan,diet_vegetarian,tag_whole_food"
+Gyoza Teigtaschen,bibigo,"€ 3,99",,"1 kg = 13,30",,Nein,,,,images_tegut/tegut_offer_127.jpg,"cat_tiefkuehl,sub_tk_fertiggerichte"
+Saure Drachenzungen,Hitschies,"€ 2,00",,Kein Mengenpreis,,Nein,,,,images_tegut/tegut_offer_128.jpg,"cat_knabbern_naschen,tag_ultra_processed"
+Be Happy oder Little Dreamer,Cupper,"€ 2,49",,"3,29 €",,Nein,,,,images_tegut/tegut_offer_129.jpg,"cat_getraenke,tag_ultra_processed"
+KitKat Tafel Noisette,Nestl,"€ 1,79",,"2,29 €",,Nein,,,,images_tegut/tegut_offer_130.jpg,"cat_obst_gemuese,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_frisches_obst,tag_whole_food"
+Ma tre Chocolatier,Lindt,"€ 1,99",,"2,69 €",,Nein,,,,images_tegut/tegut_offer_131.jpg,"cat_knabbern_naschen,tag_ultra_processed"
+Bio-Brotaufstrich vegane Lebenswurst,Lebensküche,"€ 4,49",,"4,99 €",,Nein,,,,images_tegut/tegut_offer_132.jpg,"cat_fleisch_wurst,diet_lactose_free,sub_wurst"
+Salted Peanut Butter Bio-Pralinis,Lini s Bites,"€ 1,99",,"2,49 €",,Nein,,,,images_tegut/tegut_offer_133.jpg,"cat_knabbern_naschen,diet_gluten_free,diet_vegetarian,sub_butter_margarine,sub_milchprodukte,tag_ultra_processed"
+Cranberries Heidelbeeren,St Dalfour,"€ 3,33",,"1 kg = 11,73 €",,Nein,,,,images_tegut/tegut_offer_134.jpg,"cat_obst_gemuese,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_frisches_obst,tag_whole_food"
+Crunchy Corn,Treets,"€ 2,79",,"1 kg = 13,29 €",,Nein,,,,images_tegut/tegut_offer_135.jpg,"cat_knabbern_naschen,tag_ultra_processed"
+Bio-Müsli Früchte,Alnatura,"€ 3,99",,"4,49 €",,Nein,,,,images_tegut/tegut_offer_136.jpg,"cat_grundnahrung,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_huelsenfruechte,tag_whole_food"
+Tortillas Paprika,Chio,"€ 1,11",,"1,99 €",,Nein,,,,images_tegut/tegut_offer_137.jpg,"cat_obst_gemuese,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_frisches_gemuese,tag_whole_food"
+Pick up Choco Milk,Leibniz,"€ 2,22",,"3,79 €",,Nein,,,,images_tegut/tegut_offer_138.jpg,"cat_knabbern_naschen,tag_ultra_processed"
+Tomaten passiert,Jeden Tag,"€ 0,69",,"1 kg = 1,38 €",,Nein,,,,images_tegut/tegut_offer_139.jpg,"cat_grundnahrung,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_frisches_gemuese,tag_whole_food"
+Spaghettigericht,Jeden Tag,"€ 1,69",,"1 kg = 4,26 €",,Nein,,,,images_tegut/tegut_offer_140.jpg,cat_non_food
+Heringsfilets,Appel,"€ 0,99",,"1,99 €",,Nein,,,,images_tegut/tegut_offer_141.jpg,cat_fisch_meeresfruechte
+15 Rabatt,15 Rabatt,"€ 2,00",,Kein Mengenpreis,,Nein,,,,images_tegut/tegut_offer_142.jpg,cat_sonstiges
+Opa s Weißer,Mehlig Heller,"€ 2,29",,"2,79 €",,Nein,,,,images_tegut/tegut_offer_143.jpg,"cat_getraenke,diet_vegetarian"
+Bratkartoffeln mit Zwiebeln,Jeden Tag,"€ 1,49",,"1 kg = 3,73 €",,Nein,,,,images_tegut/tegut_offer_144.jpg,"cat_obst_gemuese,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_frisches_gemuese,sub_kartoffeln,tag_whole_food"
+Remoulade Nordsee inspired,Heinz,"€ 1,99",,"1 l = 4,98 €",,Nein,,,,images_tegut/tegut_offer_145.jpg,"cat_grundnahrung,tag_ultra_processed"
+Bio-Aceto Balsamico di Modena g g A,Alnatura,"€ 2,79",,"1 l = 5,58 €",,Nein,,,,images_tegut/tegut_offer_146.jpg,"cat_grundnahrung,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,tag_whole_food"
+Buchstaben Suppe,Maggi,"€ 0,69",,"0,99 €",,Nein,,,,images_tegut/tegut_offer_147.jpg,"cat_grundnahrung,diet_lactose_free,diet_vegetarian,tag_ultra_processed"
+Spaghetti Bolognese,Knorr,"€ 0,49",,"1 kg = 12,25 €",,Nein,,,,images_tegut/tegut_offer_148.jpg,"cat_grundnahrung,diet_vegetarian,sub_nudeln,tag_ultra_processed"
+Express Reis Mediterran,Ben s Original,"€ 1,49",,"2,29 €",,Nein,,,,images_tegut/tegut_offer_149.jpg,"cat_grundnahrung,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_milchprodukte,sub_reis,tag_ultra_processed"
+Lagerbier Hell,Augustiner,"€ 16,99",,"21,99 €",,Nein,,,,images_tegut/tegut_offer_150.jpg,cat_getraenke
+Hell,Löwenbräu,"€ 23,00",,"1 l = 1,15 €",,Nein,,,,images_tegut/tegut_offer_151.jpg,cat_getraenke
+Kentucky Straight Bourbon Whiskey,Jim Beam,"€ 10,99",,"15,99 €",,Nein,,,,images_tegut/tegut_offer_152.jpg,cat_getraenke
+Premium,Staropramen,"€ 14,99",,"17,99 €",,Nein,,,,images_tegut/tegut_offer_153.jpg,cat_non_food
+La Siluetta Primitivo Puglia,La Siluetta Primitivo Puglia,"€ 4,99",,"5,99 €",,Nein,,,,images_tegut/tegut_offer_154.jpg,cat_getraenke
+Tempranillo,Campo Viejo,"€ 5,99",,"6,99 €",,Nein,,,,images_tegut/tegut_offer_155.jpg,cat_drogerie
+Extra Sekt,MM,"€ 2,99",,"4,79 €",,Nein,,,,images_tegut/tegut_offer_156.jpg,cat_getraenke
+Sekt,Nymphenburg,"€ 2,99",,"4,29 €",,Nein,,,,images_tegut/tegut_offer_157.jpg,cat_getraenke
+Jechtinger Bio-Grauburgunder,Jechtinger Bio-Grauburgunder,"€ 5,99",,"6,99 €",,Nein,,,,images_tegut/tegut_offer_158.jpg,cat_getraenke
+Münchner Hell,Paulaner,"€ 0,99",,"1,19 €",,Nein,,,,images_tegut/tegut_offer_159.jpg,"cat_getraenke,tag_ultra_processed"
+Helles Vollbier,Hofbräuhaus,"€ 15,99",,"1 l = 1,60 €",,Nein,,,,images_tegut/tegut_offer_160.jpg,cat_getraenke
+Capri-Sun,Capri-Sun,"€ 3,33",,"4,29 €",,Nein,,,,images_tegut/tegut_offer_161.jpg,cat_non_food
+IceTea Pfirsich,Pfanner,"€ 1,29",,"1 l = 0,65 €",,Nein,,,,images_tegut/tegut_offer_162.jpg,"cat_tiefkuehl,diet_lactose_free,diet_vegan,tag_ultra_processed"
+Coca-Cola,Coca-Cola,"€ 11,99",,"1 l = 0,86 €",,Nein,,,,images_tegut/tegut_offer_163.jpg,cat_getraenke
+all-in-one Beauty,Hohes C,"€ 1,99",,"2,89 €",,Nein,,,,images_tegut/tegut_offer_164.jpg,cat_getraenke
+Frucht oder Limo,hella,"€ 3,49",,"1 l = 0,78 €",,Nein,,,,images_tegut/tegut_offer_165.jpg,"cat_getraenke,diet_vegetarian,tag_ultra_processed"
+Scharfe Säfte Tomate,Scharfe Säfte Tomate,"€ 0,99",,"1,29 €",,Nein,,,,images_tegut/tegut_offer_166.jpg,"cat_getraenke,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,tag_whole_food"
+Amecke,Amecke,"€ 1,99",,"2,79 €",,Nein,,,,images_tegut/tegut_offer_167.jpg,cat_non_food
+Mineralwasser,Krumbach,"€ 3,99",,"4,99 €",,Nein,,,,images_tegut/tegut_offer_168.jpg,"cat_getraenke,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian"
+Original,Vita Cola,"€ 0,99",,"1,39 €",,Nein,,,,images_tegut/tegut_offer_169.jpg,"cat_getraenke,tag_high_protein,tag_proteinreich,tag_ultra_processed"
+Coffein C1,Alpecin,"€ 5,99",,"6,99 €",,Nein,,,,images_tegut/tegut_offer_170.jpg,"cat_getraenke,diet_vegetarian,tag_ultra_processed"
+Früchteallerlei mit Vollkorn,Alnatura,"€ 1,19",,1 kg = 6.26,,Nein,,,,images_tegut/tegut_offer_171.jpg,"cat_grundnahrung,diet_vegan,diet_vegetarian,sub_huelsenfruechte,tag_whole_food"
+Bio-Quetschie,Krümel,"€ 0,88",,"0,99 €",,Nein,,,,images_tegut/tegut_offer_172.jpg,"cat_obst_gemuese,diet_lactose_free,diet_vegan,diet_vegetarian"
+Duschgel Insta Cool,Axe,"€ 2,29",,"2,79 €",,Nein,,,,images_tegut/tegut_offer_173.jpg,cat_drogerie
+Zahncreme Calendula,Weleda,"€ 4,49",,"4,99 €",,Nein,,,,images_tegut/tegut_offer_174.jpg,cat_drogerie
+feuchte Toilettentücher,Tempo,"€ 1,39",,"1,79 €",,Nein,,,,images_tegut/tegut_offer_175.jpg,cat_drogerie
+Zahnpasta White Shine,Odol-med 3,"€ 2,00",,Kein Mengenpreis,,Nein,,,,images_tegut/tegut_offer_176.jpg,cat_drogerie
+BioEmbrace Windeln Größe 4,Naty,"€ 7,99",,Kein Mengenpreis,,Nein,,,,images_tegut/tegut_offer_177.jpg,"cat_grundnahrung,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,tag_whole_food"
+Dusche,Frosch,"€ 1,79",,1 l = 5.97 €,,Nein,,,,images_tegut/tegut_offer_178.jpg,cat_drogerie
+Deo Spray,CD,"€ 1,79",,"1,99 €",,Nein,,,,images_tegut/tegut_offer_179.jpg,cat_drogerie
+Wahre Schätze Shampoo,Garnier,"€ 1,99",,"2,49 €",,Nein,,,,images_tegut/tegut_offer_180.jpg,cat_drogerie
+Weichspüler,Lenor,"€ 1,99",,"2,59 €",,Nein,,,,images_tegut/tegut_offer_181.jpg,cat_drogerie
+Filzhase,Filzhase,"€ 12,99",,Kein Mengenpreis,,Nein,,,,images_tegut/tegut_offer_182.jpg,"cat_knabbern_naschen,tag_ultra_processed"
+Bio-Nassfutter für Hunde,Defu,"€ 1,99",,"2,79 €",,Nein,,,,images_tegut/tegut_offer_183.jpg,cat_tiernahrung
+Leberwurst für Hunde,be-so,"€ 1,99",,Kein Mengenpreis,,Nein,,,,images_tegut/tegut_offer_184.jpg,"cat_fleisch_wurst,sub_wurst,tag_ultra_processed"
+daily Slipeinlagen,always,"€ 2,79",,"3,29 €",,Nein,,,,images_tegut/tegut_offer_185.jpg,cat_drogerie
+Filzkorb mit Stoff-Hasenohren,Filzkorb mit Stoff-Hasenohren,"€ 3,99",,"8,99 €",,Nein,,,,images_tegut/tegut_offer_186.jpg,"cat_knabbern_naschen,diet_lactose_free,diet_vegan,diet_vegetarian,tag_ultra_processed,tag_whole_food"
+WC-Stein,Domestos,"€ 1,59",,"31,80 €/1 kg, 3,18/2,12 €/1 l",,Nein,,,,images_tegut/tegut_offer_187.jpg,cat_drogerie
+Katzennahrung,Perfect Fit,"€ 3,33",,"3,99 €",,Nein,,,,images_tegut/tegut_offer_188.jpg,"cat_tiernahrung,tag_ultra_processed"
+CatSticks,Vitakraft,"€ 0,79",,"0,89 €",,Nein,,,,images_tegut/tegut_offer_189.jpg,"cat_tiernahrung,tag_ultra_processed"
+Bio-Katzennahrung,Mau,"€ 1,99",,"1 kg = 9,95",,Nein,,,,images_tegut/tegut_offer_190.jpg,cat_tiernahrung
+Eierkranz,Eierkranz,"€ 19,99",,Kein Mengenpreis,,Nein,,,,images_tegut/tegut_offer_191.jpg,"cat_knabbern_naschen,diet_vegetarian,tag_ultra_processed"
+Cranberry White Cookies,Merba,"€ 2,29",,"1 kg = 11,45 €",,Nein,,,,images_tegut/tegut_offer_192.jpg,cat_non_food
+Whisky,Monkey Shoulder,"€ 24,99",,"27,99 €",,Nein,,,,images_tegut/tegut_offer_193.jpg,cat_getraenke
+Blanc,Lillet,"€ 12,99",,"1 l = 17,32 €",,Nein,,,,images_tegut/tegut_offer_194.jpg,cat_getraenke
+Bio-Doppelkeks,wikana,"€ 2,99",,"1 kg = 9,06 €",,Nein,,,,images_tegut/tegut_offer_195.jpg,"cat_obst_gemuese,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,tag_whole_food"
+Extra Stark Bonbons ohne Zuckerzusatz,Vivil,"€ 1,79",,"1,99 €",,Nein,,,,images_tegut/tegut_offer_196.jpg,"cat_grundnahrung,tag_ultra_processed"
+Kapseln Rossa,Lavazza,"€ 8,99",,"9,99 €",,Nein,,,,images_tegut/tegut_offer_197.jpg,cat_non_food
+Decaffeinato,Mövenpick,"€ 2,99",,"1 kg = 52,46 €",,Nein,,,,images_tegut/tegut_offer_198.jpg,"cat_molkerei_kaese,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_milchprodukte,tag_ultra_processed"
+Alpen Jodsalz,Bad Reichenhaller,"€ 0,69",,"0,85 €",,Nein,,,,images_tegut/tegut_offer_199.jpg,"cat_molkerei_kaese,diet_vegetarian,sub_kaese,sub_milchprodukte"
+Handgeschirrspülmittel Sensitive,Pril,"€ 1,59",,"1 l = 3,53 €",,Nein,,,,images_tegut/tegut_offer_200.jpg,cat_drogerie
+für Genießer Suppe - Zwiebelsuppe,Maggi,"€ 0,99",,"1,19 €",,Nein,,,,images_tegut/tegut_offer_201.jpg,"cat_grundnahrung,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_frisches_gemuese,tag_ultra_processed,tag_whole_food"
+Kekse Original,Oreo,"€ 1,69",,"1,89 €",,Nein,,,,images_tegut/tegut_offer_202.jpg,"cat_knabbern_naschen,tag_high_protein,tag_ultra_processed"
+Knoppers,Storck,"€ 2,22",,"2,49 €",,Nein,,,,images_tegut/tegut_offer_203.jpg,"cat_knabbern_naschen,diet_vegetarian,tag_ultra_processed"
+Kartoffeltaschen,Schwarmstedter,"€ 2,79",,"1 kg = 9,30 €",,Nein,,,,images_tegut/tegut_offer_204.jpg,"cat_obst_gemuese,diet_vegan,diet_vegetarian,sub_kartoffeln,tag_whole_food"
+Saft milder Apfel,Bebivita,"€ 1,29",,"1,49 €",,Nein,,,,images_tegut/tegut_offer_205.jpg,"cat_obst_gemuese,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,sub_frisches_obst,tag_whole_food"
+Hippis Bio-Quetschmus,Hipp,"€ 1,11",,"1 kg = 11,10 €",,Nein,,,,images_tegut/tegut_offer_206.jpg,"cat_obst_gemuese,diet_vegetarian"
+Snack pur,Quäse,"€ 1,79",,"1 kg = 17,90 €",,Nein,,,,images_tegut/tegut_offer_207.jpg,"cat_knabbern_naschen,sub_schwein,tag_ultra_processed"
+Bio-Halloumi,Greco,"€ 3,49",,"1 kg = 17,45 €",,Nein,,,,images_tegut/tegut_offer_208.jpg,"cat_molkerei_kaese,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian"
+Backofen Puffer,Schwarmstedter,"€ 3,79",,"1 kg = 7,90 €",,Nein,,,,images_tegut/tegut_offer_209.jpg,"cat_grundnahrung,tag_ultra_processed"
+Bio-Mascarpone,Weißenhorner,"€ 2,99",,"3,49 €",,Nein,,,,images_tegut/tegut_offer_210.jpg,"cat_molkerei_kaese,diet_vegetarian,sub_kaese,sub_milchprodukte,sub_sahne_creme"
+Astra Urtyp oder Rakete,Astra,"€ 2,00",,Kein Mengenpreis,,Nein,,,,images_tegut/tegut_offer_211.jpg,"cat_getraenke,diet_vegetarian"
+20-fach Punkte,Payback,"€ 2,00",,Kein Mengenpreis,,Nein,,,,images_tegut/tegut_offer_212.jpg,cat_sonstiges
+Kollagen Pulver,Glow,"€ 2,00",,Kein Mengenpreis,,Nein,,,,images_tegut/tegut_offer_213.jpg,"cat_drogerie,tag_high_protein,tag_proteinreich"
+30-fach Punkte,Nescaf,"€ 2,00",,Kein Mengenpreis,,Nein,,,,images_tegut/tegut_offer_214.jpg,"cat_sonstiges,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian"
+Bio-Oliven,Mani Bläuel,"€ 2,00",,Kein Mengenpreis,,Nein,,,,images_tegut/tegut_offer_215.jpg,"cat_obst_gemuese,diet_gluten_free,diet_lactose_free,diet_vegan,diet_vegetarian,tag_whole_food"
+30-fach Punkte,30-fach Punkte,"€ 2,00",,Kein Mengenpreis,,Nein,,,,images_tegut/tegut_offer_216.jpg,cat_sonstiges
+Mixgetränke,Moskovskaya,"€ 2,00",,Kein Mengenpreis,,Nein,,,,images_tegut/tegut_offer_217.jpg,"cat_getraenke,diet_vegetarian,tag_ultra_processed"
+20-fach Punkte,Payback,"€ 2,00",,Kein Mengenpreis,,Nein,,,,images_tegut/tegut_offer_218.jpg,cat_sonstiges
+Ökologischer Orangen-Reiniger,Sodasan,"€ 3,49",,"1 l = 6,98",,Nein,,,,images_tegut/tegut_offer_219.jpg,cat_drogerie
+Reiniger,Cillit Bang,"€ 2,19",,"2,99 €",,Nein,,,,images_tegut/tegut_offer_220.jpg,cat_drogerie
+Scrub Daddy Scheuerpad,Scrub Daddy,"€ 2,99",,"3,99 €",,Nein,,,,images_tegut/tegut_offer_221.jpg,cat_non_food
+Color Waschmittel,Sodasan,"€ 5,99",,0.29/0.39 € je Waschladung,,Nein,,,,images_tegut/tegut_offer_222.jpg,cat_drogerie
+Geschirrschwamm,Spontex,"€ 1,49",,Kein Mengenpreis,,Nein,,,,images_tegut/tegut_offer_223.jpg,cat_drogerie
+Waschmittel Wolle Seide,Sonett,"€ 5,59",,"1 Waschladung = 0,33 €",,Nein,,,,images_tegut/tegut_offer_224.jpg,cat_drogerie
+ökologische Spülmaschinen-Tabs,Sodasan,"€ 4,99",,Kein Mengenpreis,,Nein,,,,images_tegut/tegut_offer_225.jpg,cat_drogerie
+Ökologische Handseife,Sonett,"€ 7,99",,"9,99 €",,Nein,,,,images_tegut/tegut_offer_226.jpg,cat_drogerie
+ökologisches Handspülmittel,Sodasan,"€ 1,99",,1 l = 3.98,,Nein,,,,images_tegut/tegut_offer_227.jpg,cat_drogerie
