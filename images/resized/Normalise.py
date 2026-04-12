@@ -2,7 +2,7 @@ from pathlib import Path
 from PIL import Image
 
 # === Haupt-Images-Ordner ===
-ROOT_DIR = Path(r"C:\Users\pfudi\PycharmProjects\MVP_Preisvergleich_clean\data\images")
+ROOT_DIR = Path(r"/images/images")
 
 # === Zielgröße für ALLE Bilder ===
 FINAL_SIZE = (512, 512)
